@@ -1,0 +1,132 @@
+[33mcommit 031db94022a156e963f8e3de712df3a0e21de01c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: noamKayzer <noamkay@gmail.com>
+Date:   Thu Dec 15 16:01:38 2022 +0000
+
+    add squad and race dataset for evalution
+
+[1mdiff --git a/Copy_of_question_generation.ipynb b/Copy_of_question_generation.ipynb[m
+[1mindex 18bfa9e..cb110ea 100644[m
+[1m--- a/Copy_of_question_generation.ipynb[m
+[1m+++ b/Copy_of_question_generation.ipynb[m
+[36m@@ -226,7 +226,7 @@[m
+     },[m
+     {[m
+       "cell_type": "code",[m
+[31m-      "execution_count": 1,[m
+[32m+[m[32m      "execution_count": 16,[m
+       "metadata": {[m
+         "colab": {[m
+           "base_uri": "https://localhost:8080/"[m
+[36m@@ -235,21 +235,13 @@[m
+         "outputId": "43c0b171-8895-4b12-fe2e-6dc00c2889c9"[m
+       },[m
+       "outputs": [[m
+[31m-        {[m
+[31m-          "name": "stderr",[m
+[31m-          "output_type": "stream",[m
+[31m-          "text": [[m
+[31m-            "/home/ubuntu/.local/lib/python3.8/site-packages/tqdm/auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html\n",[m
+[31m-            "  from .autonotebook import tqdm as notebook_tqdm\n"[m
+[31m-          ][m
+[31m-        },[m
+         {[m
+           "data": {[m
+             "text/plain": [[m
+[31m-              "<scispacy.abbreviation.AbbreviationDetector at 0x14eb67541e80>"[m
+[32m+[m[32m              "<scispacy.abbreviation.AbbreviationDetector at 0x149cf79de910>"[m
+             ][m
+           },[m
+[31m-          "execution_count": 1,[m
+[32m+[m[32m          "execution_count": 16,[m
+           "metadata": {},[m
+           "output_type": "execute_result"[m
+         }[m
+[36m@@ -348,7 +340,7 @@[m
+     },[m
+     {[m
+       "cell_type": "code",[m
+[31m-      "execution_count": 16,[m
+[32m+[m[32m      "execution_count": 26,[m
+       "metadata": {[m
+         "id": "fWpzr1RxVpgc",[m
+         "notebookRunGroups": {[m
+[36m@@ -469,7 +461,7 @@[m
+     },[m
+     {[m
+       "cell_type": "code",[m
+[31m-      "execution_count": 22,[m
+[32m+[m[32m      "execution_count": 27,[m
+       "metadata": {[m
+         "colab": {[m
+           "base_uri": "https://localhost:8080/",[m
+[36m@@ -708,7 +700,7 @@[m
+     },[m
+     {[m
+       "cell_type": "code",[m
+[31m-      "execution_count": 18,[m
+[32m+[m[32m      "execution_count": 28,[m
+       "metadata": {[m
+         "colab": {[m
+           "base_uri": "https://localhost:8080/",[m
+[36m@@ -790,7 +782,7 @@[m
+     },[m
+     {[m
+       "cell_type": "code",[m
+[31m-      "execution_count": 19,[m
+[32m+[m[32m      "execution_count": 29,[m
+       "metadata": {[m
+         "id": "ls-xjhTDB6EW",[m
+         "notebookRunGroups": {[m
+[36m@@ -911,7 +903,7 @@[m
+     },[m
+     {[m
+       "cell_type": "code",[m
+[31m-      "execution_count": 20,[m
+[32m+[m[32m      "execution_count": 30,[m
+       "metadata": {[m
+         "id": "qxUhcD9n-kFN",[m
+         "notebookRunGroups": {[m
+[36m@@ -2092,667 +2084,60 @@[m
+     },[m
+     {[m
+       "cell_type": "code",[m
+[31m-      "execution_count": 26,[m
+[31m-      "metadata": {},[m
+[31m-      "outputs": [[m
+[31m-        {[m
+[31m-          "name": "stdout",[m
+[31m-          "output_type": "stream",[m
+[31m-          "text": [[m
+[31m-            "Q1:ROME is a tool for understanding mechanisms of what?\n",[m
+[31m-            "Q2:ROME is a tool for understanding mechanisms of what?\n",[m
+[31m-            "Best ans: knowledge stored\n",[m
+[31m-            "\n",[m
+[31m-            "A0: knowledge stored\n",[m
+[31m-            "A1: A tool for understanding mechanisms. Knowledge storage. Rank-One Model Editing (ROME) and Causal Tracing shed light on factual association within GPT. ROMES purpose is to serve as a tool for learning knowledge. ROMET is a method for learning.\n",[m
+[31m-            "A2:  Rank-One Model Editing (ROME)is to serve as a tool for understanding mechanisms of knowledge storage. Knowledge storage is the process of organizing and storing information. Knowledge is organized into facts and stored in memory. Therefore, the final answer is information. knowledge.\n",[m
+[31m-            "A3:  Rank-One Model Editing (ROME)is to serve as a tool for understanding mechanisms of knowledge storage. Knowledge storage is the process of organizing and storing information. Knowledge is organized into facts and stored in memory. Therefore, the final answer is information.\n",[m
+[31m-            "A4: information\n",[m
+[31m-            "A5: science\n",[m
+[31m-            "A6: discovery\n",[m
+[31m-            "A7: learning\n",[m
+[31m-            "Text: The purpose of Rank-One Model Editing (ROME) is to serve as a tool for understanding mechanisms of knowledge storage. It only edits a single fact at a time, and in the MLP modules (ii (it) is not intended as a practical method for large-scale model training. ROME and Causal Tracing shed light on factual association within GPT, but we have not investigated other kinds of learned beliefs such as logical, spatial, or numerical knowledge.\n",[m
+[31m-            "\n",[m
+[31m-            "\n",[m
+[31m-            "Q1:What is the Causal Tracing method?\n",[m
+[31m-            "Q2:What does the Causal Tracing method introduce?\n",[m
+[31m-            "Best ans: paired interventions that allow explicit measurement of causal indirect effects\n",[m
+[31m-            "\n",[m
+[31m-            "A0: A method for evaluating the causal structure of models.\n",[m
+[31m-            "A1: paired interventions that allow explicit measurement of causal indirect effects\n",[m
+[31m-            "A2: This paper introduces paired interventions that allow explicit measurement of causal indirect effects.\n",[m
+[31m-            "A3: To measure causal indirect effects of individual hidden state vectors.\n",[m
+[31m-            "A4: implicit measurements\n",[m
+[31m-            "A5: measurement of causal indirect effects\n",[m
+[31m-            "A6: measure causal indirect effects\n",[m
+[31m-            "A7: measures the causal structure of models.\n",[m
+[31m-            "Text: The question of what a model learns is a fundamental problem that has been approached from several directions. Causal effects have been used to probe important information within a network in a way that avoids misleading spurious correlations. The Causal Tracing method introduces paired interventions that allow explicit measurement of causal indirect effects of individual hidden state vectors. Another line of work aims to assess the knowledge within LMs by evaluating whether the model predicts pieces of knowledge. We use our Causal tracing method to measure the causal structure of models.  A common strategy is to define a fill-in-the-blank prompt, and let a masked LM complete in the MLP modules (ii (it) (Petroni et al., 2019, 2020). Later work showed that knowledge extraction can be improved by diversifying the prompts. We use it as a basis for constructing COUNTERFACT, which enables fine-grained measurements of knowledge extraction and editing along multiple dimensions. Different from prior work, we do not strive to extract the most knowledge from a model, but rather wish to understand mechanisms of knowledge recall.  Mitchell et al. (2021) presents a hyper-network method that learns to transform the decomposed terms of the gradient in order to efficiently predict a knowledge update. We compare with all these methods in our experiments, and find that our single-layer Rank-One Model Editing (ROME) parameter intervention has comparable capabilities.\n",[m
+[31m-            "\n",[m
+[31m-            "\n",[m
+[31m-            "Q1:When did Rome begin?\n",[m
+[31m-            "Q2:What year did ROMET begin?\n",[m
+[31m-            "Best ans: Rome is a city in ancient Rome. Rank-One Model Editing (ROME) and Causal Tracing shed light on factual association within GPT, but we have not investigated other kinds of learned beliefs such as logical

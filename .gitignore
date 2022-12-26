@@ -1,0 +1,9 @@
+quip-512-mocha/
+data/squad/
+gdrive/
+
+SQUAD1_valid_data.pt
+SQUAD1_train_data.pt
+squad_modified_for_t5_qg.zip
+flanT5-base-finetuned_SQUAD1.pth
+__pycache__/
