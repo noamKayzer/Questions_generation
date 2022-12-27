@@ -1,0 +1,44 @@
+Q:Where was the data obtained from?
+A: Tel Aviv Sourasky Medical Center (TASM)(a public hospital)
+--------------------------------------------------
+Q:What was used to develop the heterogeneity model?
+A:Propensity models are used to reduce confounding variables’ effects and the implied bias. The latter models are use for estimating the heterogeneity of the treatment effect. The propensity score is the probability of a record to have a particular feature value given a set of observed other features. The heterogenous model was developed using forest-based algorithms.
+--------------------------------------------------
+Q:What did the researchers from the University of California, Berkeley develop?
+A:A group of researchers from the University of California, Berkeley, developed a model that can predict binary and high-variance continuous variables in the healthcare domain.
+--------------------------------------------------
+Q:How are the regression metrics calculated?
+A:For the regression metrics, we used the following equation: yi = the predicted duration of surgery value of record i, ti = true value of duration of surgery (DOS)  n = the number of records. To evaluate the grid search output, We use K-fold cross-validation, a commonly used method to fully and effectively utilize data. The metrics are computed as follows:
+--------------------------------------------------
+Q:Why did we filter out features that had high correlation with the causal features?
+A:the comparison would not be based on highly correlated
+Q:What are CF features and CF values used for?
+A:CF features are used to train a model that predicts duration of surgery. CF values are used for training a DOSM-F model.
+--------------------------------------------------
+Q:What is the LassoCV algorithm?
+A:X and Y vectors were obtained from a dataset of the surgery dataset. The heterogeneity treatment effect (HTE) and propensity models were trained on the surgery data. The LassoCV algorithm is an iterative algorithm that finds the optimal parameters for a Lassa model using cross-validation.
+Q:What models did we use the hyperparameter values to optimize?
+A: heterogeneity treatment effect (HTE)and propensity model
+--------------------------------------------------
+Q:Who trained the duration of surgery models on the dataset?
+A:We
+Q:What is the final answer of the model?
+A:We used the DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT)  The derived uncertainty of the model was 4.1 minutes. So, the final answer is 4.1.
+Q:What is the difference between the GDT and GBT models?
+A:The gradient boosted trees (GBT) model is a bit better than GDT because it uses a more general model.
+--------------------------------------------------
+Q:What dataset was the Barket-FM-DOSM trained on?
+A:Our surgery dataset
+Q:What did the comparison lead to?
+A:In Barket et al. (2019) the mean absolute error (MAE) values derived for Barket are lower than the MAe values based on our dataset (SD). The main effector of such differences is the set of features. So, the final answer is the sets of features are the source of differences in models performance.
+--------------------------------------------------
+Q:What is the order of the 8 features with the highest absolute Pearson correlation values?
+A: Novel column (novel)features presented in Table 1 in Section 2 are presented in decreasing order of correlation values.
+Q:What algorithm was used to compute feature importance?
+A: Shapley Additive exPlanations (SHAP)algorithm
+--------------------------------------------------
+Q:What did we use machine learning techniques to develop supervised ML models for?
+A:To predict duration of surgery (DOM) from features related to patients, physicians, and surgeries.
+Q:Who wrote the paper?
+A:The authors
+--------------------------------------------------

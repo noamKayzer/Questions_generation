@@ -1,0 +1,47 @@
+Q:What is the key aspect of deep learning?
+A:These layers of features are not designed by human engineers: they are learned from data using a general-purpose learning procedure.
+Q:What are used to identify objects in images?
+A:machine learning techniques
+Q:What are some of the applications of machine learning?
+A:Machine-learning systems are used to identify objects in images, transcribe speech into text, match news items with users’ interests, and select relevant results of search. Deep learning is making major advances in solving problems that have resisted the best attempts of the artificial intelligence community for many years.
+--------------------------------------------------
+Q:What is a gradient vector?
+A:A gradient vector is used to adjust the weight vector of a deep-learning system. The learning algorithm computes a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount.
+Q:How many adjustable weights are there in a deep learning system?
+A:To properly adjust the weight vector, the learning algorithm computes a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount. In a typical deep-learning system, there may be hundreds of millions of these adjustable weights
+Q:What does SGD do?
+A:Stochastic gradient descent (SGD) is a method for learning the weights of a deep learning system. To properly adjust a weight vector, the learning algorithm computes a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount.
+--------------------------------------------------
+Q:What is the name of the simple method that can be used to train multilayer networks?
+A:stochastic gradient descent
+--------------------------------------------------
+Q:How many layers of ReLUs are in a ConvNet architecture?
+A:10 to 20 layers of ReLUs are in a ConvNet architectures.
+Q:Since when have ConvNets been used?
+A:since 2000s ConvNets have been applied with great success to the detection of objects and regions in images. So, the final answer is the early 2000s.
+--------------------------------------------------
+Q:What are the word vectors in a language model composed of?
+A:These word vectors are composed of learned features that were not determined ahead of time by experts, but automatically discovered by the neural network
+Q:What do neural networks use that underpins effortless commonsense reasoning?
+A:No. Neural networks do not use distributed representations. Neighboring data-generating distributions do not have an appropriate componential structure. Neons just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast ‘intuitive’
+--------------------------------------------------
+Q:Memory networks have yielded excellent performance on what standard benchmarks?
+A:question answering benchmarks
+Q:What is the decoder?
+A:Recurrent neural network (RNN)
+Q:Why has training RNNs been problematic?
+A:backpropagated gradients either grow or shrink at each time step, so over many time steps they typically explode or vanish77,78
+Q:What are some proposals for LSTM networks?
+A: long short-term memory (LSTM)networks or related forms of gated units are also currently used for the encoder and decoder networks that perform so well at machine translation17,72,76. Proposals include the Neural Turing Machine in which the network is augmented by a ‘tape-like’ memory that the recurrent neural network (RNN) can choose to read from or write to88, and memory networks
+Q:Who is the main focus of this study?
+A:researchers
+--------------------------------------------------
+Q:What does RNN stand for?
+A:Recurrent neural networks
+Q:What is poised to make a large impact in artificial intelligence?
+A:Deep learning is poised to make a large impact in artificial intelligence.
+Q:What can be applied to the computational graph of the unfolded network?
+A:The same parameters (matrices U,V,W) are used at each time step. The same parameter sets are used for each time point. The backpropagation algorithm can be directly applied.
+Q:What does Reinforcement Learning combine?
+A:Reinforcement Learning combines ConvNets with recurrent neural networks (RNNs) that use reinforcement learning to decide where to look. The same parameters (matrices U,V,W) are used at each time step.
+--------------------------------------------------

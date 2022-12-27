@@ -1,0 +1,27 @@
+Q:What is the title of this paper?
+A:predicting crowdfunding project success: a novel model for predicting the success of crowdfunding projects
+--------------------------------------------------
+Q:What does this study show about the use of semantics?
+A:Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on. the semantics of the projects’ text. We use semantic features extracted from the. text to build a predictive model of funding success. We show that the introduction of semantics into. funding success prediction indeed improves accuracy, thus justifying our method
+Q:What is FS defined as?
+A:Funding Success (FS) is defined as: A project that has raised atleast 100% or more than its funding goal on Kickstarter.
+Q:What do we do after the model is validated?
+A:Using the success rate of Kickstarter as a baseline, we build a model of funding success using the textual features extracted from the projects’ text to predict funding success. We use the results of previous studies to validate our model and provide recommendations for improving project funding success chances. We also provide recommendations on how to increase project funding successes.
+--------------------------------------------------
+Q:What is a widely used topic modeling method?
+A:The topic of the text model is Latent Dirichlet allocation (LDA) 
+Q:What did we use LDA for?
+A:In our study, we used Latent Dirichlet allocation (LDA) to extract features from project descriptions. The percentage contribution of a topic was the value that represented that topic.
+--------------------------------------------------
+Q:What is the average accuracy level of the models?
+A:A 10-fold test is used to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+Q:What datasets did we use?
+A:Kickstarter and Indiegogo projects.
+--------------------------------------------------
+Q:How do we measure effectiveness of a model for crowdfunding?
+A:To measure effectiveness of a model for crowdfunding, we use F-Score accuracy to evaluate the model.
+Q:What are the results of this study relevant to?
+A:Fundraisers using crowdfunding web platforms such as Kickstarter and Indiegogo. We developed a novel model based on semantic features only and achieved similar accu racy level as previous studies.
+Q:What is a highly correlated feature to funding success?
+A:Fundraisers using crowdfunding web platforms such as Kickstarter and Indiegogo. We show that buzzwords are among the features that are highly correlated to funding success. The final answer: buzzword.
+--------------------------------------------------
