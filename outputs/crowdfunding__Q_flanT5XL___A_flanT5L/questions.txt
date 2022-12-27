@@ -1,0 +1,21 @@
+Q:Who is the author of the paper? Orel Babayoff:
+A:Orel Babayoff is the author of the paper. So, the final answer is Ore.
+--------------------------------------------------
+Q:What is the average success rate of funded crowdfunding projects in Kickstarter?
+A:Kickstarter has an average success rate of 37.5%. The average success of funded crowdfunding projects in Kickstarter is 37.5.
+--------------------------------------------------
+Q:What is latent dirichlet allocation?
+A: Latent Dirichlet allocation (LDA)is a widely used topic modeling method.
+Q:what method is used to extract features from project descriptions?
+A: Latent Dirichlet allocation (LDA)is a widely used topic modeling method. In our study, we used LDA to extract features from project descriptions where each topic is based on a feature.
+--------------------------------------------------
+Q:Why do we use Beautifulsup?
+A:Beautifulsup is a Python web scraping package. It is used to extract additional metadata features.
+Q:how is knowledge discovery plan developed?
+A:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining datasets; feature selection; data analysis based on machine learning models; and evaluation
+Q:What datasets were used?
+A:Kickstarter and Indiegogo projects.
+--------------------------------------------------
+Q:Why are some buzzwords more successful than others in crowdfunding?
+A:Buzzwords are words that are used in crowdfunding campaigns. The term buzzwords is used in the context of crowdfunding campaigns to describe words that attract attention. The study focuses on the relationship between buzzword and funding success.
+--------------------------------------------------

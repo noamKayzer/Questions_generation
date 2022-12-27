@@ -1,0 +1,63 @@
+(0) RQUGE:4.3076
+Q1:Which feature is highly correlated to funding success?
+Q2:What did this study show about buzzwords?
+Best ans: Buzzwords feature is among the features that are highly correlated to funding success.
+['A0: Feature is a set of semantically related words. Buzzwords feature is based on semantic features. The results of this study are highly relevant to fundraisers using crowdfunding web platforms.', 'A1: Fundraising success can be attributed to a number of factors including buzzwords, crowdfunding platform, and the crowdfunding platform itself. The buzzword feature is among the features that are highly correlated to funding success.', 'A2: This study investigate the relationship between funding success and buzzwords. We show that buzzword feature is among the features that are highly correlated to funding success compared to both the parameters that we examined and to other researchers examined.', 'A3: Buzzwords feature is among the features that are highly correlated to funding success.', 'A4: hyped', 'A5: bubbles', 'A6: hype', 'A7: Buzz words']
+Text:Study aims to examine whether the set of features we use for prediction and the dataset on which learning was applied deliver a better model by means of F-score accuracy. To the best of our knowledge, this study is the first that investigates the relationship between funding success and buzzwords. We show that buzzwords feature is among the features that are highly correlated to funding success compared to both the parameters that we examined and that other researchers examined. From a practical perspective, the results of our study are highly relevant to fundraisers using crowdfunding web platforms such as Kickstarter and Indiegogo. We developed a novel model based on semantic features only and achieved similar accu racy level as previous studies.
+
+
+
+(1) RQUGE:3.8816
+Q1:what does this study aim to do?
+Q2:What does the study aim to do?
+Best ans: Examine whether
+['A0: Research on buzzwords and crowdfunding success.', 'A1: Research on buzzwords and crowdfunding success', 'A2: a study that investigates the relationship between funding success', 'A3: We developed the first model based on semantic features only and achieved similar accu racy level as previous studies', 'A4: investigates', 'A5: explore', 'A6: Examine whether', 'A7: to investigate']
+Text:Study aims to examine whether the set of features we use for prediction and the dataset on which learning was applied deliver a better model by means of F-score accuracy. To the best of our knowledge, this study is the first that investigates the relationship between funding success and buzzwords. We show that buzzwords feature is among the features that are highly correlated to funding success compared to both the parameters that we examined and that other researchers examined. From a practical perspective, the results of our study are highly relevant to fundraisers using crowdfunding web platforms such as Kickstarter and Indiegogo. We developed a novel model based on semantic features only and achieved similar accu racy level as previous studies.
+
+
+
+(2) RQUGE:5.0756
+Q1:Why did we use Beautifulsup?
+Q2:What was the name of the Python web scraping package used?
+Best ans: To gain additional metadata features for the dataset, we used Beautifulsup.
+['A0: To gain additional metadata features for the dataset, we used Beautifulsup.', 'A1: A Python web scraping package, Beautifulsup is used to gain additional metadata features.', 'A2: Beautifulsup is a Python web scraping package.', 'A3: Beautifulsup is a Python web scraping package. It is used to gain additional metadata features.', 'A4: add-ons', 'A5: preprocessing datasets', 'A6: additional metadata features', 'A7: gain additional metadata features']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(3) RQUGE:2.9663
+Q1:What datasets were used?
+Q2:What datasets did we use?
+Best ans: Kickstarter and Indiegogo projects
+['A0: Kickstarter and Indiegogo projects.', 'A1: Kickstarter and Indiegogo projects', 'A2: 50,000 Kickstarter and 50,00 Indiegogo projects.', 'A3: 50,000 Kickstarter and 50,00 Indiegogo projects', 'A4: Indiegogo', 'A5: crowdfunding', 'A6: Indiegogo projects', 'A7: crowdfunding projects']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(4) RQUGE:4.3811
+Q1:What is latent dirichlet allocation (lda)?
+Q2:What is LDA?
+Best ans:  Latent Dirichlet allocation (LDA)is a widely used topic modeling method.
+['A0: A widely used topic modeling method is Latent Dirichlet allocation (LDA) ', 'A1: In our study, we used Latent Dirichlet allocation (LDA) to extract features from project descriptions where each topic is a feature.', 'A2: This method considers each document as a collection of topics, where each word in the document belongs to one or some of these topics.', 'A3:  Latent Dirichlet allocation (LDA)is a widely used topic modeling method.', 'A4: subject model', 'A5: method', 'A6: method for topic modeling', 'A7: A widely used topic modeling method']
+Text: Latent Dirichlet allocation (LDA)is a widely used topic modeling method. LDA algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(5) RQUGE:1.9122
+Q1:how many billion dollars were raised by crowd funding by 2020?
+Q2:What is the success rate of crowd funding?
+Best ans: 34 billion dollars were raised by crowd funding in 2020. The average success rate of funded crowdfunding projects in Kickstarter is 37.5%.
+['A0: Crowdfunding has raised 34 billion dollars by 2020', 'A1: In the year 2020, 34 billion dollars were raised by crowd funding. The average successful Kickstarter project raises atleast 100% of the funding goal.', 'A2: 34 billion dollars were raised by crowd funding in 2020.', 'A3: 34 billion dollars were raised by crowd funding in 2020. The average success rate of funded crowdfunding projects in Kickstarter is 37.5%.', 'A4: 36', 'A5: 33', 'A6: 35', 'A7: 32']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(6) RQUGE:3.4411
+Q1:Who is the author of the paper?
+Q2:Who is the author of the paper?
+Best ans: Orel Babayoff is the author of the paper. So, the final answer is Ore.
+['A0: Orel Babayoff is the author of the paper. So, the final answer is Ore. Babayof.', 'A1: Orel Babayoff is the author of the paper. So, the final answer is Ore.', 'A2: Orel Babayoff', 'A3: Orel Babayoff is the author of the paper.', 'A4: OREL BAYAOFF,', 'A5: or el babayoff', 'A6: Orel Babayoff,', 'A7: OREL BAYAOFF']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+

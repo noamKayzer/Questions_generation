@@ -1,0 +1,37 @@
+Q:In what year was the data collected from?
+A:2010 to 2020.
+--------------------------------------------------
+Q:How do we calculate the average treatment effect of a feature in a binary data?
+A:use Eq (1) and its extensions
+Q:Which model is used to estimate the heterogeneity of treatment effect?
+A:Propensity models are used to reduce confounding variables’ effects and the implied bias. The latter models are the propensity scores used for estimating the heterogeneity of the treatment effect. To develop the heterogeeity model, we used forest-based algorithms.
+--------------------------------------------------
+Q:How do we split the surgery dataset?
+A:For training and testing our model, we split the surgery dataset (SD) 70% and 30% for training and test.
+Q:How do we train the model?
+A:Using the RF, gradient boosted trees (GBT) and DNN models, we trained the models on the following dataset:
+--------------------------------------------------
+Q:To calculate feature importance, what was done?
+A:A duration of surgery (DOS) prediction model was developed using the following features: features in causal feature set (FNCF) filtered non-causal feature set
+Q:How was the DOSM-F model developed? How was it used?
+A:Model was developed using filtered features and a causal feature set. Model was trained using only causal feature values. Model used to estimate potential change. in the duration of surgery as a result of variations in causal feature.
+--------------------------------------------------
+Q:Where were causal analysis models trained?
+A:Surgery dataset (SD)
+Q:what are the top 10 causal features?
+A:The 10 features whose absolute average treatment effect (ATE) values were the highest are listed in Table 4: heterogeneity treatment effect (HTE) (heterogeneity treatment effect) and propensity (propensity)
+--------------------------------------------------
+Q:In which algorithm did they train the duration of surgery models?
+A:Gradient boosted trees (GBT)
+Q:Which algorithm generated the top performing models?
+A:Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models.
+Q:How many minutes was the uncertainty of the model?
+A:We used the DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT)  The derived uncertainty of the model was 4.1 minutes. The final answer: 4.
+Q:Why did they use gradient boosted trees (GBT)?
+A:They used gradient boosted trees (GBT) to train the duration of surgery models.
+--------------------------------------------------
+Q:The major effector of such differences is what?
+A:Neither the machine learning algorithms nor the dataset are the source of differences in the model's performance. The major effector of such differences is the set of features. So, the final answer is the sets of features
+Q:How does Barket-FM-DOSM compare to the Barket?
+A:Mean absolute error (MAE) value of our model–DOSM–is lower than the mean absolute error (MAE) values derived for the model Barket. This comparison led to the conclusion that neither the machine learning algorithms nor the dataset are the source of differences in the models performance. The major effector of such differences is a set of features.
+--------------------------------------------------

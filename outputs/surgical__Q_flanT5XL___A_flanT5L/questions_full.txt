@@ -1,0 +1,126 @@
+(0) RQUGE:4.5724
+Q1:What is the best model to predict duration of surgery?
+Q2:What model did the GBT outperform?
+Best ans: The model with the best performance was the gradient boosted trees (GBT) The model outperformed earlier models.
+['A0: A dataset of 23,293 records was used to train the models. The model with the best performance was the GBT', 'A1: A dataset of 23,293 records was used to train the models. The model with the best performance was the gradient boosted trees (GBT) model.', 'A2: supervised machine learning (ML) models that predict duration of surgery from features related to patients, physicians, and surgeries. The model outperformed earlier models.', 'A3: The model with the best performance was the gradient boosted trees (GBT) The model outperformed earlier models.', 'A4:  gradient boosted trees (GBT)', 'A5: ATE', 'A6: GBT', 'A7: the gradient boosted trees']
+Text: We used machine learning (ML) techniques to develop supervised ML models that predict duration of surgery (DOS) from features related to patients, physicians, and surgeries. For training the models, we built a dataset of 23,293 records, collected and processed in collaboration with one of the biggest public hospitals in Israel. The performance of our DOS model in terms of mean absolute error (MAE) was 14.9 minutes. The average treatment effect (ATE) value of the 10 most influential features by Shapley Additive exPlanations (SHAP) that derived the model with the best performance was the gradient boosted trees (GBT)  The model outperformed earlier models.  Using the DOS value predicted by our model for surgery scheduling can decrease patient waiting time and minimize surgical staff idle time. Using the identified causal relationship, OR management teams can apply measures to affect DOS. Future research could study additional surgery types at different hospitals to broaden applicability of our results. Further research is needed to quantify potential cost-saving and OR utilization when using the DOSM.
+
+
+
+(1) RQUGE:3.863
+Q1:how were features computed?
+Q2:What was used to compute feature importance?
+Best ans: Shapley Additive ExPlanations (SHAP) algorithm
+['A0:  Shapley Additive exPlanations (SHAP)algorithm', 'A1: Shapley Additive ExPlanations (SHAP) algorithm.', 'A2: Use Shapley Additive Explanations (SHAP) algorithm', 'A3: Shapley Additive ExPlanations (SHAP) algorithm', 'A4: Shapplying', 'A5: Shapply', 'A6: shapping', 'A7: shapping additions']
+Text: Feature importance was computed using the Shapley Additive exPlanations (SHAP) algorithm. Half of the 10 most influential features are among the Novel column (novel) features presented in Table 1 in Section 2. The 8 features with the highest absolute Pearson correlation values vis-à-vis duration of surgery (DOS) are presented in decreasing order of correlation values. We observe that 3 out of 8 (37.5%) of the features selected are the same for both methods, SHAP and Pearson correlation. The higher the vertical location of a dot indicates its feature’s value effect on DOS, i.e.e., the impact on the model's output.
+
+
+
+(2) RQUGE:1.03
+Q1:Who developed Barket-FM-DOSM model?
+Q2:Whose model did the Barket-FM-DOSM model use?
+Best ans: Dr. J. Barket et al.
+['A0: Dr. J. Barket et al.', 'A1: Dr. J. Barket et al. (2019)', 'A2: We developed the Barket-FM-DOSM model using the features and methods used in Barket et al. (2019) but trained on our surgery dataset.', 'A3: We developed the Barket-FM-DOSM model using the features and methods used in Barket et al. (2019) but trained on our surgery dataset. So, the final answer is Barket.', 'A4: researchers', 'A5: Dr. Barket', 'A6: authors', 'A7: et al']
+Text: Barket-FM-DOSM is a duration of surgery (DOS) model using the features and the methods used in Barket et al. (2019) but trained on our surgery dataset (SD)  The mean absolute error (MAE) value of our model–DOSM–is lower than the MAE values derived for Barket. This comparison led to the conclusion that neither the machine learning (ML) algorithms nor the dataset are the source of differences in the models performance. The major effector of such differences is the set of features.
+
+
+
+(3) RQUGE:4.7484
+Q1:In which model did they calculate the uncertainty?
+Q2:Which algorithm performed better?
+Best ans:  gradient boosted trees (GBT)model
+['A0:  gradient boosted trees (GBT)model', 'A1: GBT', 'A2:  gradient boosted trees (GBT)model was 4.1 minutes.', 'A3:  gradient boosted trees (GBT)model was 4.1 minutes', 'A4: Duration', 'A5: DOS', 'A6:  gradient boosted trees (GBT)model', 'A7: DOSM']
+Text: We trained the duration of surgery (DOS) models on the dataset using several machine learning (ML) algorithms. The algorithms that generated the top performing models–GBT being the best–are presented in Table 6. The mean absolute error (MAE) values in the table suggest that the performance is similar across the three algorithms, with gradient boosted trees (GBT) performing a bit better. We have calculated the model’s uncertainty as follows: For each record in the test set, we used the DOSM to predict a list of probabilities from each tree in the GBT. The derived uncertainty of the model was 4.1 minutes.
+
+
+
+(4) RQUGE:3.9961
+Q1:Which algorithm generated the top performing models?
+Q2:What is the best algorithm for training duration of surgery models?
+Best ans: Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models.
+['A0: Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models. gradient boosted trees (GBT) is a machine learning algorithm that generates top performing models.', 'A1: Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models.', 'A2:  machine learning (ML)algorithms that generated the top performing models are presented in Table 6 gradient boosted trees (GBT) is the best algorithm.', 'A3:  gradient boosted trees (GBT)is the best algorithm for training duration of surgery models.', 'A4: GTT', 'A5: BAT', 'A6: boosted trees', 'A7: GT']
+Text: We trained the duration of surgery (DOS) models on the dataset using several machine learning (ML) algorithms. The algorithms that generated the top performing models–GBT being the best–are presented in Table 6. The mean absolute error (MAE) values in the table suggest that the performance is similar across the three algorithms, with gradient boosted trees (GBT) performing a bit better. We have calculated the model’s uncertainty as follows: For each record in the test set, we used the DOSM to predict a list of probabilities from each tree in the GBT. The derived uncertainty of the model was 4.1 minutes.
+
+
+
+(5) RQUGE:5.1317
+Q1:In which dataset were causal analysis models trained?
+Q2:What dataset were the causal analysis models trained on?
+Best ans: surgery dataset
+['A0: surgery dataset', 'A1: Surgical data', 'A2: the Surgery Dataset', 'A3: Surgery dataset', 'A4: operation', 'A5: surgical', 'A6: Surgery', 'A7: SD']
+Text: Causal analysis models we used were trained on the surgery dataset (SD)  The inputs to these models are a vector of the counterfactual features X and a vector for the model’s target feature Y. The hyperparameter values we used to optimize the heterogeneity treatment effect (HTE) and propensity models are listed in Table 3. Table 4 presents the 10 features whose absolute average treatment effect (ATE) values were the highest, in decreasing order. Half of the top 10 causal features are among the Novel column (novel) features shown in Table 1. The LassoCV algorithm is an iterative algorithm that finds the optimal parameters for a Lasso model using cross-validation.
+
+
+
+(6) RQUGE:1.2328
+Q1:How did they compare the two models?
+Q2:What allowed the CF values to have a bigger impact on the prediction value of the model
+Best ans: Training using only CF values allowed the CF
+['A0: Using filtered non-causal feature set (FNCF) to train a duration-of-surgery model', 'A1: This study used the filtered features to train a duration of surgery (DOS) model.', 'A2: The model was trained using only CF values.', 'A3: They developed the model DOSM-F, as it is similar to DOSM, but with deleted causal features. Training using only CF values allowed the CF value to have a bigger impact on the prediction value.', 'A4: used to estimate', 'A5: trained with just the CF values', 'A6: training only CF values allowed the CF', 'A7: Training using only CF values allowed the CF']
+Text: We filtered out features that had high correlation with the causal features so that the comparison would not be based on highly correlated features. To calculate feature importance, we developed a duration of surgery (DOS) prediction model using the features in CF and filtered non-causal feature set (FNCF)  We aimed to identify features that influence DOS prediction and also have a causal relationship with DOS. In addition, we examined whether a feature that has a positive causal effect on DOS also had a positive effect on the DOS predicted value. We call this model DOSM-F, as it is similar to DOSM, but with filtered features.  DOSM-F model was used to estimate the potential change in the DOS as a result of variations in causal feature values. Training using only CF values allowed the CF values to have a bigger impact on the prediction value of the model.
+
+
+
+(7) RQUGE:3.9072
+Q1:what is mean absolute error?
+Q2:What is the MAE?
+Best ans: The mean absolute error (MAE) is the difference between the predicted duration of surgery (DOS) value and the actual duration of the surgery.
+['A0: This paper presents a method to evaluate grid search performance using mean absolute error (MAE) and mean absolute percent error, or Mean Absolute Percentage Error (MAPE) ', 'A1: yi is the predicted duration if surgery value of record i, ti is true values t, and n is the number of records.', 'A2: The mean absolute error (MAE) is the difference between the predicted duration of surgery (DOS) value and the actual duration of the surgery. MAE is the following:', 'A3: The mean absolute error (MAE) is the difference between the predicted duration of surgery (DOS) value and the actual duration of the surgery.', 'A4: (MAE)', 'A5: regression metrics', 'A6:  mean absolute error (MAE)is the mean absolute error', 'A7: MAE']
+Text: To evaluate our model’s performance, we used the regression metrics Mean Absolute Error (MAE), Mean Absolute Percentage Error (MAPE) and Root Mean Square Error (RMSE) The metrics are computed as follow: yi is the predicted duration of surgery (DOS) value of record i, ti is the true value of DOS, and n is the number of records. To evaluate the grid search output, We used K-fold cross-validation, a commonly used method to fully and effectively utilize data.
+
+
+
+(8) RQUGE:3.62
+Q1:how are models evaluated?
+Q2:How did we evaluate the performance of our model?
+Best ans: Using regression metrics, we evaluated the performance of our model.
+['A0: Models can be evaluated by regression metrics.', 'A1: This method is used to evaluate the performance of models.', 'A2: Using regression metrics, we evaluated the performance of our model.', 'A3: In order to evaluate the performance of a model, we used the following metrics: mean absolute error (MAE)  Mean Absolute Percentage Error (MAPE)  and RMSSE.', 'A4: regression', 'A5: metrics', 'A6: K-fold cross-validation', 'A7: performance metrics']
+Text: To evaluate our model’s performance, we used the regression metrics Mean Absolute Error (MAE), Mean Absolute Percentage Error (MAPE) and Root Mean Square Error (RMSE) The metrics are computed as follow: yi is the predicted duration of surgery (DOS) value of record i, ti is the true value of DOS, and n is the number of records. To evaluate the grid search output, We used K-fold cross-validation, a commonly used method to fully and effectively utilize data.
+
+
+
+(9) RQUGE:3.9046
+Q1:what is a gradient boosted tree?
+Q2:What have recent studies shown about GBTs and DNNs?
+Best ans: GBTs are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain.
+['A0: We used the following model:', 'A1: The training set contains the following sub-sets:', 'A2: GBTs are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain.', 'A3: RF, gradient boosted trees (GBT) are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain.', 'A4: DNNs', 'A5: Deep Neural Networks', 'A6: GBT', 'A7: neural networks']
+Text: Recent studies have shown that RF, gradient boosted trees (GBT)  and deep neural networks (DNNs) are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain. For training and testing our model, we split the surgery dataset (SD)  70% for training and 30% for testing. We measured the performance metrics for the whole training set and for each of its sub-sets, partitioned by surgery type.
+
+
+
+(10) RQUGE:2.8153
+Q1:In this paper, what is used to train the model?
+Q2:What are the three types of neural networks used in this study?
+Best ans: The surgery dataset (SD) is a healthcare dataset that contains a large number of surgical procedures. The dataset contains RF, gradient boosted trees (GBT)  and deep neural networks (DNNs) 
+['A0: The surgery dataset (SD) is a healthcare dataset that contains a large number of surgical procedures. The dataset contains RF, gradient boosted trees (GBT)  and deep neural networks (DNNs) ', 'A1: We used the following training set: Surgery dataset (SD) 70% for training and 30% for testing. We used a gradient boosted trees (GBT) based model with a supervised learning method.', 'A2: A dataset of surgical procedures is used to train the model. The dataset is split into three sub-sets: RF, gradient boosted trees (GBT) and DNN.', 'A3: This paper uses a deep learning model to train a model that can predict binary and high -variance continuous variables in the healthcare domain.', 'A4: DNNs', 'A5: GBT', 'A6: training set', 'A7: the surgery dataset']
+Text: Recent studies have shown that RF, gradient boosted trees (GBT)  and deep neural networks (DNNs) are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain. For training and testing our model, we split the surgery dataset (SD)  70% for training and 30% for testing. We measured the performance metrics for the whole training set and for each of its sub-sets, partitioned by surgery type.
+
+
+
+(11) RQUGE:1.9953
+Q1:how are treatment effects calculated?  ()
+Q2:What are the two main machine learning model types used for estimating causal effects?
+Best ans: Eq (1) and its extensions are used to calculate average treatment effect (ATE)  Two main machine learning model types, propensity and heterogeneity models, are used for estimating causal effects: propensitiy score is the probability of a record to have a particular feature value given a set of observed other features. The latter models are used...
+['A0: Eq (1) and its extensions are used to calculate average treatment effect (ATE)  Two main machine learning model types, propensity and heterogeneity models, are used for estimating causal effects: propensitiy score is the probability of a record to have a particular feature value given a set of observed other features. The latter models are used... to develop the heterogenereity model, we used forest-based algorithms.', 'A1: We use Eq (1) and its extensions for average treatment effect (ATE)  Two main machine learning model types, propensity and heterogeneity models, are used for estimating causal effects. The following models are used to estimate causal effects:', 'A2: Eq (1) and its extensions are used to calculate average treatment effect (ATE)  Two main machine learning model types, propensity and heterogeneity models, are used for estimating causal effects: propensitiy score is the probability of a record to have a particular feature value given a set of observed other features. The latter models are used...', 'A3: Eq (1) and its extensions are used to calculate average treatment effect (ATE)  Two main machine learning model types, propensity and heterogeneity models, are used for estimating causal effects:', 'A4: Average Treatment Effect', 'A5: ATE', 'A6: Eq (1) and its extensions to calculate ATE', 'A7: We use Eq (1) and its extensions to calculate ATE']
+Text: The average treatment effect (ATE) of a feature (whose value range is binary) measures the difference in the mean of the outcomes between data records with different values assigned to the feature. Since our study is observational, the ATE values could not be computed accurately, as a feature in a surgery record only has an observed value and cannot be assigned other values [29] We use Eq (1) and its extensions to calculate ATE. Two main machine learning (ML) model types, propensity and heterogeneity models, are used for estimating causal effects.  The propensity score is the probability of a record to have a particular feature value given a set of observed other features. Propensity scores are used to reduce confounding variables’ effects and the implied bias. The latter models are used for estimating the heterogeneity of the treatment effect [31] To develop the heterogeneity model, we used forest-based algorithms.
+
+
+
+(12) RQUGE:2.3564
+Q1:Who collected data?
+Q2:Where was the data obtained from?
+Best ans:  Tel Aviv Sourasky Medical Center (TASM)(a public hospital) surgery department.
+['A0:  Tel Aviv Sourasky Medical Center (TASM)(a public hospital)', 'A1:  Tel Aviv Sourasky Medical Center (TASM)(a public hospital) surgery department.', 'A2: the Tel Aviv Sourasky Medical Center’s (TASM) surgery department', 'A3: Tel Aviv Sourasky Medical Center’s (TASM)', 'A4: TASMO', 'A5: surgeons', 'A6: Israel', 'A7: Israel Department of Health']
+Text: The data was obtained from the Tel Aviv Sourasky Medical Center’s (TASM) (a public hospital) surgery department. The data included 23,293 retrospective surgical records, focusing on the eight most common surgeries in this department between 2010 and 2020. The full list of features is shown in Table 1. The table shows feature names, indication of whether a feature is Novel column (novel) (by a V in the Novel column), the value range of each feature, and values’ statistics. For handling missing data of other features, we used the Sequence of Regression Models (SRM) technique.  The missing values of features were computed using the values of other features.
+
+
+
+(13) RQUGE:1.4824
+Q1:Why are ORs underutilized?
+Q2:What can the model be used for?
+Best ans: In this paper, we present a model for predicting the duration of surgery in operating rooms. We use a multi-faceted approach to explain the model’s behavior. We analyze the model and its predictions using explanatory algorithms. We identify the causal relationships between patient and surgical staff characteristics. We show that the model can be used to control and adjust the durations for surgeries in operating rooms (ORs) 
+['A0: We present an approach to predict the duration of surgery (DOS) for elective surgeries. We use a multivariate model to predict DOS. We analyze the model’ s predictions and causal inference algorithms to explain the models. We show that the model can be used to control and adjust the DOS values of operating rooms (ORs) ', 'A1: In this paper, we present a model for predicting the duration of surgery in operating rooms. We use a multi-faceted approach to explain the model’s behavior. We analyze the model and its predictions using explanatory algorithms. We identify the causal relationships between patient and surgical staff characteristics. We show that the model can be used to control and adjust the durations for surgeries in operating rooms (ORs) ', "A2: Using a multivariate model, we propose a model that predicts the duration of surgery for both elective and emergency surgeries. We use a variety of patient and surgical staff features to explain our model’s predictions. We also use explanatory algorithms to analyze our model''s predictions and causal inference algorithms. We show that our model can be used for OR scheduling and can be applied to control and adjust the durations of surgeries, thereby reducing the number of patients waiting for surgeries.", 'A3: In this paper, we present a model for predicting the duration of surgery in operating rooms. We use a multi-faceted approach to explain the model’s behavior. We analyze the model and its predictions using explanatory algorithms. We identify the causal relationships between patient and surgical staff characteristics. We show that the model can be used to control and adjust the durations for surgeries in operating rooms (ORs)  The paper concludes with a discussion of the future directions of this work and its implications.', 'A4: Using machine learning models to predict duration of surgery. The paper presents the state-of-the-art, the motivation for this study, and its objectives. The main idea of the paper is that a model of OR underutilization can be developed by analyzing the importance and influence of patient and surgical staff features. The model can be used to predict the duration and the effect of these features on OR scheduling. The authors present a new model of underutilizations based on a combination machine learning (ML) and causal inference.', 'A5: A state-of-the-art model for predicting duration of surgery (DOS) in operating rooms.', 'A6: Using machine learning models to predict duration of surgery.', 'A7: This article presents the state-of-the art, the motivation for this study, and its objectives.']
+Text: High cost of surgeries and operating rooms (ORs) have made them key elements for hospital administrators looking to streamline expenses. OR underutilization results in negative consequences such as staff idle time, increased patient waiting times for surgeries, and more. OR overutilization might overload the staff, increase patient waiting time and dissatisfaction, generate disorder, increase the probability of human error. Current practices suggest that physicians who are hospital staff members schedule the surgeries. As shown in the art, however, physicians tend to predict duration of surgery (DOS) inaccurately, thus causing sub-optimal scheduling.  machine learning (ML) techniques are widely used in health informatics studies. With the increase in surgery documentation in electronic health records, ML has become very relevant for DOS prediction. Explaining predictions produced by ML models is a necessary element of ML research in healthcare [12] Explaining the importance of each feature to the model sheds light on the model’s behavior. Such understanding allows domain experts, i.e., physicians and surgeons, to validate the model's predictions and gives them a tool for optimizing surgery management.  Causal inference addresses the problem of identifying cause and effect relationships in data [17] and has a central role in healthcare [19] Unlike previous studies, our focus is on the importance of features and the effect of that importance on the model and the predicted DOS. Our models provide a prediction for both the elective and the emergency surgery classes. We study a broad range of patient features (age, gender, BMI, etc. ) and surgical staff features. In addition, we use explanatory algorithms to analyze our model’s predictions and causal inference algorithms.  Using our prediction model, OR management teams can improve the performance of surgery scheduling in terms of patient waiting time and surgery team idle time. This study has several OR management implications. Using the identified causal relationships, OR teams can control and adjust DOS values. The paper proceeds as follows. The Introduction section presents the state-of-the-art, the motivation for this study, and its objectives.
+
+
+

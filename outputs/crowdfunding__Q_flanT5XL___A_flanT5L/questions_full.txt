@@ -1,0 +1,72 @@
+(0) RQUGE:2.9483
+Q1:Why are some buzzwords more successful than others in crowdfunding?
+Q2:What is the study focusing on?
+Best ans: Buzzwords are words that are used in crowdfunding campaigns. The term buzzwords is used in the context of crowdfunding campaigns to describe words that attract attention. The study focuses on the relationship between buzzword and funding success.
+['A0: Buzzwords are words that are used in crowdfunding campaigns. The term buzzwords is used in the context of crowdfunding campaigns to describe words that attract attention. The study focuses on the relationship between buzzword and funding success.', 'A1: In this study, we investigate the relationship between funding success and buzzwords in crowdfunding web platforms such as Kickstarter and Indiegogo, and develop a novel model based on semantic feature only.', 'A2: We used a dataset of crowdfunding campaigns on Kickstarter and Indiegogo. We used an LSTM model to predict funding success. We found that buzzwords feature is among the features that are highly correlated to funding success compared to both the parameters that we examined and to other researchers examined.', 'A3: This paper presents a novel model based on semantic features only to predict funding success. We show that buzzwords feature is among the features which are highly correlated to funding success compared to both the parameters that we examined and to other researchers examined.', 'A4: we develop', 'A5: semantic features', 'A6: semantic features only', 'A7: the relationship between funding success and buzzwords']
+Text:Study aims to examine whether the set of features we use for prediction and the dataset on which learning was applied deliver a better model by means of F-score accuracy. To the best of our knowledge, this study is the first that investigates the relationship between funding success and buzzwords. We show that buzzwords feature is among the features that are highly correlated to funding success compared to both the parameters that we examined and that other researchers examined. From a practical perspective, the results of our study are highly relevant to fundraisers using crowdfunding web platforms such as Kickstarter and Indiegogo. We developed a novel model based on semantic features only and achieved similar accu racy level as previous studies.
+
+
+
+(1) RQUGE:4.7635
+Q1:Why do we use Beautifulsup?
+Q2:What is Beautifulsup?
+Best ans: Beautifulsup is a Python web scraping package. It is used to extract additional metadata features.
+['A0: To gain additional metadata features for the dataset, we used Beautifulsup.', 'A1: Beautifulsup is a Python web scraping package.', 'A2: Beautifulsup is a Python web scraping package. It is used to extract additional metadata features.', 'A3: The dataset used in this study is a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects.', 'A4: add-ons', 'A5: get extra data', 'A6: additional metadata features', 'A7: gain additional metadata features']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(2) RQUGE:4.1739
+Q1:how is knowledge discovery plan developed?
+Q2:What are the four parts of the knowledge discovery plan
+Best ans: In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining datasets; feature selection; data analysis based on machine learning models; and evaluation
+['A0: This study uses a dataset from Kickstarter and Indiegogo to obtain knowledge.', 'A1: In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining datasets; feature selection; data analysis based on machine learning models; and evaluation', 'A2: A knowledge discovery plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and evaluation of the knowledge extracted by the models.', 'A3: Obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models.', 'A4: Four major part', 'A5: the following plan comprises four main parts: obtaining and preprocessing datasets', 'A6: four main parts: obtaining and preprocessing datasets; feature selection', 'A7: comprising four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(3) RQUGE:2.9663
+Q1:What datasets were used?
+Q2:What datasets did we use?
+Best ans: Kickstarter and Indiegogo projects.
+['A0: Kickstarter and Indiegogo projects.', 'A1: Kickstarter and Indiegogo projects', 'A2: 50,000 Kickstarter and 50,00 Indiegogo projects.', 'A3: 50,000 Kickstarter and 50,00 Indiegogo projects', 'A4: crowdfunding', 'A5: 50000 Indiegogo projects', 'A6: crowdfunding projects', 'A7: Kickstarter and 50,00 Indiegogo projects.']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(4) RQUGE:4.3119
+Q1:What is latent dirichlet allocation?
+Q2:What is LDA?
+Best ans:  Latent Dirichlet allocation (LDA)is a widely used topic modeling method.
+['A0: The three main input to the Latent Dirichlet allocation (LDA) topic model are the dictionary, the corpus, and the number of topics.', 'A1: A widely used topic modeling method is Latent Dirichlet allocation (LDA) ', 'A2: This method considers each document as a collection of topics, where each word in the document belongs to one or some of these topics.', 'A3:  Latent Dirichlet allocation (LDA)is a widely used topic modeling method.', 'A4: widely used topics', 'A5: method', 'A6: method for topic modeling', 'A7: A widely used topic modeling method']
+Text: Latent Dirichlet allocation (LDA)is a widely used topic modeling method. LDA algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(5) RQUGE:3.8283
+Q1:what method is used to extract features from project descriptions?
+Q2:What did we use LDA for?
+Best ans:  Latent Dirichlet allocation (LDA)is a widely used topic modeling method. In our study, we used LDA to extract features from project descriptions where each topic is based on a feature.
+['A0: We used Latent Dirichlet allocation (LDA) algorithm to extract features from project descriptions where each topic is a feature', 'A1:  Latent Dirichlet allocation (LDA)is a widely used topic modeling method. In our study, we used LDA to extract features from project descriptions where each topic is based on a feature.', 'A2: We used Latent Dirichlet allocation (LDA) algorithm to extract features from project descriptions where each topic is a feature where each word in the document belongs to one or some of these topics.', 'A3:  Latent Dirichlet allocation (LDA)is a widely used topic modeling method.', 'A4:  Latent Dirichlet allocation (LDA)algorithm', 'A5: topic modeling method', 'A6: topic modeling', 'A7: LDA']
+Text: Latent Dirichlet allocation (LDA)is a widely used topic modeling method. LDA algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(6) RQUGE:4.9588
+Q1:What is the average success rate of funded crowdfunding projects in Kickstarter?
+Q2:What is the average success rate of crowdfunding projects?
+Best ans: Kickstarter has an average success rate of 37.5%. The average success of funded crowdfunding projects in Kickstarter is 37.5.
+['A0: Compared to other crowdfunding platforms, Kickstarter has a higher success rate, at 37.5% [4].', 'A1: Kickstarter has an average success rate of 37.5%. The average success of funded crowdfunding projects in Kickstarter is 37.5.', 'A2: Kickstarter has an average success rate of 37.5%. The average success of funded crowdfunding projects in Kickstarter is 37.5. The average successful crowdfunding project in Kickstarter has raised atleast 100% of its funding goal.', 'A3: 37.5% is the average success rate of funded crowdfunding projects in Kickstarter.', 'A4: 75%', 'A5: 47.5', 'A6: 36.5%', 'A7: 36.5']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(7) RQUGE:3.3622
+Q1:Who is the author of the paper? Orel Babayoff:
+Q2:Who is the author of the paper?
+Best ans: Orel Babayoff is the author of the paper. So, the final answer is Ore.
+['A0: The paper is written by Orel Babayoff. So, the final answer is Orek Babayof.', 'A1: Orel Babayoff is the author of the paper. So, the final answer is Ore.', 'A2: This is the relevant information: We present a novel model for predicting th success of crowdfunding projects in meeting their funding goals', 'A3: The paper is written by Orel Babayoff.', 'A4: Orel Babayoff,', 'A5: or el babayoff', 'A6: model', 'A7: model is developed']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+

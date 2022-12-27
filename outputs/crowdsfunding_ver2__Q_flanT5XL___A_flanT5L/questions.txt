@@ -1,0 +1,19 @@
+Q:Who is the author of the paper?
+A:Orel Babayoff is the author of the paper. So, the final answer is Ore.
+--------------------------------------------------
+Q:how many billion dollars were raised by crowd funding by 2020?
+A:34 billion dollars were raised by crowd funding in 2020. The average success rate of funded crowdfunding projects in Kickstarter is 37.5%.
+--------------------------------------------------
+Q:What is latent dirichlet allocation (lda)?
+A: Latent Dirichlet allocation (LDA)is a widely used topic modeling method.
+--------------------------------------------------
+Q:Why did we use Beautifulsup?
+A:To gain additional metadata features for the dataset, we used Beautifulsup.
+Q:What datasets were used?
+A:Kickstarter and Indiegogo projects
+--------------------------------------------------
+Q:Which feature is highly correlated to funding success?
+A:Buzzwords feature is among the features that are highly correlated to funding success.
+Q:what does this study aim to do?
+A:Examine whether
+--------------------------------------------------

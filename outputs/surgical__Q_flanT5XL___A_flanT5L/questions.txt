@@ -1,0 +1,39 @@
+Q:Why are ORs underutilized?
+A:In this paper, we present a model for predicting the duration of surgery in operating rooms. We use a multi-faceted approach to explain the model’s behavior. We analyze the model and its predictions using explanatory algorithms. We identify the causal relationships between patient and surgical staff characteristics. We show that the model can be used to control and adjust the durations for surgeries in operating rooms (ORs) 
+--------------------------------------------------
+Q:Who collected data?
+A: Tel Aviv Sourasky Medical Center (TASM)(a public hospital) surgery department.
+--------------------------------------------------
+Q:how are treatment effects calculated?  ()
+A:Eq (1) and its extensions are used to calculate average treatment effect (ATE)  Two main machine learning model types, propensity and heterogeneity models, are used for estimating causal effects: propensitiy score is the probability of a record to have a particular feature value given a set of observed other features. The latter models are used...
+--------------------------------------------------
+Q:what is a gradient boosted tree?
+A:GBTs are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain.
+Q:In this paper, what is used to train the model?
+A:The surgery dataset (SD) is a healthcare dataset that contains a large number of surgical procedures. The dataset contains RF, gradient boosted trees (GBT)  and deep neural networks (DNNs) 
+--------------------------------------------------
+Q:what is mean absolute error?
+A:The mean absolute error (MAE) is the difference between the predicted duration of surgery (DOS) value and the actual duration of the surgery.
+Q:how are models evaluated?
+A:Using regression metrics, we evaluated the performance of our model.
+--------------------------------------------------
+Q:How did they compare the two models?
+A:Training using only CF values allowed the CF
+--------------------------------------------------
+Q:In which dataset were causal analysis models trained?
+A:surgery dataset
+--------------------------------------------------
+Q:In which model did they calculate the uncertainty?
+A: gradient boosted trees (GBT)model
+Q:Which algorithm generated the top performing models?
+A:Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models.
+--------------------------------------------------
+Q:Who developed Barket-FM-DOSM model?
+A:Dr. J. Barket et al.
+--------------------------------------------------
+Q:how were features computed?
+A:Shapley Additive ExPlanations (SHAP) algorithm
+--------------------------------------------------
+Q:What is the best model to predict duration of surgery?
+A:The model with the best performance was the gradient boosted trees (GBT) The model outperformed earlier models.
+--------------------------------------------------

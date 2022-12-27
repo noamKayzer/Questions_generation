@@ -1,0 +1,135 @@
+(0) RQUGE:4.266
+Q1:The major effector of such differences is what?
+Q2:What is the major effector of differences in the model's performance?
+Best ans: Neither the machine learning algorithms nor the dataset are the source of differences in the model's performance. The major effector of such differences is the set of features. So, the final answer is the sets of features
+['A0: the set of features', 'A1: the set of features. Barket-FM-DOSM is a duration of surgery (DOS) model using the features and the methods used in Barket et al. (2019) but trained on our surgery dataset. So, the final answer is the set.', "A2: Neither the machine learning algorithms nor the dataset are the source of differences in the model's performance. The major effector of such differences is the set of features. So, the final answer is the sets of features.", "A3: Neither the machine learning algorithms nor the dataset are the source of differences in the model's performance. The major effector of such differences is the set of features. So, the final answer is the sets of features", 'A4: dataset', 'A5: feature', 'A6:  machine learning (ML)algorithms', 'A7: features']
+Text: Barket-FM-DOSM is a duration of surgery (DOS) model using the features and the methods used in Barket et al. (2019) but trained on our surgery dataset (SD)  The mean absolute error (MAE) value of our model–DOSM–is lower than the MAE values derived for Barket. This comparison led to the conclusion that neither the machine learning (ML) algorithms nor the dataset are the source of differences in the models performance. The major effector of such differences is the set of features.
+
+
+
+(1) RQUGE:2.1296
+Q1:How does Barket-FM-DOSM compare to the Barket?
+Q2:What did the comparison lead to?
+Best ans: Mean absolute error (MAE) value of our model–DOSM–is lower than the mean absolute error (MAE) values derived for the model Barket. This comparison led to the conclusion that neither the machine learning algorithms nor the dataset are the source of differences in the models performance. The major effector of such differences is a set of features.
+['A0: In 2019, Barket et al. (2019) used a duration of surgery (DOS) duration of surgical procedure model. The mean absolute error (MAE) value of our model–DOSM–is lower than the MAE values derived for Barket. This comparison led to the conclusion that neither the machine learning (ML) algorithms nor the dataset are t...', 'A1: Neither the machine learning algorithms nor the dataset are the source of differences in the model performance. The major effector of such differences is the set of features in the Barket-FM-DOSM model.', 'A2: Mean absolute error (MAE) value of our model–DOSM–is lower than the mean absolute error (MAE) values derived for the model Barket. This comparison led to the conclusion that neither the machine learning algorithms nor the dataset are the source of differences in the models performance. The major effector of such differences is a set of features.', 'A3: A duration of surgery model is a model that learns to predict the duration of a surgery. The mean absolute error (MAE) value of our model–DOSM–is lower than the MAE values derived for Barket. The major effector of such differences is the set of features.', 'A4: performance', 'A5: performance is lower', 'A6: the mean absolute error (MAE) values derived for Barket', 'A7:  mean absolute error (MAE)values derived for Barket']
+Text: Barket-FM-DOSM is a duration of surgery (DOS) model using the features and the methods used in Barket et al. (2019) but trained on our surgery dataset (SD)  The mean absolute error (MAE) value of our model–DOSM–is lower than the MAE values derived for Barket. This comparison led to the conclusion that neither the machine learning (ML) algorithms nor the dataset are the source of differences in the models performance. The major effector of such differences is the set of features.
+
+
+
+(2) RQUGE:4.8319
+Q1:In which algorithm did they train the duration of surgery models?
+Q2:Which algorithm performed a bit better?
+Best ans: Gradient boosted trees (GBT)
+['A0:  machine learning (ML)algorithms', 'A1: GBT', 'A2: Gradient boosted trees (GBT)', 'A3: Gradient boosted trees (GBT) are a machine learning algorithm.', 'A4: ML', 'A5: DOS', 'A6: machine learning', 'A7: DOSM']
+Text: We trained the duration of surgery (DOS) models on the dataset using several machine learning (ML) algorithms. The algorithms that generated the top performing models–GBT being the best–are presented in Table 6. The mean absolute error (MAE) values in the table suggest that the performance is similar across the three algorithms, with gradient boosted trees (GBT) performing a bit better. We have calculated the model’s uncertainty as follows: For each record in the test set, we used the DOSM to predict a list of probabilities from each tree in the GBT. The derived uncertainty of the model was 4.1 minutes.
+
+
+
+(3) RQUGE:3.9961
+Q1:Which algorithm generated the top performing models?
+Q2:What is the best algorithm for training duration of surgery models?
+Best ans: Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models.
+['A0: Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models. gradient boosted trees (GBT) is a machine learning algorithm that generates top performing models.', 'A1: Gradient boosted trees (GBT) is the best algorithm for training duration of surgery models.', 'A2:  machine learning (ML)algorithms that generated the top performing models are presented in Table 6 gradient boosted trees (GBT) is the best algorithm.', 'A3:  gradient boosted trees (GBT)is the best algorithm for training duration of surgery models.', 'A4: DOS', 'A5: BAT', 'A6: boosted trees', 'A7: GT']
+Text: We trained the duration of surgery (DOS) models on the dataset using several machine learning (ML) algorithms. The algorithms that generated the top performing models–GBT being the best–are presented in Table 6. The mean absolute error (MAE) values in the table suggest that the performance is similar across the three algorithms, with gradient boosted trees (GBT) performing a bit better. We have calculated the model’s uncertainty as follows: For each record in the test set, we used the DOSM to predict a list of probabilities from each tree in the GBT. The derived uncertainty of the model was 4.1 minutes.
+
+
+
+(4) RQUGE:3.1138
+Q1:How many minutes was the uncertainty of the model?
+Q2:What is the uncertainty of the model?
+Best ans: We used the DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT)  The derived uncertainty of the model was 4.1 minutes. The final answer: 4.
+['A0: We used the DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT)  The derived uncertainty of the model was 4.1 minutes. The final answer: 4.01.', 'A1: To calculate uncertainty of model, we used the DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT)  The derived uncertainty of the model was 4.', 'A2: We used the DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT)  The derived uncertainty of the model was 4.1 minutes. The final answer: 4.', 'A3: We used the DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT)  The derived uncertainty of the model was 4.1 minutes.', 'A4: 4', 'A5: 4.', 'A6: 4. 1', 'A7: 4.1 minutes']
+Text: We trained the duration of surgery (DOS) models on the dataset using several machine learning (ML) algorithms. The algorithms that generated the top performing models–GBT being the best–are presented in Table 6. The mean absolute error (MAE) values in the table suggest that the performance is similar across the three algorithms, with gradient boosted trees (GBT) performing a bit better. We have calculated the model’s uncertainty as follows: For each record in the test set, we used the DOSM to predict a list of probabilities from each tree in the GBT. The derived uncertainty of the model was 4.1 minutes.
+
+
+
+(5) RQUGE:1.2056
+Q1:Why did they use gradient boosted trees (GBT)?
+Q2:What did the researchers use to train the duration of surgery models?
+Best ans: They used gradient boosted trees (GBT) to train the duration of surgery models.
+['A0: In this paper, we used gradient-boosted trees (GBT) to train a model for duration of surgery.', 'A1: Using gradient boosted trees (GBT)  they were able to predict the probabilities from each tree in the model.', 'A2: They used gradient boosted trees (GBT) to train the duration of surgery models.', 'A3: For each record in the test set, we used DOSM to predict a list of probabilities from each tree in the gradient boosted trees (GBT) ', 'A4: performs a bit better', 'A5: performing a bit better.', 'A6: a bit better', 'A7: to generate the top performing models']
+Text: We trained the duration of surgery (DOS) models on the dataset using several machine learning (ML) algorithms. The algorithms that generated the top performing models–GBT being the best–are presented in Table 6. The mean absolute error (MAE) values in the table suggest that the performance is similar across the three algorithms, with gradient boosted trees (GBT) performing a bit better. We have calculated the model’s uncertainty as follows: For each record in the test set, we used the DOSM to predict a list of probabilities from each tree in the GBT. The derived uncertainty of the model was 4.1 minutes.
+
+
+
+(6) RQUGE:5.0715
+Q1:Where were causal analysis models trained?
+Q2:What dataset were the causal analysis models trained on?
+Best ans: Surgery dataset (SD)
+['A0: the Surgery Dataset', 'A1: Using the SD', 'A2: Surgery dataset (SD)', 'A3: Causal models we used were trained on the SD', 'A4: surgical', 'A5: surgeon', 'A6: SD', 'A7: surgery dataset']
+Text: Causal analysis models we used were trained on the surgery dataset (SD)  The inputs to these models are a vector of the counterfactual features X and a vector for the model’s target feature Y. The hyperparameter values we used to optimize the heterogeneity treatment effect (HTE) and propensity models are listed in Table 3. Table 4 presents the 10 features whose absolute average treatment effect (ATE) values were the highest, in decreasing order. Half of the top 10 causal features are among the Novel column (novel) features shown in Table 1. The LassoCV algorithm is an iterative algorithm that finds the optimal parameters for a Lasso model using cross-validation.
+
+
+
+(7) RQUGE:1.296
+Q1:what are the top 10 causal features?
+Q2:What models were optimized using hyperparameter values?
+Best ans: The 10 features whose absolute average treatment effect (ATE) values were the highest are listed in Table 4: heterogeneity treatment effect (HTE) (heterogeneity treatment effect) and propensity (propensity)
+['A0: In the Lasso CV algorithm, we used the following model: heterogeneity treatment effect (HTE) model (Table 3). The top 10 features are:', 'A1: The 10 features whose absolute average treatment effect (ATE) values were the highest are listed in Table 4: heterogeneity treatment effect (HTE) (heterogeneity treatment effect) and propensity (propensity)', 'A2: These are 10 features whose absolute average treatment effect (ATE) values were the highest, decreasing order. Half of the top 10 causal features are among the Novel column (novel features) shown in Table 1.', 'A3: The 10 features whose absolute average treatment effect (ATE) values were the highest are listed in Table 4:', 'A4: table', 'A5: half', 'A6: ATE', 'A7:  average treatment effect (ATE)values']
+Text: Causal analysis models we used were trained on the surgery dataset (SD)  The inputs to these models are a vector of the counterfactual features X and a vector for the model’s target feature Y. The hyperparameter values we used to optimize the heterogeneity treatment effect (HTE) and propensity models are listed in Table 3. Table 4 presents the 10 features whose absolute average treatment effect (ATE) values were the highest, in decreasing order. Half of the top 10 causal features are among the Novel column (novel) features shown in Table 1. The LassoCV algorithm is an iterative algorithm that finds the optimal parameters for a Lasso model using cross-validation.
+
+
+
+(8) RQUGE:3.9446
+Q1:To calculate feature importance, what was done?
+Q2:What features were used to develop the OS prediction model?
+Best ans: A duration of surgery (DOS) prediction model was developed using the following features: features in causal feature set (FNCF) filtered non-causal feature set
+['A0: This paper developed an extended version (DOSM-F) of DOSM.', 'A1: Filtered non-causal feature set (FNCF)', 'A2: A duration of surgery (DOS) prediction model was developed using the following features: features in causal feature set (FNCF) filtered non-causal feature set.', 'A3: A duration of surgery (DOS) prediction model was developed using the following features: features in causal feature set (FNCF) filtered non-causal feature set', 'A4: training only the causal feature', 'A5: they trained using only the CF values', 'A6: developed', 'A7: trained using only CF values allowed the CF']
+Text: We filtered out features that had high correlation with the causal features so that the comparison would not be based on highly correlated features. To calculate feature importance, we developed a duration of surgery (DOS) prediction model using the features in CF and filtered non-causal feature set (FNCF)  We aimed to identify features that influence DOS prediction and also have a causal relationship with DOS. In addition, we examined whether a feature that has a positive causal effect on DOS also had a positive effect on the DOS predicted value. We call this model DOSM-F, as it is similar to DOSM, but with filtered features.  DOSM-F model was used to estimate the potential change in the DOS as a result of variations in causal feature values. Training using only CF values allowed the CF values to have a bigger impact on the prediction value of the model.
+
+
+
+(9) RQUGE:2.3539
+Q1:How was the DOSM-F model developed? How was it used?
+Q2:What was the DOSM-F model used to estimate?
+Best ans: Model was developed using filtered features and a causal feature set. Model was trained using only causal feature values. Model used to estimate potential change. in the duration of surgery as a result of variations in causal feature.
+['A0: Model was developed using filtered features and a causal feature set. Model was trained using only causal feature values. Model used to estimate potential change.', 'A1: Model was developed using filtered features and a causal feature set. Model was trained using only causal feature values.', 'A2: Model was developed using filtered features and a causal feature set. Model was trained using only causal feature values. Model used to estimate potential change. in the duration of surgery as a result of variations in causal feature.', 'A3: In this study, we developed an extended version of the DOSM model. We used the filtered non-causal feature set (FNCF) to train the model. The model was used to estimate the potential change in the duration of surgery (DOS) as the result of variations of causal feature values.', 'A4: training only on the CF values', 'A5: to estimate the potential change in the duration of surgery (DOS) as a result of variations of the causal feature values', 'A6: model was used', 'A7: trained using only CF values allowed the CF']
+Text: We filtered out features that had high correlation with the causal features so that the comparison would not be based on highly correlated features. To calculate feature importance, we developed a duration of surgery (DOS) prediction model using the features in CF and filtered non-causal feature set (FNCF)  We aimed to identify features that influence DOS prediction and also have a causal relationship with DOS. In addition, we examined whether a feature that has a positive causal effect on DOS also had a positive effect on the DOS predicted value. We call this model DOSM-F, as it is similar to DOSM, but with filtered features.  DOSM-F model was used to estimate the potential change in the DOS as a result of variations in causal feature values. Training using only CF values allowed the CF values to have a bigger impact on the prediction value of the model.
+
+
+
+(10) RQUGE:2.1392
+Q1:How do we split the surgery dataset?
+Q2:How did we split the surgery dataset?
+Best ans: For training and testing our model, we split the surgery dataset (SD) 70% and 30% for training and test.
+['A0: 70 % of training data was used for training and 30 percent for testing.', 'A1: To train our model, we divided the surgery dataset into 70 and 30 percents. The training set was split into 70 percents for training and 30 %s for testing.', 'A2: 70% of the training set is split into two sets: 70% for training and 30% for testing. The training set contains a total of 105 surgical cases.', 'A3: For training and testing our model, we split the surgery dataset (SD) 70% and 30% for training and test.', 'A4: 100%', 'A5: 30%', 'A6: training 70%', 'A7: by surgery type.']
+Text: Recent studies have shown that RF, gradient boosted trees (GBT)  and deep neural networks (DNNs) are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain. For training and testing our model, we split the surgery dataset (SD)  70% for training and 30% for testing. We measured the performance metrics for the whole training set and for each of its sub-sets, partitioned by surgery type.
+
+
+
+(11) RQUGE:1.6305
+Q1:How do we train the model?
+Q2:What dataset did we train the models on?
+Best ans: Using the RF, gradient boosted trees (GBT) and DNN models, we trained the models on the following dataset:
+['A0: The model is trained on the following dataset:', 'A1: Using the RF, gradient boosted trees (GBT) and DNN models, we trained the models on the following dataset:', 'A2: Training and testing the model was done using a combination of gradient boosted trees (GBT) and deep neural networks (DNNs) ', 'A3: We used a deep learning model to train the model. We used the following model:', 'A4: GBTs', 'A5: GBTs and DNNs', 'A6: using a deep learning model', 'A7: training set']
+Text: Recent studies have shown that RF, gradient boosted trees (GBT)  and deep neural networks (DNNs) are capable of accurately predicting both binary and high-variance continuous variables in the healthcare domain. For training and testing our model, we split the surgery dataset (SD)  70% for training and 30% for testing. We measured the performance metrics for the whole training set and for each of its sub-sets, partitioned by surgery type.
+
+
+
+(12) RQUGE:4.9583
+Q1:How do we calculate the average treatment effect of a feature in a binary data?
+Q2:What do we use to calculate ATE?
+Best ans: use Eq (1) and its extensions
+['A0: For a binary feature, we use Eq (1) and its extensions to calculate the average treatment effect of a feature. For an observational study, we used two main machine learning models, propensity score (PS) and heterogeneity model (H) to estimate causal effects.', 'A1: Eq (1) is a machine learning model that can be used to estimate the average treatment effect of a feature in a binary data. The propensity score is the probability of obtaining a particular feature value given a set of observed other features. The latter models are used for estimating the heterogeneity of the treatment effect. The heterogenous model is based on the forest-based algorithms.', 'A2: This method uses Eq (1) and its extensions to calculate the average treatment effect of a feature. The propensity score is used to reduce confounding variables’ effects and the implied bias. The latter models were developed using forest-based algorithms to estimate the heterogeneity of the treatment effect.', 'A3: In this paper, we use Eq (1) and its extensions to calculate the average treatment effect of the feature in a binary data. The propensity score is used to reduce confounding variables’ effects and the implied bias. The latter models are used for estimating the heterogeneity of the treatment effect.', 'A4: Equation', 'A5: ATE', 'A6: use Eq (1) and its extensions', 'A7: Eq (1) and its extensions to calculate ATE']
+Text: The average treatment effect (ATE) of a feature (whose value range is binary) measures the difference in the mean of the outcomes between data records with different values assigned to the feature. Since our study is observational, the ATE values could not be computed accurately, as a feature in a surgery record only has an observed value and cannot be assigned other values [29] We use Eq (1) and its extensions to calculate ATE. Two main machine learning (ML) model types, propensity and heterogeneity models, are used for estimating causal effects.  The propensity score is the probability of a record to have a particular feature value given a set of observed other features. Propensity scores are used to reduce confounding variables’ effects and the implied bias. The latter models are used for estimating the heterogeneity of the treatment effect [31] To develop the heterogeneity model, we used forest-based algorithms.
+
+
+
+(13) RQUGE:2.2206
+Q1:Which model is used to estimate the heterogeneity of treatment effect?
+Q2:What are the propensity and heterogeneity models?
+Best ans: Propensity models are used to reduce confounding variables’ effects and the implied bias. The latter models are the propensity scores used for estimating the heterogeneity of the treatment effect. To develop the heterogeeity model, we used forest-based algorithms.
+['A0: Forest-based algorithms were developed for the heterogeneity model.', 'A1: In this paper, we use propensity score to estimate heterogeneity of treatment effect. The propensitiy model uses forest-based algorithms.', 'A2:  machine learning (ML)models are used for estimating causal effects. The propensity score is used to reduce confounding variables’ effects and the implied bias. The latter models are for increasing the heterogeneity.', 'A3: Propensity models are used to reduce confounding variables’ effects and the implied bias. The latter models are the propensity scores used for estimating the heterogeneity of the treatment effect. To develop the heterogeeity model, we used forest-based algorithms.', 'A4: propensity', 'A5: forest-based algorithms', 'A6: propensity score', 'A7:  machine learning (ML)model types']
+Text: The average treatment effect (ATE) of a feature (whose value range is binary) measures the difference in the mean of the outcomes between data records with different values assigned to the feature. Since our study is observational, the ATE values could not be computed accurately, as a feature in a surgery record only has an observed value and cannot be assigned other values [29] We use Eq (1) and its extensions to calculate ATE. Two main machine learning (ML) model types, propensity and heterogeneity models, are used for estimating causal effects.  The propensity score is the probability of a record to have a particular feature value given a set of observed other features. Propensity scores are used to reduce confounding variables’ effects and the implied bias. The latter models are used for estimating the heterogeneity of the treatment effect [31] To develop the heterogeneity model, we used forest-based algorithms.
+
+
+
+(14) RQUGE:2.826
+Q1:In what year was the data collected from?
+Q2:During what time period did the data from the surgery department focus on the eight most common surgeries
+Best ans: 2010 to 2020.
+['A0: 2010.', 'A1: 2010 to 2020.', 'A2: Between 2010 and 2020.', 'A3: 2010. The data was obtained from the Tel Aviv Sourasky Medical Center’s (TASM) (a public hospital) surgery department. The data included 23,293 retrospective surgical records.', 'A4: 2012', 'A5: 2009', 'A6: 2010.', 'A7: 2011']
+Text: The data was obtained from the Tel Aviv Sourasky Medical Center’s (TASM) (a public hospital) surgery department. The data included 23,293 retrospective surgical records, focusing on the eight most common surgeries in this department between 2010 and 2020. The full list of features is shown in Table 1. The table shows feature names, indication of whether a feature is Novel column (novel) (by a V in the Novel column), the value range of each feature, and values’ statistics. For handling missing data of other features, we used the Sequence of Regression Models (SRM) technique.  The missing values of features were computed using the values of other features.
+
+
+
