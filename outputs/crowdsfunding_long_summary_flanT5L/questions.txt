@@ -1,0 +1,41 @@
+Q:What is the purpose of this paper?
+A:The purpose of this paper is to: Modeling Crowdfunding Projects' Fundraising Success.
+--------------------------------------------------
+Q:What are two features that are highly correlate with a project's success in fund raising?
+A:Buzzwords and LIWC
+--------------------------------------------------
+Q:What did previous studies on crowdfunding use LIWC for?
+A:To analyze the textual description part of projects.
+Q:Who developed the LIWC software tool?
+A:Researchers at MIT.
+--------------------------------------------------
+Q:What is known about LDA?
+A:previous experiments used Latent Dirichlet allocation (LDA) to perform topic analysis on the text of project updates. The latter is known to run faster than other implementations and generates better topic segregation.
+Q:What is a widely used topic modeling method?
+A: Latent Dirichlet allocation (LDA)model
+--------------------------------------------------
+Q:What is the novelty of the combined model?
+A:A large dataset of Kickstarter and Indiegogo projects was used to train the model to predict funding success. The model was trained on the datasets: All_D, Market_D and Tech_D. The models were trained on a 10-fold cross-validation test. The combined model was developed by combining semantic and meta-data features to predict the funding success of a project.
+Q:What are the three datasets used to study the relationship between features and project category?
+A:All_D, Market_D and Tech_D datasets.
+--------------------------------------------------
+Q:What does the CFS algorithm evaluate subsets of features based on?
+A:Feature Selection The following is a list describing the features that are most influential for funding success. The following features are evaluated based on the individual predictive ability of each feature along with the degree of redundancy between them.
+Q:What algorithm was used to find the most influential features?
+A:To find features that are most influential for funding success (FS)  we used the Latent Dirichlet allocation (LDA) algorithm.
+--------------------------------------------------
+Q:What did we use to develop the semantic model?
+A:To develop the Semantic Model, semantic features were used as input. We utilized several machine learning algorithms.
+--------------------------------------------------
+Q:On what dataset was training performed on?
+A:All_D
+Q:What does the figure show?
+A:Compared to previous studies, we trained Latent Dirichlet allocation (LDA) Models and Metadata Models with additional algorithms. The model we developed has the highest accuracy.
+--------------------------------------------------
+Q:What are the results of this study relevant to?
+A:Fundraisers using crowdfunding web platforms use buzzwords to attract more funding.
+Q:What are the buzzwords feature?
+A:Project-specific aspects and semantics of project descriptions. The Buzzwords feature is among the features correlated to funding success.
+Q:What is the prediction model based on?
+A:A model is developed based on semantic and project-specific aspects and semantics of the project descriptions to predict crowdfunding success.
+--------------------------------------------------
