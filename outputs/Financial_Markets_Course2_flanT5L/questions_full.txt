@@ -93,7 +93,21 @@ Q1:Who has a limited liability economy?
 Q2:Who is not going to apply the geometric mean formula if there are any negative numbers?
 Best ans: we
 ['A0: This is the most basic concept of finance.', 'A1: People who live in a limited liability economy.', 'A2: We have a limited liability economy.', 'A3: The law says that you cannot lose more than the money you put into something.', 'A4: we', 'A5: America', 'A6: American', 'A7: us']
-Text:In finance, the basic, the most basic concept that -- in finance -- is that when you invest in something, you have to do it for a time interval. And so, what is your return to investing in something? It's the increase in the price. That's p t plus 1, minus p t. Returns can be positive or negative. They can never be more than -- never be less than minus 100%. In a limited liability economy that we live in, the law says that you cannot lose more than the money you put in. This is the mathematical expectation of a random variable x, which could be the return, or the gross return, but we're going to substitute something else. The expectation of x is the weighted sum of all possible values of x weighted by their probabilities. And the probabilities have to sum to 1. They're positive numbers, or zero, reflecting the likelihood of that random variable occurring, of that value of the random variable. This is for a discrete random variable that takes on only a finite, only a countable number of values. Gross return is always positive. It's between zero and infinity. If you have n observations on a random variable x, you can take the sum of the x observations, summation over i equals 1 to n, and then divide that by n. That's called the average, or the mean, or sample mean, when you have a sample of n observations, which is an estimate of the expected value of x. This is called the mean or average, which you've learned long ago, OK. So, for example, if we're evaluating an investor who has invested money, you could get n observations and take an average of them. The geometric mean makes sense only when all the x's are non-negative. If you put in a negative value, you might get a negative product, and then, if you took the nth root of that, it could be an imaginary number, so let's forget that. We're not going to apply this formula if there are any negative numbers.
+Text:In finance, the basic, the most basic concept that -- in finance -- is that when you invest in something, you have to do it for a time interval. And so, what is your return to investing in something? It's the increase in the price. That's p t plus 1, minus p t. Returns can be positive or negative. They can never be more than -- never be less than minus 100%. In a limited liability economy that we live in, the law says that you cannot lose more than the money you put in. This is the mathematical expectation of a random variable x, which could be the return, or the gross return, but we're going to substitute something else. The expectation of x is the weighted sum of all possible values of x weighted by their probabilities. And the probabilities have to sum to 1. They're positive numbers, or zero, reflecting the likelihood of that random variable occurring, of that value of the random variable.
+ This is for a discrete random variable that takes on only a finite, only a countable number of values.
+  Gross return is always positive. It's between zero and infinity.
+   If you have n observations on a random variable x, you can take the sum of the x observations,
+    summation over i equals 1 to n, and then divide that by n.
+     That's called the average, or the mean, or sample mean, 
+     when you have a sample of n observations, 
+     which is an estimate of the expected value of x. This is called the mean or average, 
+     which you've learned long ago, OK. 
+     So, for example, if we're evaluating an investor who has invested money, 
+     you could get n observations and take an average of them.
+      The geometric mean makes sense only when all the x's are non-negative.
+       If you put in a negative value, you might get a negative product, and then,
+        if you took the nth root of that, it could be an imaginary number,
+         so let's forget that. We're not going to apply this formula if there are any negative numbers.
 
 
 

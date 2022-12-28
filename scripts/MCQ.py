@@ -99,18 +99,21 @@ class flanT5MCQ:
       fig.update_layout(xaxis={'visible': False, 'showticklabels': False})
       fig.show()
       return fig
+
     def push_model_to_GPU(self,model_for_upload)->None:
-      if model_for_upload.device =='cuda':
-        return
-      if self.model.device=='cuda':
-        cpu_model = self.model.to('cpu')
-        del self.model
-        self.model = cpu_model
-      if self.QA.model.device=='cuda':
-        cpu_model = self.QA.model.to('cpu')
-        del self.QA.model
-        self.QA.model = cpu_model
-      model_for_upload.to('cuda')
+      # function that prevent overload of data on the GPU, not for use in production.
+      if self.device =='cuda':
+        if model_for_upload.device =='cuda':
+          return
+        if self.model.device=='cuda':
+          cpu_model = self.model.to('cpu')
+          del self.model
+          self.model = cpu_model
+        if self.QA.model.device=='cuda':
+          cpu_model = self.QA.model.to('cpu')
+          del self.QA.model
+          self.QA.model = cpu_model
+        model_for_upload.to('cuda')
 
     def text_slicer(self, text):
         num_of_tokens_reserved = 25 # keeping more tokens for the prompt and the answers
@@ -286,6 +289,18 @@ class QA:
         self.tokenizer = T5Tokenizer.from_pretrained(checkpoint)
         self.model = T5ForConditionalGeneration.from_pretrained(checkpoint)
         self.checkpoint = checkpoint
+        self.answers_black_list = ['we','they','the authors','authors','author','the author','you','you are','we are',
+                                'the speaker','speaker','the lecturer','lecturer',
+                                'he','he is','she','she is',
+                                  'I','these','those','they are','we do','it','it is']
+                                  
+    def similar_to_blacklist(self, text):
+      text = text.replace('_','')
+      pattern = r'[^\w\s]'
+      regex = re.compile(pattern)
+      text = regex.sub('', text)
+      patterns = [regex.sub('', p) for p in self.answers_black_list]
+      return text.lower().strip() in patterns
 
     def score_string_similarity(self,str1, str2):
         if str1 == str2:
@@ -326,7 +341,14 @@ class QA:
         res = self.model.generate(input_ids, **generator_args)
 
         return self.tokenizer.batch_decode(res, skip_special_tokens=True)
-        
+
+    def filter_by_answers(self,questions_df,answers):
+      index_list = list(answers.index)
+      for ans in answers:
+        if self.similar_to_blacklist(ans.value):
+          index_list.remove(ans.index)
+      return questions_df.iloc[index_list,:]   
+
     def select_best_answer(self,questions_df):
         questions_df['generated_selected_ans']=''
         questions_df['selected_ans']=''
@@ -340,6 +362,7 @@ class QA:
             questions_df.loc[i,'generated_selected_ans'] = qa_output[0]
             sim_scores = [self.score_string_similarity(qa_output[0].strip().lower(), s.strip().lower()) for s in ans_list]
             questions_df.loc[i,'selected_ans'] = ans_list[int(np.argmax(sim_scores))]
+        questions_df = self.filter_by_answers(questions_df,questions_df.selected_ans)
         return questions_df
 
 class QG:
