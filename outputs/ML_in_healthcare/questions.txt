@@ -1,0 +1,19 @@
+Q:What is the advantage of using unlabelled medical data to train self-supervised models?
+A:Using unlabelled medical data to train self-supervised models is a better method for the first phase of training, as models learn about the specific medical domain, even in the absence of explicit labels.
+Q:What is the primary objective of pre-training a model with contrastive learning?
+A:A review on the use of unlabelled medical data for medical applications of machine learning. The primary objective of pre-training is to make the model associate similar samples and dissociate dissimilar samples.
+--------------------------------------------------
+Q:What does defining labels allow for?
+A:defining labels allows for the application of supervised-learning techniques to self-Supervised learning.
+Q:What can text-masking techniques be easily extended to?
+A:Medical tasks involving electronic health records (EHRs) or protein sequences.
+Q:What are the three steps that a model must follow to successfully predict a missing word?
+A:Identify the missing word in the text. Identify a missing word. Define the missing words.
+Q:Who has developed transformers?
+A:The following is a list of notable people who have developed transformers:
+--------------------------------------------------
+Q:What is a task for which large labelled datasets are difficult to procure?
+A:medical diagnosis tasks
+Q:What are some issues with models trained on biased data?
+A:They are vulnerable to become biased themselves57. To avoid perpetuating biases found in historical data, new data will need to be collected and scrutinized to meet high standards for quality.
+--------------------------------------------------

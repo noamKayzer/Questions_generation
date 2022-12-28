@@ -165,7 +165,7 @@ class flanT5MCQ:
       else:
         only_first = 0
       if isinstance(text,list):
-        return [self.replace_abbreviations(abrv_dict, cur_text,only_first) for cur_text in text]
+        return [self.replace_abbreviations(cur_text,abrv_dict,only_first) for cur_text in text]
       #`only_first` resolve only the first abbreviation in the text (e.g. if the text includes the results section, and the abbreviation was define at the introduction, the method will resolve once the abbreviation in the text the model is exposed to)
       for abrv,long_form_abbr in abrv_dict.items():
         text = text.replace(f'{long_form_abbr} ({abrv})',abrv) #first the function abbreviate all occurences
@@ -293,7 +293,7 @@ class QA:
                                 'the speaker','speaker','the lecturer','lecturer',
                                 'he','he is','she','she is',
                                   'I','these','those','they are','we do','it','it is']
-                                  
+
     def similar_to_blacklist(self, text):
       text = text.replace('_','')
       pattern = r'[^\w\s]'
@@ -344,9 +344,9 @@ class QA:
 
     def filter_by_answers(self,questions_df,answers):
       index_list = list(answers.index)
-      for ans in answers:
-        if self.similar_to_blacklist(ans.value):
-          index_list.remove(ans.index)
+      for idx,ans in answers.iteritems():
+        if self.similar_to_blacklist(ans):
+          index_list.remove(idx)
       return questions_df.iloc[index_list,:]   
 
     def select_best_answer(self,questions_df):
