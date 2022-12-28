@@ -1,4 +1,22 @@
-(0) RQUGE:5.091
+(0) RQUGE:5.1543
+Q1:Did Apple Computer go up 25 times or down?
+Q2:How much did an investment in Apple go?
+Best ans: Up 25 times.
+['A0: Up 25 times.', 'A1: An investment in Apple went up 25 times.', 'A2: It went up 25 times.', 'A3: Apple Computer went up 25 times. So, the final answer is up.', 'A4: down', 'A5: Up', 'A6: 25 times', 'A7: up']
+Text:The stock market lost something like almost half of its value between 2000 and 2002. But when I put Apple on the same plot, the computer had to, because Apple did such amazing things, it had to compress. Apple computer is the one of the breakout cases of dramatic success in investing. It went up 25 times. This incidentally is the adjusted price for Apple, because in 2005 Apple did a 2-for-1 split. You know what that means? You can see this. You might be surprised to say, wait a minute, did I hear you right? A lot of companies, when the price hits $60 or something like that, they say, well let's just split all the shares in two. An investment in Apple went up 25 times, whereas an investment in the S & P 500 went up only -- well, it didn't go up, actually, it's down. Now, this is a plot showing the monthly returns on Apple. You can't tell from this plot that Apple went. up 25-fold. That matters a lot to an investor. Buy Apple and your money will go up 25-fold, says Warren Buffett. Buffett: "It wasn't an even ride. It's a scary ride" Buffett: Buy Apple in one month, you lose 30% in another month, but you can't tell what's driving it up and down. He says the ride, as you're observing this happen, every month it goes opposite. I just goes big swings. Buffett: The ride is not so obvious because it's a rollercoaster ride. You can't see it happening unless you look at your portfolio. In 1979, the Yale class of 1954 had a 25th reunion, and asked an investor to take a risky portfolio investment for Yale and let's give it to Yale on our 50th anniversary, all right? So, they got a portfolio manager, his name was Joe McNay, and they said -- they put together -- it was $375,000. It's like one house, you know, for all the whole class, no big deal. So, McNay decided to invest in Home Depot, Walmart, and internet stocks. On their 50th reunion in 2004, they presented Yale University with $90 million dollars.
+
+
+
+(1) RQUGE:5.1118
+Q1:In what year did the stock market collapse?
+Q2:What year did the stock market crash?
+Best ans: 1987
+['A0: This is a question about stock market collapses. The final answer: 1987.', "A1: The stock market collapsed on October 19, 1987. The probability of a decline that's that negative is 1 over 10 power. The stock markets collapsed in 1987. So, the final answer is 1987..", "A2: October 19, 1987 is the date the stock market collapsed. The probability of a decline that's that negative is 1 over 10 power. The stock market is independent of the law of large numbers. So, the final answer is 1987. The final answer: 1987.", "A3: The stock market collapsed on October 19, 1987. The probability of a decline that's that negative is 1 over 10 power. The stock markets collapsed in 1987. So, the final answer is 1987.", 'A4: ', 'A5: 1987', 'A6: ', 'A7: ']
+Text:If you believe in normality, October 19, 1987 couldn't happen, Bob Greene says. He says a student raised his hand and said the stock market is "totally falling apart" Greene: The probability of a decline that's that negative? It's 10 to the minus 71 power. 1 over 10 power. That's an awfully small number. But there it is. It happened, Greene says, and in fact, I've been teaching this course for 25 years. It just came as a complete surprise to me. I went downtown to Merrill Lynch. The two themes are that independence leads to the law of large numbers, and it leads to some sort of stability. But that's not what happened in this crisis and that's the big question. You get big incredible shocks that you thought couldn't happen, and they just come up with a certain low probability.
+
+
+
+(2) RQUGE:5.091
 Q1:The speaker is going to talk about what in the context?
 Q2:What is the one way people think about a crisis like this?
 Best ans: Probability models
@@ -7,16 +25,43 @@ Text: The crisis began with bubbles in the stock market, housing market, and als
 
 
 
-(1) RQUGE:4.9589
-Q1:When you invest in something, what is the increase in the price?
-Q2:What is the return to investing in something?
-Best ans: The return to investing in something is the increase in the price.
-['A0: p t plus 1, or pt.', 'A1: This is the return to investing in something.', "A2: When you invest in something for a time interval, what is your return to investing in something? It's your return.", 'A3: The return to investing in something is the increase in the price.', 'A4: your returns', 'A5: Return', 'A6: returns', 'A7: return']
-Text:In finance, the basic, the most basic concept that -- in finance -- is that when you invest in something, you have to do it for a time interval. And so, what is your return to investing in something? It's the increase in the price. That's p t plus 1, minus p t. Returns can be positive or negative. They can never be more than -- never be less than minus 100%. In a limited liability economy that we live in, the law says that you cannot lose more than the money you put in. This is the mathematical expectation of a random variable x, which could be the return, or the gross return, but we're going to substitute something else. The expectation of x is the weighted sum of all possible values of x weighted by their probabilities. And the probabilities have to sum to 1. They're positive numbers, or zero, reflecting the likelihood of that random variable occurring, of that value of the random variable. This is for a discrete random variable that takes on only a finite, only a countable number of values. Gross return is always positive. It's between zero and infinity. If you have n observations on a random variable x, you can take the sum of the x observations, summation over i equals 1 to n, and then divide that by n. That's called the average, or the mean, or sample mean, when you have a sample of n observations, which is an estimate of the expected value of x. This is called the mean or average, which you've learned long ago, OK. So, for example, if we're evaluating an investor who has invested money, you could get n observations and take an average of them. The geometric mean makes sense only when all the x's are non-negative. If you put in a negative value, you might get a negative product, and then, if you took the nth root of that, it could be an imaginary number, so let's forget that. We're not going to apply this formula if there are any negative numbers.
+(4) RQUGE:5.0902
+Q1:Which stock market went up 12.53% on October 30, 1929?
+Q2:Where can you never see a drop of that magnitude?
+Best ans: wall street
+['A0: On October 30, 1929, the stock market went up 12.53% on Wall Street.', 'A1: The stock market crash of 1929 had two consecutive days. It went down about 12% on October 28, and then the next day it did it again.', "A2: The stock market crash of 1929 had two consecutive days. It went down about 12% on October 28, and then the next day it did it again. That's way off the charts.", "A3: Wall Street Stock market went up 12.53% on October 30, 1929. That's the biggest one-day increase in the history of the stock market.", 'A4: stock', 'A5: stocks', 'A6: wall street', 'A7: Stock market']
+Text:A lot of probability theory works on the assumption that variables are normally distributed. But random variables have a habit of not behaving that way, especially in finance it seems. Benoit Mandelbrot was the discoverer of this concept, and I think the most important figure in it. Pierre Paul Levy invented the concept, as discussed in the next lecture in this week's Lecture on the idea of the 'normal' distribution of random shocks to the financial economy. The bell-shaped curve is thought to be a parabola, a mathematical function. In nature the normal distribution is not the only distribution that occurs, and that especially in certain kinds of circumstances we have more fat-tailed distributions. The way you find out that they're not the same, is that in extremely rare circumstances there'll be a sudden major jump in the variable that you might have thought couldn't happen. Whether it's Cauchy or normal, they look about the same; they look pretty much the same. But the pink line has tremendously large probability of being far out. These are the tails of the distribution. Stock market went up 12.53% on October 30, 1929. That's the biggest one-day increase in the history of the stock market. But there were maybe like 20 days, I can't read off the chart when it did this since 1928. You can go through ten years on Wall Street and never see a drop of that magnitude. So, eventually you get kind of assured. It can't happen. What about an 8% drop? Well, I look at this, I say, I've never seen that. It just doesn't happen. The stock market crash of 1929 had two consecutive days. It went down about 12% on October 28, and then the next day it did it again. That's way off the charts, and if you compute the normal distribution, what's the probability of that? If it's a normal distribution and it fits the central portion, it would say it's virtually zero. It couldn't happen. Anyone have any idea what happened on October 30, 1929? It's obvious to me, but it's not obvious to you.
 
 
 
-(2) RQUGE:4.9152
+(5) RQUGE:5.0882
+Q1:What is the name of the company that Jobs founded?
+Q2:What company did Steve Jobs found?
+Best ans: apple
+['A0: Steve Jobs founded Apple. Apple prospered, then had a falling out with the management, and got kind of kicked out. Next Computer was a computer startup founded by Steve Jobs.', 'A1: The company that Jobs founded was Apple. Apple prospered, then had a falling out with the management, and got kind of kicked out of his own company. Next Computer was a company that he founded.', 'A2: Apple is a company that Jobs founded. Apple prospered, then had a falling out with the management, and got kind of kicked out of his own company. Next Computer was a computer company that he founded.', 'A3: Apple is a company that Jobs founded. Apple prospered, then had a falling out with the management, and got kind of kicked out of his own company. Next Computer was a computer company that he founded. So, the final answer is Next Computer.', 'A4: iPhone', 'A5: apple', 'A6: Next Computer', 'A7: Apple']
+Text:Apple has a lot of idiosyncratic risk, but the aggregate economy matters, right? If you think that maybe because Apple is kind of a vulnerable company, that if the economy tanks, Apple will tank even more than the economy. If the market goes up, then it's even better news for Apple, even though it's a volatile, dangerous strategy company. He founded Apple and Apple prospered, then had a falling out with the management, and got kind of kicked out of his own company. And then he founded Next Computer. But meanwhile, Apple started to really tank, and they finally realized they needed Steve Jobs, so they brought him back. And it turned out to be the same month that's the Lehman Brothers collapse occurred. This line, I thought it would have an even higher beta, but I think it's this point which is bringing the beta down.
+
+
+
+(6) RQUGE:5.0516
+Q1:Which stocks did Joe McNay invest?
+Q2:What did Joe McNay invest in?
+Best ans: Home Depot, Walmart, and internet stocks.
+['A0: Apple computer', 'A1: McNay decided to invest in Home Depot, Walmart, and internet stocks', 'A2: On their 50th reunion in 2004, they presented Yale University with $90 million dollars', 'A3: Home Depot, Walmart, and internet stocks.', 'A4: Apple', 'A5: Walmart', 'A6: home depot', 'A7: Internet stocks']
+Text:The stock market lost something like almost half of its value between 2000 and 2002. But when I put Apple on the same plot, the computer had to, because Apple did such amazing things, it had to compress. Apple computer is the one of the breakout cases of dramatic success in investing. It went up 25 times. This incidentally is the adjusted price for Apple, because in 2005 Apple did a 2-for-1 split. You know what that means? You can see this. You might be surprised to say, wait a minute, did I hear you right? A lot of companies, when the price hits $60 or something like that, they say, well let's just split all the shares in two. An investment in Apple went up 25 times, whereas an investment in the S & P 500 went up only -- well, it didn't go up, actually, it's down. Now, this is a plot showing the monthly returns on Apple. You can't tell from this plot that Apple went. up 25-fold. That matters a lot to an investor. Buy Apple and your money will go up 25-fold, says Warren Buffett. Buffett: "It wasn't an even ride. It's a scary ride" Buffett: Buy Apple in one month, you lose 30% in another month, but you can't tell what's driving it up and down. He says the ride, as you're observing this happen, every month it goes opposite. I just goes big swings. Buffett: The ride is not so obvious because it's a rollercoaster ride. You can't see it happening unless you look at your portfolio. In 1979, the Yale class of 1954 had a 25th reunion, and asked an investor to take a risky portfolio investment for Yale and let's give it to Yale on our 50th anniversary, all right? So, they got a portfolio manager, his name was Joe McNay, and they said -- they put together -- it was $375,000. It's like one house, you know, for all the whole class, no big deal. So, McNay decided to invest in Home Depot, Walmart, and internet stocks. On their 50th reunion in 2004, they presented Yale University with $90 million dollars.
+
+
+
+(8) RQUGE:4.9501
+Q1:Where did Professor Brunnermeier work?
+Q2:Where did Professor Brunnermeier work?
+Best ans: University of Princeton.
+['A0: University of Princeton.', 'A1: University of Princeton', 'A2: He worked at Princeton.', 'A3: Brunnermeier worked at Princeton.', 'A4: university', 'A5: at Princeton', 'A6: Princeton University', 'A7: Princeton']
+Text:It's a concept emphasized by Professor Brunnermeier at Princeton and some of his colleagues, that we have to change analysis of variance to recognize that portfolios can sometimes co-vary more than we thought. In the present environment, I think, we recognize the need for that.
+
+
+
+(10) RQUGE:4.9152
 Q1:Why can't you lose more than you put into an investment in finance?
 Q2:What is the law of limited liability?
 Best ans: This is the law of limited liability. The law says that you cannot lose more than the money you put in.
@@ -25,7 +70,7 @@ Text:In finance, the basic, the most basic concept that -- in finance -- is that
 
 
 
-(3) RQUGE:4.9123
+(11) RQUGE:4.9123
 Q1:Which of these is not a measure of covariance?
 Q2:What is the standard deviation?
 Best ans: square root of the variance
@@ -34,7 +79,16 @@ Text:But it's often used, and I recommend its use, in evaluating investments. Be
 
 
 
-(4) RQUGE:4.7421
+(13) RQUGE:4.8074
+Q1:Who started liquidating in 2000?
+Q2:What year did McNey liquidate Walmart?
+Best ans: Joe McNey started liquidating Walmart in 2000.
+['A0: Larry Page started liquidating Walmart in 2000.', 'A1: Bill Gates started liquidating Walmart in 2000.', 'A2: Walmart started liquidating in 2000.', 'A3: Joe McNey started liquidating Walmart in 2000.', 'A4: Walmart.', 'A5: Bob Green', 'A6: Steve Jobs', 'A7: Aaron Carroll']
+Text:He started liquidating in 2000, right the peak of the market. So, it must be partly luck. No one could have known that Walmart was going to be such a success. For every one of the great men and women of history, there's 1,000 of them that got squashed. And I think that history is like that. The people you read about in history are often just phenomenal risk takers like Joe McNey. But maybe they're just lucky, maybe they are just lucky. Apple lost about a third of its value in one month in 2008. The company's founder Steve Jobs had pancreatic cancer in 2004, but the doctors said it's curable, no problem, so the stock didn't do anything. So, it quickly rebounded because he wasn't, and the company's stock went up because he was not cancer-stricken. Bob Greene: Maybe it's all those poor, all those ordinary people, living the little house, the $400,000 house, they don't risk it. Maybe they're the smart ones. Aaron Carroll: I've just told you about one blip here, but they were so many of these blips on the way, and they all have some story about the success of some Apple product, or people aren't buying some product. Each point represents one of the points that we saw on the market, Carroll says. Carroll: "It looks totally different, and it shows such complexity that I can't tell a simple narrative. Every month looks different. The best success was in December, January of 2001, where the stock price went up 50% in one month. The reason why it looks kind of compressed on this way is, because the stock market doesn't move as much as Apple. The return for a stock, for the i-th stock, is equal to the market return, which is represented here by the S & P 500, plus idiosyncratic return. The variance of the stock returns is the variance -- the variance of a stock return is the sum of the market. Apple shows a magnified response to the stock market. It goes up and down approximately one and a half times as much as stock market does on any day.
+
+
+
+(14) RQUGE:4.7421
 Q1:Who has a limited liability economy?
 Q2:Who is not going to apply the geometric mean formula if there are any negative numbers?
 Best ans: we
@@ -43,7 +97,7 @@ Text:In finance, the basic, the most basic concept that -- in finance -- is that
 
 
 
-(5) RQUGE:4.6523
+(15) RQUGE:4.6523
 Q1:Why was there a pre-break around 2000?
 Q2:What is a pre-break?
 Best ans: A pre-break is when a market collapses. The stock market collapsed around the world in 2000 and then came back again after 2003.
@@ -52,7 +106,16 @@ Text: The crisis began with bubbles in the stock market, housing market, and als
 
 
 
-(6) RQUGE:4.6157
+(16) RQUGE:4.6209
+Q1:Where does this story take place?
+Q2:What country's economy is the most important?
+Best ans: America
+['A0: This article is about the Apple stock.', 'A1: The story takes place in the year 2000. The economy is the aggregate of all the different types of economic activity. The story begins in 2000.', "A2: Steve Jobs founded Apple. Steve Jobs was kicked out of his own company. The same month that's the Lehman Brothers collapse occurred. So the final answer is the same month. The aggregate economy matters.", "A3: Steve Jobs founded Apple. Steve Jobs was kicked out of his own company. The same month that's the Lehman Brothers collapse occurred. So the final answer is the same month.", 'A4: market', 'A5: California', 'A6: America', 'A7: Apple']
+Text:Apple has a lot of idiosyncratic risk, but the aggregate economy matters, right? If you think that maybe because Apple is kind of a vulnerable company, that if the economy tanks, Apple will tank even more than the economy. If the market goes up, then it's even better news for Apple, even though it's a volatile, dangerous strategy company. He founded Apple and Apple prospered, then had a falling out with the management, and got kind of kicked out of his own company. And then he founded Next Computer. But meanwhile, Apple started to really tank, and they finally realized they needed Steve Jobs, so they brought him back. And it turned out to be the same month that's the Lehman Brothers collapse occurred. This line, I thought it would have an even higher beta, but I think it's this point which is bringing the beta down.
+
+
+
+(17) RQUGE:4.6157
 Q1:When was probability coined?
 Q2:When was the word probability coined?
 Best ans: According to the passage, probability was not even coined until the 1600's.
@@ -61,7 +124,16 @@ Text: The word probability in its present meaning wasn't even coined until the 1
 
 
 
-(7) RQUGE:4.3762
+(18) RQUGE:4.3983
+Q1:Why do we need to change analysis of variance?
+Q2:What is the purpose of this article?
+Best ans: This is an important point because portfolios can sometimes co-vary more than we thought. The purpose of this article is to discuss the need for change in analysis of variance.
+['A0: This is an important point because portfolios can sometimes co-vary more than we thought.', 'A1: This is an important point because portfolios can sometimes co-vary more than we thought. The purpose of this article is to discuss the need for change in analysis of variance.', 'A2: Portfolios can sometimes co-vary more than we thought. In the present environment, I think we recognize the need for that.', 'A3: To recognize that portfolios can sometimes co-vary more than we thought. In the present environment, I think, we recognize the need for that. Therefore, the final answer is to recognize that.', 'A4: recognition', 'A5: co-vary more than we thought.', 'A6: in the present environment, I think, we recognize', 'A7: co-vary more than we thought']
+Text:It's a concept emphasized by Professor Brunnermeier at Princeton and some of his colleagues, that we have to change analysis of variance to recognize that portfolios can sometimes co-vary more than we thought. In the present environment, I think, we recognize the need for that.
+
+
+
+(19) RQUGE:4.3762
 Q1:When the stock market collapsed around the world, what happened?
 Q2:What happened in 2000?
 Best ans: The stock market collapsed around the world in 2000. The stock markets came back again after 2003.
@@ -70,7 +142,7 @@ Text: The crisis began with bubbles in the stock market, housing market, and als
 
 
 
-(8) RQUGE:4.2269
+(20) RQUGE:4.2269
 Q1:What is the square root of the variance?
 Q2:What is covariance?
 Best ans: A measure of how two different random variables move together. The standard deviation is the square root of the variance.
@@ -79,7 +151,7 @@ Text:But it's often used, and I recommend its use, in evaluating investments. Be
 
 
 
-(9) RQUGE:4.0323
+(21) RQUGE:4.0323
 Q1:Does the speaker recommend using gross return in evaluating investments?
 Q2:What does the speaker recommend?
 Best ans: Gross return is a measure of the outcome of the investments. The speaker recommends using gross return in evaluating investments.
@@ -88,74 +160,20 @@ Text:But it's often used, and I recommend its use, in evaluating investments. Be
 
 
 
-(10) RQUGE:3.6182
+(22) RQUGE:3.9435
+Q1:Why did many people get in trouble dealing with this crises?
+Q2:What is the law of large numbers?
+Best ans: We have to have some kind of probability Model. The law of large numbers says that if I have a lot of independent shock, and average them out, on average there's not going to be much uncertainty.
+["A0: We have to have some kind of probability Model. The law of large numbers says that if I have a lot of independent shock, and average them out, on average there's not going to be much uncertainty.", "A1: This is a question that is based on probability theory. Many companies had calculated numbers like this, and told their investors, we can't do too badly because there's no way that we could lose. Many of these calculations were based upon assumptions about independence, or at least relative independence.", "A2: This is a question that is based on probability theory. Many companies had calculated numbers like this, and told their investors, we can't do too badly because there's no way that we could lose.", "A3: After the 1987 crash, companies started to compute a measure of risk to their company, called Value at Risk. Many companies had calculated numbers like this, and told their investors, we can't do too badly because there's no way that we could lose. Many of these companies were implicitly making assumptions about independence, or at least relative independence.", 'A4: probability Model.', 'A5: the accumulation of', 'A6: a core concept in finance', 'A7: We have to have some kind of probability Model']
+Text:The crisis that we've seen here in the stock market is the accumulation of -- you see all these ups and downs. There were relatively more downs in the period from 2000 and 2002. But how do we understand the cumulative effect of it, which is what matters? So, we have to have some kind of probability Model. And that is a core question that made it so difficult for us to understand how to deal with such a crisis, and why so many people got in trouble dealing with this crisis. After the 1987 crash, companies started to compute a measure of the risk to their company, called Value at Risk. Many companies had calculated numbers like this, and told their investors, we can't do too badly because there's no way that we could lose. But they were implicitly making assumptions about independence, or at least relative independence. And so, you need a probability Model to make these calculations, which is based on probability theory in order to do that. And it's not one that is easy to be precise about. It's a core concept in finance. Companies all over the world were estimating very small numbers here, relative to what actually happened. The law of large numbers says that if I have a lot of independent shocks, and average them out, on average there's not going to be much uncertainty. It says that the variance of the average of n random variables that are all independent and identically distributed goes to 0 as the number of elements in the average goes to infinity. And so, that's a fundamental concept that underlies both finance and insurance. The law of large numbers has to do with the idea that if I have a large number of random variables, what is the variance of -- the square root of the variance. If they're all independent, then all of the covariances are 0. So, as n goes large, you can see that the standard deviation of the mean goes to 0. The mean is divided by n. The standard deviation is equal to the squareroot of n times the squared root of one of the variables. There's a new idea coming up now, after this recent crisis, and it's called CoVaR.
+
+
+
+(23) RQUGE:3.6182
 Q1:How do we build mathematical models of the outcomes of financial events?
 Q2:What can we do about financial events?
 Best ans: Once we understand the probability laws, we can build mathematical models of the outcomes. We can ask whether we should be surprised by the financial events that we've seen.
 ["A0: The word probability in its present meaning wasn't even coined until 1600's. We have mathematical laws of how they accumulate. We can build mathematical models of the outcomes.", 'A1: Once we understand the probability laws, we can build mathematical models of the outcomes.', 'A2: We have mathematical laws of how they accumulate. We can build mathematical models of the outcomes.', "A3: Once we understand the probability laws, we can build mathematical models of the outcomes. We can ask whether we should be surprised by the financial events that we've seen.", 'A4: by dealing with all', 'A5: understanding those laws', 'A6: mathematical laws of how they accumulate', 'A7: we have mathematical laws of how they accumulate']
-Text: The word probability in its present meaning wasn't even coined until the 1600's. We do it by dealing with all of these little incremental shocks that affect our lives in a mathematical way. We have mathematical laws of how they accumulate. And once we understand those laws, we can we can build mathematical models of the outcomes. And then we can ask whether we should be surprised by the financial events that we've seen. It's a little bit like science, real hard science. So, for example, weather forecasters build models that are built on the theory of fluid dynamics.  People who are steeped in this tradition in finance think that what we're doing is very much like what we do when we do financial forecasts. We have a statistical model, we see all of the shocks coming in, and of course there will be hurricanes. And we can only forecast them -- you know there's a limit to how far out we can forecast them. Weather forecasters can't do that. Same thing with financial crises. We understand the probability laws, there's only a certain time horizon before which we can.
-
-
-
-(11) RQUGE:3.0988
-Q1:How do you calculate the expected value for a random variable?
-Q2:What is the average?
-Best ans: The expected value of a random variable is the weighted sum of all possible values of x weighte d by their probabilities. The probabilities have to sum to 1. They're positive numbers, or zero. They reflect the likelihood of that random variable occurring, of that value of the random variable. If you have n observations on a randomly chosen random variable, you can take the sum of the x observations, summation over 1 to n, and then divide that by n. This is an estimate of the expected value.
-["A0: You have to do it for time interval. The expected value of a random variable is the weighted sum of all possible values of x. The probabilities have a sum to 1, or zero, reflecting how likely that random variable will occur. If you have n observations on a randomly chosen random variable, then you can take a sample of n. The geometric mean makes sense only when all x's are non-negative.", "A1: The expected value of a random variable is the weighted sum of all possible values of x weighte d by their probabilities. The probabilities have to sum to 1. They're positive numbers, or zero. They reflect the likelihood of that random variable occurring, of that value of the random variable. If you have n observations on a randomly chosen random variable, you can take the sum of the x observations, summation over 1 to n, and then divide that by n. This is an estimate of the expected value.", "A2: The expected value of a random variable is the weighted sum of all possible values of x weighte d by their probabilities. The probabilities have to sum to 1. They're positive numbers, or zero. They reflect the likelihood of that random variable occurring, of that value of the random variable. If you have n observations on a randomly chosen random variable, you can take the sum of the x observations, summation over 1 to n, and then divide that by n. This is an estimate of the expected value. If there are any negative numbers, we're not going to apply this formula if there are negative numbers.", "A3: Context: The expected value of a random variable is the weighted sum of all possible values of x weighte d by their probabilities. The probabilities have to sum to 1. They're positive numbers, or zero, reflecting the likelihood of that random variable occurring. If you have n observations on a randomly chosen random variable, you can take the sum of the x observations, summation over i equals 1 to n, and then divide that by n. This is an estimate of the expected value. If there are any negative numbers, we're not going to apply this formula if there are negative numbers.", 'A4: p t plus 1, minus pt.', 'A5: p t plus 1, minus pt', 'A6: weighted sum of all possible values of x weighte', 'A7: the weighted sum of all possible values of x weighte']
-Text:In finance, the basic, the most basic concept that -- in finance -- is that when you invest in something, you have to do it for a time interval. And so, what is your return to investing in something? It's the increase in the price. That's p t plus 1, minus p t. Returns can be positive or negative. They can never be more than -- never be less than minus 100%. In a limited liability economy that we live in, the law says that you cannot lose more than the money you put in. This is the mathematical expectation of a random variable x, which could be the return, or the gross return, but we're going to substitute something else. The expectation of x is the weighted sum of all possible values of x weighted by their probabilities. And the probabilities have to sum to 1. They're positive numbers, or zero, reflecting the likelihood of that random variable occurring, of that value of the random variable. This is for a discrete random variable that takes on only a finite, only a countable number of values. Gross return is always positive. It's between zero and infinity. If you have n observations on a random variable x, you can take the sum of the x observations, summation over i equals 1 to n, and then divide that by n. That's called the average, or the mean, or sample mean, when you have a sample of n observations, which is an estimate of the expected value of x. This is called the mean or average, which you've learned long ago, OK. So, for example, if we're evaluating an investor who has invested money, you could get n observations and take an average of them. The geometric mean makes sense only when all the x's are non-negative. If you put in a negative value, you might get a negative product, and then, if you took the nth root of that, it could be an imaginary number, so let's forget that. We're not going to apply this formula if there are any negative numbers.
-
-
-
-(13) RQUGE:2.9305
-Q1:Where does this idea come from?
-Q2:What is the core idea of the universe?
-Best ans: The idea that things are independent comes from the idea that the universe is a model. The universe is made up of many interacting systems.
-['A0: Whenever something is independent, it is a model, or a core idea, or when do you know they are independent?', 'A1: The idea that things are independent comes from the idea that the universe is a model.', 'A2: The idea that things are independent comes from the idea that the universe is a model. The universe is made up of many interacting systems.', 'A3: When do we know that things are independent? The answer: when they are independent.', 'A4: Science', 'A5: science', 'A6: model', 'A7: natural selection']
-Text:And it's a model, or a core idea, but when do we know that things are independent?
-
-
-
-(16) RQUGE:1.5295
-Q1:How did this lecture begin?
-Q2:How do we understand the failure of independence?
-Best ans: By talking about the financial crisis
-['A0: With a narrative story about the financial crisis of the 2000s.', 'A1: This lecture begins with a question and answer session.', 'A2: A professor explains how the financial crisis began with bubbles in the stock market.', 'A3: The speaker is going to talk about probability models.', 'A4: By talking about the financial crisis.', 'A5: By talking about the financial crisis', 'A6: Excuse my cold', 'A7: a tendency for outliers or fat-tailed distributions']
-Text: The crisis began with bubbles in the stock market, housing market, and also in the commodities market. It's a financial crisis that's bigger than any since the Great Depression of the 1930's. There's many different ways of thinking about a crisis like this. And I wanted to focus on one way that people think about it in terms of probability models. So, that's not the only way, it's not necessarily my favorite way. Excuse my cold. I didn't bring any water. I hope I make it through this lecture.  There was a pre-break around 2000 when the stock market collapsed around the world. But then they came back again after 2003 and they were on another boom, like a roller coaster ride. That's the narrative story. And then, what happened is, we see a bunch of institutional collapses. We saw bank failures in the U.S. and then, we saw international cooperation to prevent this from spreading like a disease. So, we had governments all over the world bailing out their banks and other companies. That's what financial theorists will think about is that actually it's not just those few big events. It's the accumulation of a lot of little events.  I'm going to talk today about probability, variance, and covariance, and regression, and idiosyncratic risk, and systematic risk. But I'm also going to, in the context of the crisis, emphasize in this lecture, breakdowns of some of the most popular assumptions that underlie financial theory. And I'm thinking particularly of two breakdowns. One is the failure of independence. And another one is a tendency for outliers or fat-tailed distributions.
-
-
-
-(17) RQUGE:1.4675
-Q1:In finance, what is the most basic concept that returns can be positive or negative?
-Q2:What is the most basic concept in finance?
-Best ans: The most basic concept in finance is the return to investing in something. The return to investment is the increase in the price.
-['A0: The most basic concept in finance is the return to investing in something.', 'A1: The most basic concept in finance is the return to investing in something. The return to investment is the increase in the price.', 'A2: This is the most basic concept that returns can be positive or negative in finance.', "A3: When you invest in something for a time interval, what is your return to investing in something? It's the increase in the price.", 'A4: in finance, the basic', 'A5: they can never be more than -- never be less than -- 100%', 'A6: You have to do it for a time interval', 'A7: you cannot lose more than the money you put in.']
-Text:In finance, the basic, the most basic concept that -- in finance -- is that when you invest in something, you have to do it for a time interval. And so, what is your return to investing in something? It's the increase in the price. That's p t plus 1, minus p t. Returns can be positive or negative. They can never be more than -- never be less than minus 100%. In a limited liability economy that we live in, the law says that you cannot lose more than the money you put in. This is the mathematical expectation of a random variable x, which could be the return, or the gross return, but we're going to substitute something else. The expectation of x is the weighted sum of all possible values of x weighted by their probabilities. And the probabilities have to sum to 1. They're positive numbers, or zero, reflecting the likelihood of that random variable occurring, of that value of the random variable. This is for a discrete random variable that takes on only a finite, only a countable number of values. Gross return is always positive. It's between zero and infinity. If you have n observations on a random variable x, you can take the sum of the x observations, summation over i equals 1 to n, and then divide that by n. That's called the average, or the mean, or sample mean, when you have a sample of n observations, which is an estimate of the expected value of x. This is called the mean or average, which you've learned long ago, OK. So, for example, if we're evaluating an investor who has invested money, you could get n observations and take an average of them. The geometric mean makes sense only when all the x's are non-negative. If you put in a negative value, you might get a negative product, and then, if you took the nth root of that, it could be an imaginary number, so let's forget that. We're not going to apply this formula if there are any negative numbers.
-
-
-
-(19) RQUGE:1.3757
-Q1:Why can't we predict hurricanes?
-Q2:What do financial forecasters do?
-Best ans: We can only forecast hurricanes because there is a limit to how far out we can forecast them.
-['A0: Hurricanes are unpredictable and unpredictable. We can only predict them based on mathematical laws.', 'A1: A hurricane is a natural phenomenon that cannot be predicted. Weather forecasters can only predict hurricanes within a certain time frame.', 'A2: Weather forecasters build models that are built on the theory of fluid dynamics to predict hurricanes.', 'A3: We can only forecast hurricanes because there is a limit to how far out we can forecast them.', 'A4: financial crises', 'A5: limited time frame before which', 'A6: it has only one time horizon', 'A7: limited time']
-Text: The word probability in its present meaning wasn't even coined until the 1600's. We do it by dealing with all of these little incremental shocks that affect our lives in a mathematical way. We have mathematical laws of how they accumulate. And once we understand those laws, we can we can build mathematical models of the outcomes. And then we can ask whether we should be surprised by the financial events that we've seen. It's a little bit like science, real hard science. So, for example, weather forecasters build models that are built on the theory of fluid dynamics.  People who are steeped in this tradition in finance think that what we're doing is very much like what we do when we do financial forecasts. We have a statistical model, we see all of the shocks coming in, and of course there will be hurricanes. And we can only forecast them -- you know there's a limit to how far out we can forecast them. Weather forecasters can't do that. Same thing with financial crises. We understand the probability laws, there's only a certain time horizon before which we can.
-
-
-
-(20) RQUGE:1.2163
-Q1:Who were some of these institutions that collapsed?
-Q2:What did the financial crisis include?
-Best ans: Financial institutions that collapsed include banks and other companies
-['A0: Financial institutions that collapsed include banks and other companies', 'A1: Financial institutions that collapsed include banks and other companies that were bailed out by governments.', 'A2: A lot of institutional collapse occurred due to bubbles in the stock market, housing market, and also in the commodities market.', 'A3: Bank failures in the U.S.', 'A4: Banks', 'A5: U.S.', 'A6: U.S. banks', 'A7: banks and other companies']
-Text: The crisis began with bubbles in the stock market, housing market, and also in the commodities market. It's a financial crisis that's bigger than any since the Great Depression of the 1930's. There's many different ways of thinking about a crisis like this. And I wanted to focus on one way that people think about it in terms of probability models. So, that's not the only way, it's not necessarily my favorite way. Excuse my cold. I didn't bring any water. I hope I make it through this lecture.  There was a pre-break around 2000 when the stock market collapsed around the world. But then they came back again after 2003 and they were on another boom, like a roller coaster ride. That's the narrative story. And then, what happened is, we see a bunch of institutional collapses. We saw bank failures in the U.S. and then, we saw international cooperation to prevent this from spreading like a disease. So, we had governments all over the world bailing out their banks and other companies. That's what financial theorists will think about is that actually it's not just those few big events. It's the accumulation of a lot of little events.  I'm going to talk today about probability, variance, and covariance, and regression, and idiosyncratic risk, and systematic risk. But I'm also going to, in the context of the crisis, emphasize in this lecture, breakdowns of some of the most popular assumptions that underlie financial theory. And I'm thinking particularly of two breakdowns. One is the failure of independence. And another one is a tendency for outliers or fat-tailed distributions.
-
-
-
-(24) RQUGE:1.0162
-Q1:Who built models that are built on theory fluid dynamics?
-Q2:Who can't forecast weather?
-Best ans: forecasters
-['A0: weather predictors build models that are built on the theory of fluid dynamics.', 'A1: Using the example weather forecasters, we can build models that are built on the theory of fluid dynamics.', 'A2: Forecasters build models that are built on the theory of fluid dynamics.', 'A3: For example, weather forecasters build models that are built on the theory of fluid dynamics.', 'A4: financial', 'A5: meteorologists', 'A6: finance', 'A7: forecasters']
 Text: The word probability in its present meaning wasn't even coined until the 1600's. We do it by dealing with all of these little incremental shocks that affect our lives in a mathematical way. We have mathematical laws of how they accumulate. And once we understand those laws, we can we can build mathematical models of the outcomes. And then we can ask whether we should be surprised by the financial events that we've seen. It's a little bit like science, real hard science. So, for example, weather forecasters build models that are built on the theory of fluid dynamics.  People who are steeped in this tradition in finance think that what we're doing is very much like what we do when we do financial forecasts. We have a statistical model, we see all of the shocks coming in, and of course there will be hurricanes. And we can only forecast them -- you know there's a limit to how far out we can forecast them. Weather forecasters can't do that. Same thing with financial crises. We understand the probability laws, there's only a certain time horizon before which we can.
 
 

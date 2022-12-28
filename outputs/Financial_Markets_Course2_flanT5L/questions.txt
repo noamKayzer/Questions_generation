@@ -4,30 +4,16 @@ Q:What is a pre-break?
 A:A pre-break is when a market collapses. The stock market collapsed around the world in 2000 and then came back again after 2003.
 Q:What happened in 2000?
 A:The stock market collapsed around the world in 2000. The stock markets came back again after 2003.
-Q:How do we understand the failure of independence?
-A:By talking about the financial crisis
-Q:What did the financial crisis include?
-A:Financial institutions that collapsed include banks and other companies
 --------------------------------------------------
 Q:When was the word probability coined?
 A:According to the passage, probability was not even coined until the 1600's.
 Q:What can we do about financial events?
 A:Once we understand the probability laws, we can build mathematical models of the outcomes. We can ask whether we should be surprised by the financial events that we've seen.
-Q:What do financial forecasters do?
-A:We can only forecast hurricanes because there is a limit to how far out we can forecast them.
-Q:Who can't forecast weather?
-A:forecasters
 --------------------------------------------------
-Q:What is the return to investing in something?
-A:The return to investing in something is the increase in the price.
 Q:What is the law of limited liability?
 A:This is the law of limited liability. The law says that you cannot lose more than the money you put in.
 Q:Who is not going to apply the geometric mean formula if there are any negative numbers?
 A:we
-Q:What is the average?
-A:The expected value of a random variable is the weighted sum of all possible values of x weighte d by their probabilities. The probabilities have to sum to 1. They're positive numbers, or zero. They reflect the likelihood of that random variable occurring, of that value of the random variable. If you have n observations on a randomly chosen random variable, you can take the sum of the x observations, summation over 1 to n, and then divide that by n. This is an estimate of the expected value.
-Q:What is the most basic concept in finance?
-A:The most basic concept in finance is the return to investing in something. The return to investment is the increase in the price.
 --------------------------------------------------
 Q:What is the standard deviation?
 A:square root of the variance
@@ -36,6 +22,30 @@ A:A measure of how two different random variables move together. The standard de
 Q:What does the speaker recommend?
 A:Gross return is a measure of the outcome of the investments. The speaker recommends using gross return in evaluating investments.
 --------------------------------------------------
-Q:What is the core idea of the universe?
-A:The idea that things are independent comes from the idea that the universe is a model. The universe is made up of many interacting systems.
+Q:What is the law of large numbers?
+A:We have to have some kind of probability Model. The law of large numbers says that if I have a lot of independent shock, and average them out, on average there's not going to be much uncertainty.
+--------------------------------------------------
+Q:Where did Professor Brunnermeier work?
+A:University of Princeton.
+Q:What is the purpose of this article?
+A:This is an important point because portfolios can sometimes co-vary more than we thought. The purpose of this article is to discuss the need for change in analysis of variance.
+--------------------------------------------------
+Q:How much did an investment in Apple go?
+A:Up 25 times.
+Q:What did Joe McNay invest in?
+A:Home Depot, Walmart, and internet stocks.
+--------------------------------------------------
+Q:What year did McNey liquidate Walmart?
+A:Joe McNey started liquidating Walmart in 2000.
+--------------------------------------------------
+Q:What company did Steve Jobs found?
+A:apple
+Q:What country's economy is the most important?
+A:America
+--------------------------------------------------
+Q:Where can you never see a drop of that magnitude?
+A:wall street
+--------------------------------------------------
+Q:What year did the stock market crash?
+A:1987
 --------------------------------------------------
