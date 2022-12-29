@@ -19,7 +19,8 @@ from tqdm import tqdm, trange
 from rquge_score import RQUGE
 import re
 import nltk
-
+from nltk.corpus import stopwords
+STOPWORDS = set(stopwords.words('english'))
 from scispacy.abbreviation import AbbreviationDetector
 from scispacy.hyponym_detector import HyponymDetector
 from rquge_score import RQUGE
@@ -29,6 +30,7 @@ abrv_nlp = spacy.load("en_core_sci_sm")
 
 #abrv_nlp.add_pipe("hyponym_detector", last=True, config={"extended": False})
 
+abrv_nlp.disable_pipes([pipe for pipe in abrv_nlp.pipe_names])
 # Add the abbreviation pipe to the spacy pipeline.
 abrv_nlp.add_pipe("abbreviation_detector")
 COMPUTE_ANSWERS = True
@@ -145,7 +147,7 @@ class flanT5MCQ:
         cur_qs = questions[i].strip()
         cur_qs = re.sub(r'\.+', '.', cur_qs)
         cur_qs = re.sub(r'\?+', '?', cur_qs)
-        if not '?' in cur_qs:
+        if cur_qs.endswith('?'):
         #if not cur_qs.strip().endswith('?'):
           continue
         elif len(selected_questions_idx) >= n_thrs:
@@ -156,8 +158,17 @@ class flanT5MCQ:
         return [questions[a] for a in selected_questions_idx]
       else:
         return selected_questions_idx
-    import re
-    def replace_abbreviations(self, text, abrv_dict, only_first = False):
+    
+
+    def replace_abbreviations(self, text, abrv_dict, only_first = False,target_form='full'):
+      '''
+      function `replace_abbreviations` replace the abbreviations in the text for the short form (e.g. AI),
+                                       long form (e.g. artificial intelligence) or combined (definition) version  (e.g. artificial intelligence (AI) )
+                `abrv_dict` - Dictionary of {short_form:long_form} (e.g. {'AI':'artificial intelligence'}).
+                            Found previously by the SciSpacy library and AbbreviationDetector pipeline.
+                `only_first` - Change only the first occurrence.
+                `target_form` = 'full'/'short'/'long'. The target form (replace to short or long form or both).
+      '''
       if len(abrv_dict)==0:
         return text
       if only_first:
@@ -165,14 +176,23 @@ class flanT5MCQ:
       else:
         only_first = 0
       if isinstance(text,list):
-        return [self.replace_abbreviations(cur_text,abrv_dict,only_first) for cur_text in text]
+        return [self.replace_abbreviations(cur_text,abrv_dict,only_first,target_form=target_form) for cur_text in text]
+
+      if target_form in ['all','both','definition']:
+        target = f' {long_form_abbr} ({abrv})'+ r'\1'
+      elif target_form=='short':
+        target = f' {abrv}'+ r'\1'
+      elif target_form=='long':
+        target = f' {long_form_abbr}'+ r'\1'
+
       #`only_first` resolve only the first abbreviation in the text (e.g. if the text includes the results section, and the abbreviation was define at the introduction, the method will resolve once the abbreviation in the text the model is exposed to)
       for abrv,long_form_abbr in abrv_dict.items():
-        text = text.replace(f'{long_form_abbr} ({abrv})',abrv) #first the function abbreviate all occurences
+        text = text.replace(f'{long_form_abbr} ({abrv})',abrv) #first the function abbreviate all occurrences
         text = text.replace(f'{long_form_abbr}({abrv})',abrv) 
         pattern = re.compile(r'(^|\s|\.)'+abrv+ r'( |[\W\s])')
-        text = re.sub(pattern, f' {long_form_abbr} ({abrv})'+ r'\1', text, count=only_first)
+        text = re.sub(pattern,target , text, count=only_first)
       return text
+
     def clean_questions(self,questions_list):
       output_qs =[]
       for q in questions_list:
@@ -195,19 +215,22 @@ class flanT5MCQ:
                   out+=str(ans)+'\n'
           out+=f'Text:{q.text}\n\n'
           return out
+          
     def init_abrv_solver(self,sections,only_first=True):
-        doc = abrv_nlp('.\n'.join(sections))
+        doc = abrv_nlp('.\n '.join(sections).replace('..\n','.\n'))
         abrv_dict ={}
         for abrv in doc._.abbreviations:
             #print(f"{abrv} \t ({abrv.start}, {abrv.end}) {abrv._.long_form}")
-            if abrv not in abrv_dict.keys():
-                abrv_dict[str(abrv)] = str(abrv._.long_form)
+            # at least half of the short hand form abbreviations is uppercase.
+            if abrv not in abrv_dict.keys() and np.mean([p==p.upper() for p in str(abrv)])>0.5:
+                long_form_capital = " ".join([w.capitalize() if w not in STOPWORDS else w 
+                                                      for w in str(abrv._.long_form).split()  ])
+                abrv_dict[str(abrv)] = str(long_form_capital) 
         #print(doc._.hearst_patterns)
         print("Abbreviation", "\t", "Definition")
         print(abrv_dict)
         self.abrv_dict=abrv_dict
         return partial(self.replace_abbreviations,abrv_dict=abrv_dict,only_first=True) 
-
 
     def compute_questions(self,sections,org_sections,sections_ranks,
                           verbose=False,answers_model=False):
@@ -230,7 +253,7 @@ class flanT5MCQ:
               sections_n.extend([i+0.1*k for k in range(n_chunks)])
 
         for section_i,cur in tqdm(zip(sections_n,sections_chunks)):
-            cur = solve_abrv_func(cur)
+            cur = solve_abrv_func(cur,target_form='long')
             input_string = "generate question: " + cur
             try:
                 qs,qs_ppl = self.get_output_from_prompt(self.model,input_string,self.generator_args)
@@ -247,7 +270,7 @@ class flanT5MCQ:
                 self.plot_similarity_matrix(qs)
             qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
             for i,cur_qs in enumerate(qs_filtered):
-                cur_qs = solve_abrv_func(cur_qs)
+                cur_qs = solve_abrv_func(cur_qs,target_form='long')
                 print(f'Qs:{cur_qs}')
                 if COMPUTE_ANSWERS:
                     ans_input_string = "answer to the question, step by step: "+cur_qs+" </s> context: " + cur #'step by step prefix apply the Chain of Thought reasoning which enables more detailed answer
@@ -257,13 +280,13 @@ class flanT5MCQ:
                     except:
                         print('moving model to cpu!')
                         ans_output,_ = self.get_output_from_prompt(answers_model,ans_input_string,self.answers_generator_args)
-                    ans_output = solve_abrv_func(ans_output)
+                    ans_output = ans_output
                     if verbose:
                         for ans in ans_output:
                             print('----Ans:--',ans)
                     short_ans_input_string = "answer to the question: "+cur_qs+" </s> context: " + cur
                     short_ans_output,_ = self.get_output_from_prompt(answers_model,short_ans_input_string,self.short_answers_generator_args)
-                    short_ans_output = solve_abrv_func(short_ans_output)
+                    short_ans_output = short_ans_output
                     if verbose:
                         for ans in short_ans_output:
                             print('----Short Ans:--',ans)
@@ -345,7 +368,7 @@ class QA:
     def filter_by_answers(self,questions_df,answers):
       index_list = list(answers.index)
       for idx,ans in answers.iteritems():
-        if self.similar_to_blacklist(ans):
+        if self.similar_to_blacklist(ans) or ans.strip().endswith(':'):
           index_list.remove(idx)
       return questions_df.iloc[index_list,:]   
 

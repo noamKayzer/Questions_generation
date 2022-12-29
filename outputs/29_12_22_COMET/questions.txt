@@ -1,0 +1,28 @@
+Q:What is the purpose of this paper?
+A:To evaluate text summarization systems using COMET model.
+--------------------------------------------------
+Q:What does COMET use?
+A:pre-trained multilingual language model to extract representations for each of the input sequences, which are then pooled and concatenated, before being processed with a stack of feed-forward layers that outputs a single numerical value
+--------------------------------------------------
+Q:How do we handle multiple references during evaluation?
+A:10 subsets of 20 articles each, using 80 for training and 20 for validation (early stopping) and evaluating on the remaining 10 articles. During training, we use each reference and each expert annotation to create more training instances. Throughout evaluation, we handle multiple references by scoring each reference independently and taking the maximum score.
+Q:How do Rei et al. (2021) split the data?
+A:During evaluation we handle multiple references by scoring each reference independently and taking the maximum score. To achieve this, we rely on cross-validation. We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10.
+Q:What dimensions are the model evaluated on?
+A:The model is evaluated on the following dimensions: Coherence and Relevance.
+--------------------------------------------------
+Q:Who developed the Multi_SummEval dataset?
+A:Multi_SummEval dataset was developed by Koto et al. (2021 (al.) 2021.
+--------------------------------------------------
+Q:What is the purpose of crossvalidation?
+A:To enable training and un-biased testing on the SummEval dataset. Different articles are used for training and validation and testing. To show that the model can over-fit to the data, we have trained a model using al. (2021 (al.) of the available annotations from the dataset and then applied it to the same articles, already seen during training.
+Q:What dataset is used for training and testing?
+A:SummaryEval dataset
+--------------------------------------------------
+Q:Who annotated the REALSumm corpus?
+A:Bhandari et al. (2021 (al.) (2020)
+Q:What do the outputs from each COMES head correspond to?
+A:The three metrics with the highest correlation in each column are bolded. The following are the evaluation dimensions used in training data:
+Q:How many columns are in the table?
+A:six
+--------------------------------------------------

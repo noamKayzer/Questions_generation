@@ -1,0 +1,101 @@
+(0) RQUGE:4.9041
+Q1:Who analyzed this dataset?
+Q2:Who annotated the REALSumm corpus?
+Best ans: Bhandari et al. (2021 (al.) (2020)
+['A0: (2019)  Bhandari et al.', 'A1: Annotated by Bhandari and colleagues (2021 (al.).', 'A2: The dataset was annotated by Bhandari et al. (2021 (al.) (2020)', 'A3: Bhandari et al. (2021 (al.) (2020)', 'A4: A. Bhandari', 'A5: researchers', 'A6: authors', 'A7: researchers from Harvard University']
+Text: Table 5: System-level Kendall’s Tau correlations on the REALSumm corpus annotated by Bhandari et al. (2021 (al.) (2020) Table 7: The three metrics with the highest correlation in each column are bolded. Table 6: We evaluate on the subset of the tion dimensions in the annotated (test) split of the CNN/DailyMail corpus. In the rows, we include outputs from each of the COMES heads, that correspond to evaluation dimensions used in training data.
+
+
+
+(1) RQUGE:4.8036
+Q1:What is the purpose of this paper?
+Q2:What is the purpose of this paper?
+Best ans: To evaluate text summarization systems using COMET model.
+['A0: To evaluate text summarization systems using COMET model.', 'A1: Using COMET to evaluate text summarization systems', 'A2: An evaluation model for text summarization systems that uses multilingual outputs for pre-training.', 'A3: This paper introduces a variant of the COMET model – trained on the annotated summarization outputs that uses MT data as a pre-training.', 'A4: to assess machine translation quality', 'A5: Use COMET for text summarization evaluation', 'A6: evaluate text summarization systems', 'A7: To evaluate the quality of text summarization systems']
+Text:COMET is a recently proposed trainable neuralbased evaluation metric developed to assess the quality of Machine Translation systems. In this paper, we explore the usage of COMET for evaluating Text Summarization systems – despite being trained on multilingual MT outputs, it performs remarkably well in monolingual settings, when predicting summarization output quality. We introduce a variant of the model – COMES – trained on the annotated summarization outputs that uses MT data for pre-training. We examine its performance on several datasets with human judgments collected for different notions of summary quality, covering several domains and languages.
+
+
+
+(2) RQUGE:4.6101
+Q1:Who developed Multi_SummEval?
+Q2:Who developed the Multi_SummEval dataset?
+Best ans: Multi_SummEval dataset was developed by Koto et al. (2021 (al.) 2021.
+['A0: Tokyo et al. (2021 (al.) 2021', 'A1: Koloto et al. (2021 (al.) 2021', 'A2: The Multi_SummEval dataset was developed by Koto et al. (2021 (al.) (2021 (al). 2021).', 'A3: Multi_SummEval dataset was developed by Koto et al. (2021 (al.) 2021.', 'A4: Koto', 'A5: Kita', 'A6: Tokyo et al.', 'A7: Tokyo et al']
+Text: One of the strengths of the COMET metric is its multilinguality – the model has seen over 30 language pairs during training. To assess its quality as a summary evaluation tool for non-English data, we evaluated it on the Multi_SummEval dataset (Koto et al. (2021 (al.)  2021). With only two system outputs annotated, the size of the resource is not sufficient for reporting system-level correlations. For a fair comparison, we wanted to train the COMES model variant using the multilingual data.  On this dataset, even the best performing COMET is still inferior to both ROUGE and BERTScore. This is in line with recent findings by Braun et al. (2022), which indicate that summary evaluations do not survive translation. We believe that the question about COMET/COMES usefulness for multilingual and summary-level evaluation is still open.
+
+
+
+(3) RQUGE:4.5834
+Q1:The COMET score is calculated by what method?
+Q2:What does COMET use?
+Best ans: pre-trained multilingual language model to extract representations for each of the input sequences, which are then pooled and concatenated, before being processed with a stack of feed-forward layers that outputs a single numerical value
+['A0: Based on semantic similarities between the translated and reference texts', 'A1: semantic similarities between the translated and reference texts', 'A2: The COMET score is calculated by a stack of feed-forward layers that outputs a single numerical value.', 'A3: pre-trained multilingual language model to extract representations for each of the input sequences, which are then pooled and concatenated, before being processed with a stack of feed-forward layers that outputs a single numerical value', 'A4: stack of feed-forward layers', 'A5: human perception of translation quality', 'A6: pre-trained multilingual language model', 'A7: semantic similarities between the translated and reference texts']
+Text: COMET is a trained metric that, based on semantic similarities between the translated and reference texts, learns to output a score that resembles the human perception of translation quality. COMET uses a pre-trained multilingual language model to extract representations for each of the input sequences, which are then pooled and concatenated, before being processed with a stack of feed-forward layers that outputs a single numerical value.
+
+
+
+(5) RQUGE:4.4004
+Q1:Which metrics have the highest correlations?
+Q2:What do the outputs from each COMES head correspond to?
+Best ans: The three metrics with the highest correlation in each column are bolded. The following are the evaluation dimensions used in training data:
+['A0: Using the CNN/DailyMail corpus, we evaluate on the subset of each of the evaluation dimensions. The three metrics with highest correlations in the following columns are bolded.', 'A1: In the first column, we list the three metrics with the highest correlation in each column. In the second column, the three most correlated metrics are highlighted.', 'A2: The three metrics with the highest correlation in each column are bolded. The following are the evaluation dimensions used in training data: CNN/DailyMail (test)', 'A3: The three metrics with the highest correlation in each column are bolded. The following are the evaluation dimensions used in training data:', 'A4: 3 metric', 'A5: system', 'A6: tion dimensions', 'A7: 3']
+Text: Table 5: System-level Kendall’s Tau correlations on the REALSumm corpus annotated by Bhandari et al. (2021 (al.) (2020) Table 7: The three metrics with the highest correlation in each column are bolded. Table 6: We evaluate on the subset of the tion dimensions in the annotated (test) split of the CNN/DailyMail corpus. In the rows, we include outputs from each of the COMES heads, that correspond to evaluation dimensions used in training data.
+
+
+
+(6) RQUGE:4.2282
+Q1:How many articles are used for training and evaluation? How many are used in each subset?
+Q2:How do we handle multiple references during evaluation?
+Best ans: 10 subsets of 20 articles each, using 80 for training and 20 for validation (early stopping) and evaluating on the remaining 10 articles.
+            During training, we use each reference and each expert annotation to create more training instances.
+            Throughout evaluation, we handle multiple references by scoring each reference independently and taking the maximum score.
+['A0: 10 subsets of 20 articles each, using 80 for training and 20 for validation (early stopping) and evaluating on the remaining 10 articles.', 'A1: 10 subsets of 20 articles each, using 80 for training and 20 for validation (early stopping) and evaluating on the remaining 10 articles. During training, we use each reference and each expert annotation to create more training instances. Throughout evaluation, we handle multiple references by scoring each reference independently and taking the maximum score.', 'A2: Articles are used in a cross-validation method. We split the data into 10 subsets of 10 articles each, using 80 for training, 10 for validation (early stopping), and evaluating on the remaining 10. We use each reference and each expert annotation to create more training instances. During evaluation, we handle multiple references by scoring each reference independently and taking the maximum score.', 'A3: During training, we use each reference and each expert annotation to create more training instances. During evaluation we handle multiple references by scoring each reference independently and taking maximum score. The results of our experiments can be found in Table 2.', 'A4: using 80', 'A5: 100 documents', 'A6: 100', 'A7: 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10 articles']
+Text: Rei et al. (2021 (al.) would like to use it both for training and evaluation. To achieve this, we rely on cross-validation. We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10. During training, we use each reference and each expert annotation to create more training instances. During evaluation, we handle multiple references by scoring each reference independently and taking the maximum score. The results of our experiments can be found in Table 2.  Scoring system output with both out-of-the-box variants (COMET and COMET_QE) results in the highest correlation coefficients along all metrics analysed by Fabbri et al. (2021) for Coherence and Relevance dimensions.
+
+
+
+(9) RQUGE:4.0181
+Q1:In what way did Rei et al. (2021 (al.) (2021) use the dataset?
+Q2:How do Rei et al. (2021) split the data?
+Best ans: During evaluation we handle multiple references by scoring each reference independently and taking the maximum score. To achieve this, we rely on cross-validation. We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10.
+['A0: They used the dataset to train and evaluate their model. They used it both for training and evaluation. They split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10. They used expert annotations and multiple reference instances to create more training instances. They scored each reference independently and took the maximum score.', 'A1: During evaluation we handle multiple references by scoring each reference independently and taking the maximum score. To achieve this, we rely on cross-validation. We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10.', 'A2: We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10. During training, we use each reference and each expert annotation to create more training instances. During evaluation, we handle multiple references by scoring each reference independently and taking the maximum score.', 'A3: During evaluation we handle multiple references by scoring each reference independently and taking the maximum score. To achieve this, we rely on cross-validation. We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10. The results of our experiments can be found in Table 2.', 'A4: Both', 'A5: for training and evaluation', 'A6: cross-validation', 'A7: training and evaluation']
+Text: Rei et al. (2021 (al.) would like to use it both for training and evaluation. To achieve this, we rely on cross-validation. We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10. During training, we use each reference and each expert annotation to create more training instances. During evaluation, we handle multiple references by scoring each reference independently and taking the maximum score. The results of our experiments can be found in Table 2.  Scoring system output with both out-of-the-box variants (COMET and COMET_QE) results in the highest correlation coefficients along all metrics analysed by Fabbri et al. (2021) for Coherence and Relevance dimensions.
+
+
+
+(10) RQUGE:3.9363
+Q1:Crossvalidation is the process of which?
+Q2:What is the purpose of crossvalidation?
+Best ans: To enable training and un-biased testing on the SummEval dataset. Different articles are used for training and validation and testing. To show that the model can over-fit to the data, we have trained a model using al. (2021 (al.) of the available annotations from the dataset and then applied it to the same articles, already seen during training.
+['A0: Using different articles to train a model and then applying it to them to tion dimensions in the annotated (test) it.', 'A1: To enable training and un-biased testing on the SummEval dataset. Different articles are used for training and validation and testing. To show that the model can over-fit to the data, we have trained a model using al. (2021 (al.) of the available annotations from the dataset and then applied it to the same articles, already seen during training. So the final answer is cross validation.', 'A2: To enable training and un-biased testing on the SummEval dataset. Different articles are used for training and validation and testing. To show that the model can over-fit to the data, we have trained a model using al. (2021 (al.) of the available annotations from the dataset and then applied it to the same articles, already seen during training.', 'A3: Different articles are used for training, validation and testing. To show that the model can over-fit to the data, we have trained a model using al. (2021 (al.) of the available annotations from the dataset and then applied it to the same articles, already seen during training. To prove that the method can overfit to data, the model is tested on the same dataset. The final answer: cross validation.', 'A4: test', 'A5: validation', 'A6: cross validation', 'A7: un-biased testing']
+Text: In Section 4.1, we propose the usage of crossvalidation to enable training and un-biased testing on the SummEval dataset. Different articles are used for training, validation and testing. To show that the model can over-fit to the data, we have trained a model using al. (2021 (al.) of the available annotations from the dataset and then applied it to the same articles, already seen during training.
+
+
+
+(12) RQUGE:3.8026
+Q1:Which metrics are used to evaluate the model? Coherence and Relevance
+Q2:What dimensions are the model evaluated on?
+Best ans: The model is evaluated on the following dimensions: Coherence and Relevance.
+['A0: The model is evaluated on the following dimensions: Coherence and Relevance.', 'A1: The model is evaluated on the following dimensions: Coherence and Relevance. The model was evaluated on a cross-validation approach.', 'A2: Scoring system output with both out-of-the-box variants (COMET and COMET_QE). Scoring System Output with both Out-of the-Box variants is used to evaluate the model for Coherence and Relevance dimensions.', 'A3: Scoring system output with both out-of-the-box variants (COMET and COMET_QE).', 'A4: COMET', 'A5: Relevance dimensions', 'A6: relevance dimensions', 'A7: Relevance']
+Text: Rei et al. (2021 (al.) would like to use it both for training and evaluation. To achieve this, we rely on cross-validation. We split the data into 10 subsets of 10 articles each, using 80 articles for training, 10 for validation (early stopping) and evaluating on the remaining 10. During training, we use each reference and each expert annotation to create more training instances. During evaluation, we handle multiple references by scoring each reference independently and taking the maximum score. The results of our experiments can be found in Table 2.  Scoring system output with both out-of-the-box variants (COMET and COMET_QE) results in the highest correlation coefficients along all metrics analysed by Fabbri et al. (2021) for Coherence and Relevance dimensions.
+
+
+
+(14) RQUGE:3.6537
+Q1:Which dataset is used for cross validation? SummEval
+Q2:What dataset is used for training and testing?
+Best ans: SummaryEval dataset
+['A0: SummaryEval dataset', 'A1: Using the SummEval dataset', 'A2: SummEval dataset.', 'A3: The SummEval dataset', 'A4: summary-validation', 'A5: SummaryEval', 'A6: summary', 'A7: SummaryEval dataset']
+Text: In Section 4.1, we propose the usage of crossvalidation to enable training and un-biased testing on the SummEval dataset. Different articles are used for training, validation and testing. To show that the model can over-fit to the data, we have trained a model using al. (2021 (al.) of the available annotations from the dataset and then applied it to the same articles, already seen during training.
+
+
+
+(29) RQUGE:1.0046
+Q1:How many metrics are evaluated on the CNN/DailyMail corpus?
+Q2:How many columns are in the table?
+Best ans: six
+['A0: Using the CNN/DailyMail corpus, we evaluate on a subset of the following evaluation dimensions:', 'A1: This dataset contains tens of thousands of articles. The CNN/DailyMail corpus has a total of ten datasets. The three metrics with the highest correlation in each column are bolded.', 'A2: Table 7: The three metrics with the highest correlation in each column are bolded Table 8: The evaluation dimensions used in training data are listed in the following table.', 'A3: In the columns, we include outputs from each of the COMES heads, that correspond to evaluation dimensions used in training data. The following is a list of metrics evaluated on the CNN/DailyMail corpus:', 'A4: five', 'A5: six', 'A6: 7', 'A7: four']
+Text: Table 5: System-level Kendall’s Tau correlations on the REALSumm corpus annotated by Bhandari et al. (2021 (al.) (2020) Table 7: The three metrics with the highest correlation in each column are bolded. Table 6: We evaluate on the subset of the tion dimensions in the annotated (test) split of the CNN/DailyMail corpus. In the rows, we include outputs from each of the COMES heads, that correspond to evaluation dimensions used in training data.
+
+
+
