@@ -140,6 +140,7 @@ class flanT5MCQ:
         if chunk:
             chunks.append(' '.join(chunk).strip())
         return chunks
+
     def filter_questions(self,questions, similarity_matrix,similarity_thrs=0.65,n_thrs=3, return_index=False):
       #consider use also the answer for similarity check
       selected_questions_idx = []
@@ -147,8 +148,7 @@ class flanT5MCQ:
         cur_qs = questions[i].strip()
         cur_qs = re.sub(r'\.+', '.', cur_qs)
         cur_qs = re.sub(r'\?+', '?', cur_qs)
-        if cur_qs.endswith('?'):
-        #if not cur_qs.strip().endswith('?'):
+        if cur_qs.endswith('?') or cur_qs.lower().startswith('who'):
           continue
         elif len(selected_questions_idx) >= n_thrs:
           break
@@ -265,11 +265,11 @@ class flanT5MCQ:
             if verbose:
                 for cur_qs in qs:
                     print(f'Qs:{cur_qs}')
-            similarity_matrix = self.find_similarity(qs)
             if verbose:
                 self.plot_similarity_matrix(qs)
-            qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
-            for i,cur_qs in enumerate(qs_filtered):
+            #similarity_matrix = self.find_similarity(qs)
+            #qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
+            for i,cur_qs in enumerate(qs):
                 cur_qs = solve_abrv_func(cur_qs,target_form='long')
                 print(f'Qs:{cur_qs}')
                 if COMPUTE_ANSWERS:
@@ -299,9 +299,9 @@ class flanT5MCQ:
                 questions_df.loc[len(questions_df)] = [section_i,np.round(sections_ranks[int(section_i)],4),cur,cur_qs,qs_ppl[i],
                                                         ans_output[0],ans_output[1],ans_output[2],ans_output[3],
                                                         short_ans_output[0],short_ans_output[1],short_ans_output[2],short_ans_output[3]]
-                similarity_matrix = self.find_similarity(qs_filtered)
+                
                 if verbose:
-                    self.plot_similarity_matrix(qs_filtered)
+                    self.plot_similarity_matrix(qs)
         return questions_df
 
 
@@ -389,10 +389,14 @@ class QA:
         return questions_df
 
 class QG:
+
   def __init__(self,checkpoint='Salesforce/mixqg-large') -> None:
+    from negspacy.negation import Negex
     self.checkpoint = checkpoint
     self.nlp = pipeline("text2text-generation", model=checkpoint, tokenizer=checkpoint)
 
+    self.nlp.add_pipe('sentencizer')
+    self.nlp.add_pipe(Negex(self.nlp))
   def format_inputs(self,context: str, answer: str):
     if isinstance(context,list):
       return [f"{cur_answer} \\n {cur_context}" for cur_answer,cur_context in zip(answer,context)]
@@ -403,5 +407,8 @@ class QG:
     questions_df['new_question']=''
 
     for i in trange(len(questions_df)):
-      questions_df.loc[i,'new_question']= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
+      if not self.check_if_questions_is_negative():
+        questions_df.loc[i,'new_question']= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
+      else:
+        questions_df.loc[i,'new_question'] = questions_df.loc[i,'question']
     return questions_df
