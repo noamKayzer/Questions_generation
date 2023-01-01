@@ -397,6 +397,8 @@ class QG:
 
     self.nlp.add_pipe('sentencizer')
     self.nlp.add_pipe(Negex(self.nlp))
+  def check_if_questions_is_negative(self,q):
+    
   def format_inputs(self,context: str, answer: str):
     if isinstance(context,list):
       return [f"{cur_answer} \\n {cur_context}" for cur_answer,cur_context in zip(answer,context)]
