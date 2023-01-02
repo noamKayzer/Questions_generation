@@ -1,0 +1,52 @@
+Q:What does this paper present?
+A:This paper presents a supervised duration of surgery nonlinear regression model whose accuracy outperforms earlier results.
+--------------------------------------------------
+--------------------------------------------------
+Q:What technique was used to handle missing data of other features?
+A:Sequence of regression models technique.
+Q:What is the full list of features?
+A:List of features shown in table 1.
+--------------------------------------------------
+Q:What are the two main Machine Learning model types?
+A:Propensitiy and heterogeneitiiy models
+--------------------------------------------------
+--------------------------------------------------
+Q:What method was used to evaluate the grid search output?
+A:In order to evaluate the grid search output, we used k-fold cross-validation.
+--------------------------------------------------
+Q:What did we do with the causal features?
+A:Filtered out features that had high correlation with
+Q:Why is training the DOSM-F model using only CF values important?
+A:This allows for the cf values to have a bigger impact on the prediction value of the model
+--------------------------------------------------
+Q:What dataset were the causal analysis models trained on?
+A:Surgery dataset
+Q:What does Table 4 present?
+A:The top 10 causal features are based on the following: average treatment effect: 10 features whose absolute average treatment effect values were the highest, in decreasing order.
+--------------------------------------------------
+Q:What was the derived uncertainty of the model?
+A:4.1 minutes
+Q:What is the uncertainty of the GBT model?
+A:Gbt is the best performing model. the mean absolute error values in the table suggest that the performance is similar across all three algorithms. the derived uncertainty of the model was 4.1 minutes.
+--------------------------------------------------
+Q:What type of model is Barket-FM-DOSM?
+A:Duration of surgery model
+Q:What did the comparison lead to?
+A:This comparison led to the conclusion that neither machine learning algorithms nor the dataset are the source of differences in the models performance. the major effector is that the set of features is the source.
+Q:What is the main effector of differences in the model performance?
+A:Dr. barket developed the model. the model is based on the surgery dataset. the main effector of such differences is the set of features.
+--------------------------------------------------
+Q:What is the most important feature?
+A:Duration of surgery is the most important feature.
+Q:3 out of 8 features selected are the same for which two methods?
+A:Shap and pearson correlation.
+Q:Where is Table 1 located?
+A:Section 2
+Q:What feature has the highest absolute Pearson correlation values?
+A:Timeline of surgery
+--------------------------------------------------
+Q:What did we do?
+A:Using machine learning techniques to develop supervised models that predict duration of surgery from features related to patients, physicians, and surgeries.
+Q:What can be done with the predictions?
+A:Use the dos value predicted by our model for surgery scheduling can decrease patient waiting time and maximize surgical staff idle time.
+--------------------------------------------------

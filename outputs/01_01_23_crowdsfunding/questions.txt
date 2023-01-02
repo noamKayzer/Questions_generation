@@ -1,0 +1,38 @@
+Q:What is the purpose of the model presented?
+A:predicting the success of crowdfunding projects in meeting their funding goals.
+Q:What do we present?
+A:a novel model for predicting the success of crowdfunding projects in meeting their funding goals.
+Q:What is used to evaluate the model?
+A:A large dataset of crowdfunding project data is used to evaluate the model.
+Q:What is the main improvement of this model?
+A:This work improves on previous models by: examining both project metadata and project semantics. We analyze a large dataset of crowdfunding project data.
+Q:What is the main difference between the models presented in this paper?
+A:The model we present focuses on semantic features only, whose performance is comparable to that of previous models.
+--------------------------------------------------
+Q:Why does this approach leverage known results and improve them?
+A:to provide high-quality funding success prediction
+Q:What does this study use to build a predictive model of funding success?
+A:This study uses semantic features extracted from the text of crowdfunding projects to build a predictive model of funding success
+Q:What does the paper show about the use of semantics?
+A:The paper uses semantic features extracted from the text to build a predictive model of funding success. We show that the introduction of semantics into funding. prediction indeed improves accuracy, thus justifying our method.
+Q:What does this study do?
+A:Uses unique and semantic features to build a predictive model of funding success. We show that this approach indeed improves accuracy.
+Q:What does the paper do that is new to crowdfunding success prediction?
+A:The paper introduces a new approach to crowdfunding success prediction. We use unique features (for example, the use. of buzzwords) and perform extensive research on the semantics of the projects’ text. We introduce a model of funding success based on the text.
+Q:What do we do that is different from prior studies?
+A:Research on the semantics of the projects’ text. We use unique features (for example, buzzword use) and perform extensive research on the text to build a predictive model of funding success
+Q:What unique features do we use in this study?
+A:Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on. semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success.
+--------------------------------------------------
+Q:What did we use LDA for in our study?
+A:Extract features from project descriptions where each topic is a feature
+Q:What are the three main inputs to the LDA topic model?
+A:The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics.
+--------------------------------------------------
+Q:What are the four parts of the knowledge discovery plan?
+A:A knowledge discovery plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and evaluation of the knowledge extracted by the models.
+Q:What is the average accuracy level of the two models?
+A:For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+Q:What datasets did we use?
+A:Kickstarter and Indiegogo projects.
+--------------------------------------------------

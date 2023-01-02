@@ -51,6 +51,7 @@ class flanT5MCQ:
             self.rquge = RQUGE(sp_scorer_path='quip-512-mocha',
                                 qa_model_or_model_path=self.QA.model,qa_model_tokenizer=self.QA.tokenizer,
                                 device=self.QA.model.device)
+            self.min_rquge = 2.5
             self.QG = QG()
         self.sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
         #summarizer = SummarizeText('cpu', "sshleifer/distilbart-cnn-12-6", False, with_model=False)
@@ -66,22 +67,33 @@ class flanT5MCQ:
       if all([len(cur_sen)==1 for cur_sen in output]):  
           output = [cur_sen[0] for cur_sen in output]
       if len(output)==1 and isinstance(output[0],list):
-        output=output[0]
-      output =[qs.strip() for qs in output]
-      output = [*Counter(output)] #remove exactly similar questions if exist
+        output = output[0]
+      output = [qs.strip() for qs in output]
+      output = [*Counter(self.clean_questions(output))] #remove exactly similar questions if exist
+
       # Data originally sorted by probabilities, multiply be the penalities activated (`length_penalty` and/or `diversity_penalty`).
       # We want it to be sorted by the perplexity (PPL) score, the coherence of the sentence - probability normalized by the length of the sentence. 
       ppl = [np.exp(np.array(log_likelihoods.cpu()).mean() / np.array(len(cur_output.split())).mean()) for log_likelihoods,cur_output in zip(res['sequences_scores'],output)]
       sorted_idx  = np.argsort(ppl)
       return [output[id] for id in sorted_idx], [ppl[id] for id in sorted_idx]
 
-    def find_similarity(self,questions):
+    def find_similarity(self,questions,answers=None):
       #Sentences are encoded by calling model.encode()
       if len(questions)>=1 and all([len(cur_sen)==1 for cur_sen in questions]):  
           questions = [cur_sen[0] for cur_sen in questions]
-      embeddings = self.sentence_model.encode(questions)
-      similarity_matrix = np.dot(embeddings,embeddings.T).round(3)
-      return similarity_matrix
+      if answers is None:
+        embeddings = self.sentence_model.encode(questions)
+        similarity_matrix = np.dot(embeddings,embeddings.T).round(3)
+        return similarity_matrix
+      else:
+        n = len(questions)
+        embeddings = self.sentence_model.encode([*questions, *answers])
+        q_embeddings,a_embeddings = embeddings[:n], embeddings[n:]
+        q_sim_mat = np.dot(q_embeddings,q_embeddings.T).round(3)
+        ans_sim_mat = np.dot(a_embeddings,a_embeddings.T).round(3)
+        return q_sim_mat, ans_sim_mat
+
+
 
     def plot_similarity_matrix(self,questions_list):
       #x_label,y_label = ['']*questions_list.shape[0],['']*questions_list.shape[0]
@@ -141,19 +153,27 @@ class flanT5MCQ:
             chunks.append(' '.join(chunk).strip())
         return chunks
 
-    def filter_questions(self,questions, similarity_matrix,similarity_thrs=0.65,n_thrs=3, return_index=False):
-      #consider use also the answer for similarity check
+    def filter_questions(self,questions, q_sim_mat,similarity_thrs=0.65,
+                         ans_sim_mat=None,n_thrs=7,rquge_scores=None, return_index=False):
+
+      if ans_sim_mat is None:
+        ans_sim_mat = np.zeros_like(q_sim_mat)
+      if rquge_scores is None:
+        rquge_scores = np.ones((len(questions)))*5
       selected_questions_idx = []
       for i in range(0,len(questions)):
         cur_qs = questions[i].strip()
         cur_qs = re.sub(r'\.+', '.', cur_qs)
         cur_qs = re.sub(r'\?+', '?', cur_qs)
-        if cur_qs.endswith('?') or cur_qs.lower().startswith('who'):
+        if (not cur_qs.endswith('?')) or cur_qs.lower().startswith('who'):
           continue
         elif len(selected_questions_idx) >= n_thrs:
           break
-        elif len(selected_questions_idx)==0 or all(similarity_matrix[i,selected_questions_idx]<similarity_thrs):
-          selected_questions_idx.append(i)
+        elif len(selected_questions_idx)==0 or \
+              (all(q_sim_mat[i,selected_questions_idx]<similarity_thrs) and \
+              all(ans_sim_mat[i,selected_questions_idx]<similarity_thrs)):
+          if rquge_scores[i] >= self.min_rquge:
+            selected_questions_idx.append(i)
       if not return_index:
         return [questions[a] for a in selected_questions_idx]
       else:
@@ -179,18 +199,18 @@ class flanT5MCQ:
         return [self.replace_abbreviations(cur_text,abrv_dict,only_first,target_form=target_form) for cur_text in text]
 
       if target_form in ['all','both','definition']:
-        target = f' {long_form_abbr} ({abrv})'+ r'\1'
+        target =lambda abrv,long_form_abrv: f' {long_form_abrv} ({abrv})'+ r'\1'
       elif target_form=='short':
-        target = f' {abrv}'+ r'\1'
+        target =lambda abrv,long_form_abrv: f' {abrv}'+ r'\1'
       elif target_form=='long':
-        target = f' {long_form_abbr}'+ r'\1'
+        target =lambda abrv,long_form_abrv: f' {long_form_abrv}'+ r'\1'
 
       #`only_first` resolve only the first abbreviation in the text (e.g. if the text includes the results section, and the abbreviation was define at the introduction, the method will resolve once the abbreviation in the text the model is exposed to)
       for abrv,long_form_abbr in abrv_dict.items():
         text = text.replace(f'{long_form_abbr} ({abrv})',abrv) #first the function abbreviate all occurrences
         text = text.replace(f'{long_form_abbr}({abrv})',abrv) 
         pattern = re.compile(r'(^|\s|\.)'+abrv+ r'( |[\W\s])')
-        text = re.sub(pattern,target , text, count=only_first)
+        text = re.sub(pattern,target(abrv,long_form_abbr) , text, count=only_first)
       return text
 
     def clean_questions(self,questions_list):
@@ -202,7 +222,7 @@ class flanT5MCQ:
             cur_qs = re.sub(r'_+$', '', cur_qs)
             cur_qs = re.sub(r'(?<=\?)\s*[^\w\s\S]*\S*(?=$)', '', cur_qs) #replace any combination of punctuations marks and spaces generate after the question mark
             cur_qs = cur_qs.replace('? -','?')
-            output_qs.append(cur_qs)
+            output_qs.append(cur_qs.capitalize())
       return output_qs
     def show_qs(self,df,i):
           q= df.loc[i,:]
@@ -270,7 +290,7 @@ class flanT5MCQ:
             #similarity_matrix = self.find_similarity(qs)
             #qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
             for i,cur_qs in enumerate(qs):
-                cur_qs = solve_abrv_func(cur_qs,target_form='long')
+                cur_qs = solve_abrv_func(cur_qs,target_form='all')
                 print(f'Qs:{cur_qs}')
                 if COMPUTE_ANSWERS:
                     ans_input_string = "answer to the question, step by step: "+cur_qs+" </s> context: " + cur #'step by step prefix apply the Chain of Thought reasoning which enables more detailed answer
@@ -280,13 +300,13 @@ class flanT5MCQ:
                     except:
                         print('moving model to cpu!')
                         ans_output,_ = self.get_output_from_prompt(answers_model,ans_input_string,self.answers_generator_args)
-                    ans_output = ans_output
+                    ans_output =  solve_abrv_func(ans_output,target_form='all')
                     if verbose:
                         for ans in ans_output:
                             print('----Ans:--',ans)
                     short_ans_input_string = "answer to the question: "+cur_qs+" </s> context: " + cur
                     short_ans_output,_ = self.get_output_from_prompt(answers_model,short_ans_input_string,self.short_answers_generator_args)
-                    short_ans_output = short_ans_output
+                    short_ans_output = solve_abrv_func(short_ans_output,target_form='all')
                     if verbose:
                         for ans in short_ans_output:
                             print('----Short Ans:--',ans)
@@ -391,14 +411,16 @@ class QA:
 class QG:
 
   def __init__(self,checkpoint='Salesforce/mixqg-large') -> None:
-    from negspacy.negation import Negex
     self.checkpoint = checkpoint
     self.nlp = pipeline("text2text-generation", model=checkpoint, tokenizer=checkpoint)
+    self.neg_nlp = spacy.load("en_core_web_sm")
+    #from negspacy.negation import Negex #libary for finding entities with negative links line 'not suffer from headache'. here we want verbs and not entities
+    #self.nlp.add_pipe('sentencizer')
+    #self.nlp.add_pipe(Negex(self.nlp))
 
-    self.nlp.add_pipe('sentencizer')
-    self.nlp.add_pipe(Negex(self.nlp))
   def check_if_questions_is_negative(self,q):
-    
+    return any([token.dep_=='neg' for token in self.neg_nlp(q)])
+
   def format_inputs(self,context: str, answer: str):
     if isinstance(context,list):
       return [f"{cur_answer} \\n {cur_context}" for cur_answer,cur_context in zip(answer,context)]
@@ -408,8 +430,8 @@ class QG:
   def create_question_MixQG(self,questions_df):
     questions_df['new_question']=''
 
-    for i in trange(len(questions_df)):
-      if not self.check_if_questions_is_negative():
+    for i in tqdm(questions_df.index.values):
+      if not self.check_if_questions_is_negative(questions_df.loc[i,'question']):
         questions_df.loc[i,'new_question']= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
       else:
         questions_df.loc[i,'new_question'] = questions_df.loc[i,'question']

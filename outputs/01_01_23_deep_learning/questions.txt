@@ -1,0 +1,49 @@
+Q:What is the key aspect of deep learning?
+A:The key aspect of deep learning is that these layers of features are not designed by human engineers: they are learned from data using a general-purpose learning procedure.
+Q:What do machine-learning systems increasingly use?
+A:Class of techniques called deep learning.
+--------------------------------------------------
+Q:What is the procedure called that most practitioners use to adjust the weights?
+A:Stochastic gradient descent (SGD) is a method that most practitioners use to adjust the weights.
+Q:What areas have deep learning dramatically improved?
+A:speech recognition visual object recognition object detection and many other domains such as drug discovery and genomics
+Q:What does the learning algorithm compute to properly adjust the weight vector?
+A:a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount.
+--------------------------------------------------
+Q:Why does each module in the stack transform its input?
+A:to increase both the selectivity and the invariance of the representation.
+Q:What is computed at each hidden layer?
+A:f(z) = max(0,z) is applied to z. At each hidden layer we compute the error derivative with respect to the output of each unit.
+--------------------------------------------------
+Q:When was interest in deep feedforward networks revived?
+A:2006
+Q:Which of these is not a serious issue in general?
+A:Local minima are not a serious issue in general in general.
+Q:What do many applications of deep learning use?
+A:Deep learning uses feedforward neural networks to map a fixed-size input (for example, an image) to a fix size output.
+--------------------------------------------------
+Q:What was out of favor at the time of ConvNet's success?
+A:neural networks
+Q:What community has recently adopted the Convolutional neural network?
+A:Convolutional neural network (ConvNet) achieved many successes during the period when neural networks were out of favour. It has recently been widely adopted by the computervision community. The final answer: computervision
+Q:When was the ConvNet first adopted?
+A:until recently
+--------------------------------------------------
+--------------------------------------------------
+Q:How many layers of ReLUs are in a ConvNet architecture?
+A:10 to 20 layers of ReLUs are in a ConvNet architectures.
+Q:What applications will images labelled at the pixel level have?
+A:autonomous mobile robots and self-driving cars
+--------------------------------------------------
+Q:What type of network generates the captions in the figure?
+A:Recurrent neural network
+Q:What are the word vectors in a language model composed of?
+A:These word vectors are composed of learned features that were not determined ahead of time by experts, but automatically discovered by the neural network
+Q:Why does deep learning have two different exponential advantages over classic learning algorithms that do not use distributed representations21?
+A:Neural networks have two different exponential advantages over classic learning algorithms that do not use distributed representation21. Both of these advantages arise from power of composition and depend on the underlying data-generating distribution having an appropriate componential structure40.
+--------------------------------------------------
+Q:What are Recurrent Neural Networks better than conventional Recurrent Neural Networks?
+A:Recurrent neural networks are better than conventional Recurrent Neural Networks for tasks that involve sequential inputs, such as speech and language.
+Q:What was the first way to train RNNs?
+A:Recurrent neural networks (RNNs) were first introduced to train by Backpropagation.
+--------------------------------------------------

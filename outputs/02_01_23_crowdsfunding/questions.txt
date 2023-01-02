@@ -1,0 +1,28 @@
+Q:What is the purpose of the model presented?
+A:Predicting the success of crowdfunding projects in meeting their funding goals.
+Q:What is used to evaluate the model?
+A:A large dataset of crowdfunding project data is used to evaluate the model.
+Q:What is the main improvement of this model?
+A:This work improves on previous models by: examining both project metadata and project semantics. we analyze a large dataset of crowdfunding project data.
+Q:What is the main difference between the models presented in this paper?
+A:The model we present focuses on semantic features only, whose performance is comparable to that of previous models.
+--------------------------------------------------
+Q:Why does this approach leverage known results and improve upon them?
+A:To provide high-quality funding success prediction
+Q:What does this study do?
+A:Uses unique and semantic features to build a predictive model of funding success. we show that the introduction of semantics into funding. prediction indeed improves accuracy. we provide recommendations that may increase project financing.
+Q:What does the paper do that is new to crowdfunding success prediction?
+A:The paper introduces a new approach to crowdfunding success prediction. we use unique features (for example, the use. of buzzwords) and perform extensive research on the semantics of the projects’ text. we introduce a model of funding success based on the text.
+--------------------------------------------------
+Q:What did we use LDA for in our study?
+A:Extract features from project descriptions where each topic is a feature
+Q:What are the three main inputs to the lda topic model?
+A:Lda algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. the three main inputs to lda topic model are dictionary, the corpus, and the number of topics.
+--------------------------------------------------
+Q:What are the four parts of the knowledge discovery plan?
+A:A knowledge discovery plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and evaluation of the knowledge extracted by the models.
+Q:What is the average accuracy level of the two models?
+A:For each of the two models, we calculated the f-score as a measure of model’s accuracy. we employed a 10-fold test to evaluate the prediction performance. the average accuracy is reported to achieve an accuracy level greater than 90%.
+Q:What datasets did we use?
+A:Kickstarter and indiegogo projects.
+--------------------------------------------------

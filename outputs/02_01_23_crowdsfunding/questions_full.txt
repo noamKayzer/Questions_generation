@@ -1,0 +1,225 @@
+(0)TAKEN?True RQUGE:5.1162
+Q1:We present a novel method for what?
+Q2:What is the purpose of the model presented?
+Best ans: Predicting the success of crowdfunding projects in meeting their funding goals.
+['A0: Predicting the success of crowdfunding projects in meeting their funding goals.', 'A1: Model for predicting the success of crowdfunding projects in meeting their funding goals.', 'A2: Predicting the success of crowdfunding projects in meeting their funding goals', 'A3: ', 'A4: Forecasting', 'A5: Predicting', 'A6: Forecasting successful crowdfunding campaigns', 'A7: Crowdfunding project prediction']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+
+(1)TAKEN?False RQUGE:5.0966
+Q1:What is the purpose of this paper?
+Q2:What do we present?
+Best ans: A novel model for predicting the success of crowdfunding projects in meeting their funding goals
+['A0: Modeling crowdfunding project success', 'A1: To predict the success of crowdfunding projects in meeting their funding goals.', 'A2: A novel model for predicting the success of crowdfunding projects in meeting their funding goals', 'A3: A novel model for predicting the success of crowdfunding projects in meeting their funding goals.', 'A4: Science/tech', "A5: Modeling crowdfunding projects' success", 'A6: Predicting success of crowdfunding projects', 'A7: Modeling crowdfunding projects']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+
+(2)TAKEN?True RQUGE:5.0948
+Q1:How do we evaluate the model?
+Q2:What is used to evaluate the model?
+Best ans: A large dataset of crowdfunding project data is used to evaluate the model.
+['A0: A large dataset of crowdfunding project data is used to evaluate the model. we analyze a large dataset to evaluate our models.', 'A1: We evaluate the model on a dataset of crowdfunding projects. we analyze a large dataset of kickstarter projects.', 'A2: We evaluate the model on a dataset of crowdfunding projects.', 'A3: A large dataset of crowdfunding project data is used to evaluate the model.', 'A4: Performance is similar', 'A5: Model performance is comparable to that', 'A6: Evaluate the model', 'A7: Results are comparable to that of previous models']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+
+(3)TAKEN?True RQUGE:5.0835
+Q1:What is the purpose of this paper?
+Q2:Why does this approach leverage known results and improve upon them?
+Best ans: To provide high-quality funding success prediction
+['A0: To predict crowdfunding success.', 'A1: A new approach to crowdfunding success prediction', 'A2: A new approach to crowdfunding success prediction.', 'A3: Using semantic models to predict funding success', 'A4: Use semantics in funding prediction', 'A5: To predict crowdfunding success.', 'A6: To provide high-quality funding success prediction', 'A7: To predict crowdfunding success']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(4)TAKEN?False RQUGE:5.0772
+Q1:Who developed this model?
+Q2:Who wrote the paper?
+Best ans: Orel babayoff
+['A0: Orel babayoff', 'A1: The model is developed by orel babayoff.', 'A2: Model for crowdfunding projects in meeting their funding goals is developed by orel babayoff.', 'A3: Our model for predicting the success of crowdfunding projects in meeting their funding goals is developed by orel babayoff.', 'A4: Orel bayaoff', 'A5: Researchers', 'A6: Authors', 'A7: The authors']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+
+(5)TAKEN?False RQUGE:5.0758
+Q1:Is this paper a case study?
+Q2:can a machine learning model predict the success of an indiegogo campaign
+Best ans: Yes
+['A0: No', 'A1: It is a case study.', 'A2: This paper is a case study.', 'A3: Yes', 'A4: [i]', 'A5: No', 'A6: Yes', 'A7: ']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(6)TAKEN?False RQUGE:5.0758
+Q1:Is this paper a case study?
+Q2:can a machine learning model predict the success of an indiegogo campaign
+Best ans: Yes
+['A0: No', 'A1: It is a case study.', 'A2: This paper is a case study.', 'A3: Yes', 'A4: [i]', 'A5: No', 'A6: Yes', 'A7: ']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(7)TAKEN?True RQUGE:4.8828
+Q1:Latent dirichlet allocation (lda) is used for what task
+Q2:What did we use LDA for in our study?
+Best ans: Extract features from project descriptions where each topic is a feature
+['A0: Feature extraction', 'A1: Extract features from project descriptions', 'A2: Extract features from project descriptions where each topic is a feature.', 'A3: Extract features from project descriptions where each topic is a feature', 'A4: Extract feature', 'A5: Topic modeling method', 'A6: Project descriptions', 'A7: Topic modeling']
+Text:Latent Dirichlet allocation (LDA) is a widely used topic modeling method. Latent Dirichlet Allocation algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(8)TAKEN?True RQUGE:4.7996
+Q1:In what way does this paper improve on previous models?
+Q2:What is the main improvement of this model?
+Best ans: This work improves on previous models by: examining both project metadata and project semantics. we analyze a large dataset of crowdfunding project data.
+['A0: This work improves on previous models by: examining both project metadata and project semantics.', 'A1: Model for crowdfunding projects in meeting their funding goals analyzes project metadata and project semantics.', 'A2: This work improves on previous models by: examining both project metadata and project semantics. we analyze a large dataset of crowdfunding project data.', 'A3: A novel model for predicting the success of crowdfunding projects in meeting their funding goals.', 'A4: Novel', 'A5: Novel models', 'A6: Both project metadata and project semantics', 'A7: We analyze both project metadata and project semantics.']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+
+(9)TAKEN?False RQUGE:4.3972
+Q1:Why was topic modeling used in this study?
+Q2:What did we use LDA for in our study?
+Best ans: We used topic modeling to extract features from project descriptions where each topic is a feature.
+['A0: To extract features from project descriptions, we used lda to extract features.', 'A1: Lda is a widely used topic modeling method.', 'A2: The study used lda to extract features from project descriptions where each topic is a feature.', 'A3: We used topic modeling to extract features from project descriptions where each topic is a feature.', 'A4: Lda is a widely used method', 'A5: A widely used topic modeling method.', 'A6: Extract features from project descriptions where each topic is', 'A7: A widely used topic modeling method']
+Text:Latent Dirichlet allocation (LDA) is a widely used topic modeling method. Latent Dirichlet Allocation algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(10)TAKEN?True RQUGE:4.3314
+Q1:What are the main parts of the knowledge discovery plan and how are they performed?
+Q2:What are the four parts of the knowledge discovery plan?
+Best ans: A knowledge discovery plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and evaluation of the knowledge extracted by the models.
+['A0: For each of the two models, we calculated the f-score as a measure of model’s accuracy. we employed 10fold test to evaluate the prediction performance', 'A1: In order to meet the objectives of this study, we have developed a knowledge discovery plan. the plan comprises four main parts:', 'A2: A knowledge discovery plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and evaluation of the knowledge extracted by the models.', 'A3: Obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models.', 'A4: Preprocessing datasets; feature selection', 'A5: Data analysis based on machine learning models, evaluation of the knowledge extracted by the model.', 'A6: Preprocessing datasets; feature selection; data analysis based on machine learning models', 'A7: Data analysis based on machine learning models, evaluation of the knowledge extracted by the model']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(11)TAKEN?False RQUGE:4.1685
+Q1:Which method is used to model a collection of topics in the document?
+Q2:What is the LDA method?
+Best ans: Latent dirichlet allocation (lda) is a widely used topic modeling method.
+['A0: Topic modeling uses the latent dirichlet allocation method.', 'A1: Lda is a widely used topic modeling method.', 'A2: Lda is a widely used topic modeling method. the three main inputs to the lda topic model are the dictionary, the corpus, and the number of topics.', 'A3: Latent dirichlet allocation (lda) is a widely used topic modeling method.', 'A4: Lda model', 'A5: Dirichlet allocation', 'A6: Topic modeling', 'A7: Lda']
+Text:Latent Dirichlet allocation (LDA) is a widely used topic modeling method. Latent Dirichlet Allocation algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(12)TAKEN?True RQUGE:3.944
+Q1:Using semantic features in crowdfunding
+Q2:What does this study do?
+Best ans: Uses unique and semantic features to build a predictive model of funding success. we show that the introduction of semantics into funding. prediction indeed improves accuracy. we provide recommendations that may increase project financing.
+['A0: Uses unique and semantic features to build a predictive model of funding success.', 'A1: Uses unique and semantic features to build a predictive model of funding success. we show that the introduction of semantics into funding. prediction indeed improves accuracy. we provide recommendations that may increase project financing.', 'A2: Uses unique and semantic features to build a predictive model of funding success. we show that the introduction of semantics into funding. prediction indeed improves accuracy.', 'A3: In this paper, we use unique features (for example, the. use of buzzwords) and perform extensive research on the semantics of the projects’ text to build a predictive model of funding success using. semantics into crowdfunding, we deliver. a very accurate prediction model with very low error levels.', 'A4: Predicting funding success', 'A5: Improves funding success prediction', 'A6: A new approach to funding success prediction', 'A7: The introduction of semantic features into crowdfunding']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(13)TAKEN?True RQUGE:3.774
+Q1:How did we evaluate the performance of the two models?
+Q2:What is the average accuracy level of the two models?
+Best ans: For each of the two models, we calculated the f-score as a measure of model’s accuracy. we employed a 10-fold test to evaluate the prediction performance. the average accuracy is reported to achieve an accuracy level greater than 90%.
+['A0: In order to meet the objectives of this study, we have developed a knowledge discovery plan. the plan comprises four main parts:', 'A1: The average accuracy is reported to achieve an accuracy level greater than 90%.', 'A2: To evaluate the performance of the two models, we employed a 10-fold test to evaluate the prediction performance. the average accuracy is reported to achieve an accuracy level greater than 90%.', 'A3: For each of the two models, we calculated the f-score as a measure of model’s accuracy. we employed a 10-fold test to evaluate the prediction performance. the average accuracy is reported to achieve an accuracy level greater than 90%.', 'A4: The f-score', 'A5: F-score', 'A6: A 10-fold test', 'A7: The average accuracy is reported to achieve an accuracy level greater than 90%']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(14)TAKEN?True RQUGE:3.6551
+Q1:Predicting funding success of kickstarter project
+Q2:What does the paper do that is new to crowdfunding success prediction?
+Best ans: The paper introduces a new approach to crowdfunding success prediction. we use unique features (for example, the use. of buzzwords) and perform extensive research on the semantics of the projects’ text. we introduce a model of funding success based on the text.
+['A0: Using semantic analysis, we build a model for crowdfunding success. we use the model to predict funding success of a project. we provide recommendations for improving the performance.', 'A1: Using semantic analysis, we build a model for crowdfunding success. we use the model to predict funding success of a project. we provide recommendations for improving the performance. we also provide a set of recommendations for increasing project funding success chances.', 'A2: The paper introduces a new approach to crowdfunding success prediction. we use unique features (for example, the use. of buzzwords) and perform extensive research on the semantics of the projects’ text. we introduce a model of funding success based on the text. the model is based upon the results of previous studies.', 'A3: The paper introduces a new approach to crowdfunding success prediction. we use unique features (for example, the use. of buzzwords) and perform extensive research on the semantics of the projects’ text. we introduce a model of funding success based on the text.', 'A4: Semantic features', 'A5: Semantic features in kickstarter projects', 'A6: Predicting funding. success of kickstarter project', 'A7: A model for crowdfunding success prediction']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(15)TAKEN?False RQUGE:3.6186
+Q1:How to predict crowdfunding success?
+Q2:What do we do that is different from prior studies?
+Best ans: Research on the semantics of the projects’ text. we use unique features (for example, buzzword use) and perform extensive research on the text to build a predictive model of funding success
+['A0: Using semantics to predict crowdfunding.', 'A1: Research on the semantics of the projects’ text.', 'A2: Research on the semantics of the projects’ text. we use unique features (for example, buzzword use) and perform extensive research on the text to build a predictive model of funding success using the following methods:', 'A3: Research on the semantics of the projects’ text. we use unique features (for example, buzzword use) and perform extensive research on the text to build a predictive model of funding success', 'A4: Introduces a semantics-based model', 'A5: Use semantics', 'A6: Semantic features', 'A7: Using semantics']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(16)TAKEN?False RQUGE:3.5331
+Q1:How to predict crowdfunding success? using semantics.
+Q2:What does this study do that is different from previous studies?
+Best ans: Use unique features (for example, use of buzzwords) and perform extensive research on the semantics of the projects’ text to build a predictive model of funding success. we show that. introduction of semantics into funding prediction indeed improves accuracy, thus justifying our method
+['A0: Use unique features (for example, use of buzzwords) and perform extensive research on the semantics of the projects’ text to build a predictive model of funding success. we show that.', 'A1: Use unique features (for example, use of buzzwords) and perform extensive research on the semantics of the projects’ text to build a predictive model of funding success. we show that. introduction of semantics into funding prediction indeed improves accuracy, thus justifying our method', 'A2: The paper introduces a new approach to crowdfunding success prediction. we use unique features (for example, the use. of buzzwords) and perform extensive research on the semantics of the projects’ text. we build a predictive model of funding success using. semantic features extracted from the text.', 'A3: Use unique features (for example, use of buzzwords) and perform extensive research on the semantics of the projects’ text to build a predictive model of funding success.', 'A4: Semantic features in crowdfunding', 'A5: Use semantics', 'A6: Semantic features', 'A7: A new approach to crowdfunding success prediction using semantics.']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(17)TAKEN?False RQUGE:3.3148
+Q1:The paper presents a method for extracting features from project descriptions using lda.
+Q2:What are the three main inputs to the LDA topic model?
+Best ans: We used lda to extract features from project descriptions. the three main inputs to lda are the dictionary, the corpus, and the number of topics.
+['A0: This method uses the latent dirichlet allocation method.', 'A1: We used lda to extract features from project descriptions.', 'A2: In this paper, we use lda to extract features from project descriptions.', 'A3: We used lda to extract features from project descriptions. the three main inputs to lda are the dictionary, the corpus, and the number of topics.', 'A4: Lda', 'A5: Lda method', 'A6: Lda is a widely used topic modeling method.', 'A7: Lda is a widely used topic modeling method']
+Text:Latent Dirichlet allocation (LDA) is a widely used topic modeling method. Latent Dirichlet Allocation algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(18)TAKEN?True RQUGE:3.111
+Q1:How does lda model topics? how does it work?
+Q2:What are the three main inputs to the lda topic model?
+Best ans: Lda algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. the three main inputs to lda topic model are dictionary, the corpus, and the number of topics.
+['A0: Lda algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. the three main inputs to lda topic model are dictionary, the corpus, and the number of topics.', 'A1: Lda algorithm consider each document as a collection of topics, where each word in the document belongs to one or some of these topics. the three main inputs are the dictionary, the corpus, and the number of topics in our study.', 'A2: In our study, we used lda to extract features from project descriptions where each topic is a feature. the percentage contribution of a topic was the value of the feature that represented that topic.', 'A3: The three main inputs to the lda topic model are the dictionary, the corpus, and the number of topics. in our study, we used lda to extract features from project descriptions where each topic is a feature.', 'A4: Dictionaries, the corpus, and the number of topics.', 'A5: The dictionary, the corpus, and the number of topics.', 'A6: Dictionaries, the corpus, and the number of topics', 'A7: The dictionary, the corpus, and the number of topics']
+Text:Latent Dirichlet allocation (LDA) is a widely used topic modeling method. Latent Dirichlet Allocation algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(19)TAKEN?True RQUGE:3.1056
+Q1:Which two datasets were used for this study?
+Q2:What datasets did we use?
+Best ans: Kickstarter and indiegogo projects.
+['A0: Kickstarter and indiegogo projects.', 'A1: 50,000 kickstarter and 50,00 indiegogo projects.', 'A2: 50,000 kickstarter and 50,00 indiegogo projects', 'A3: Kickstarter and indiegogo projects', 'A4: Crowdfunding', 'A5: Indiegogo', 'A6: Kickstarter', 'A7: ']
+Text:In order to meet the objectives of this study, we have developed a knowledge discovery plan. The plan comprises four main parts: obtaining and preprocessing datasets; feature selection; data analysis based on machine learning models; and, finally, evaluation of the knowledge extracted by the models. We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. After filtering the dataset, we used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each of the two models, we calculated the F-score as a measure of model’s accuracy. We employed a 10-fold test to evaluate the prediction performance. The average accuracy is reported to achieve an accuracy level greater than 90%.
+
+
+
+(20)TAKEN?False RQUGE:2.9228
+Q1:How does lda model topics?
+Q2:What are the three main inputs to the lda topic model?
+Best ans: Latent dirichlet allocation algorithm considers each document as a collection of topics where each word in the document belongs to one or some of these topics. the three main inputs to the lda topic model are the dictionary, the corpus, and the number of topics.
+['A0: Lda algorithm consider each document as a collection of topics, where each word in the document belongs to one or some of these topics. the three main inputs are the dictionary, the corpus, and the number of topics in our study.', 'A1: Each document as a collection of topics, where every word in the document belongs to one or some of these topics. the three main inputs to the ld algorithm are the dictionary, the corpus, and the number of topics.', 'A2: Latent dirichlet allocation algorithm considers each document as a collection of topics where each word in the document belongs to one or some of these topics. the three main inputs to the lda topic model are the dictionary, the corpus, and the number of topics.', 'A3: The three main inputs to the lda topic model are the dictionary, the corpus, and the number of topics.', 'A4: Uses the dictionary and textual data', 'A5: Each word in the document belongs to one or some', 'A6: Uses the dictionary', 'A7: The dictionary, the corpus, and the number of topics.']
+Text:Latent Dirichlet allocation (LDA) is a widely used topic modeling method. Latent Dirichlet Allocation algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(21)TAKEN?False RQUGE:2.3821
+Q1:Which features of text are used for funding?
+Q2:What unique features do we use in this study?
+Best ans: Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on. semantics of the projects’ text. we use semantic features extracted from the text to build a predictive model of funding success.
+['A0: Use of buzzwords and semantics of text to build model of funding success.', 'A1: Funding success can be predicted using a model that uses semantic features extracted from the text.', 'A2: Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on. semantics of the projects’ text. we use semantic features extracted from the text to build a predictive model of funding success.', 'A3: Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on. semantics of the projects’ text. we use semantic features extracted from the text to build a predictive model of funding success', 'A4: Unique', 'A5: Buzzwords', 'A6: Performance', 'A7: Semantic features']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
+(22)TAKEN?True RQUGE:2.2414
+Q1:Why did you choose to focus on semantic features?
+Q2:What is the main difference between the models presented in this paper?
+Best ans: The model we present focuses on semantic features only, whose performance is comparable to that of previous models.
+['A0: Our models are comparable to that of previous models.', 'A1: A novel model for crowdfunding projects in meeting their funding goals.', 'A2: To predict the success of crowdfunding projects, we analyze a large dataset of crowdfunding project data.', 'A3: The model we present focuses on semantic features only, whose performance is comparable to that of previous models.', 'A4: Predict the success of crowdfunding projects.', 'A5: The performance of previous models', 'A6: Performance is comparable to that of previous models.', 'A7: Predict the success of crowdfunding projects']
+Text:Orel Babayoff: We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics. We analyze a large dataset of crowdfunding project data, larger than reportec in the art.
+
+
+
+(23)TAKEN?False RQUGE:1.7888
+Q1:What is the main input to the lda topic model?
+Q2:What is one of the three main inputs to the LDA topic model?
+Best ans: Dictionary
+['A0: Dictionary', 'A1: In our study, we used latent dirichlet allocation to extract features from project descriptions where each topic is a feature', 'A2: Dictionary the three main inputs to the lda topic model are the dictionary, the corpus, and the number of topics.', 'A3: Dictionary is the collection of words that are used to describe a topic. the three main inputs to the lda topic model are the dictionary, the corpus, and the number of topics.', 'A4: Corpus', 'A5: Vocabulary', 'A6: The dictionary', 'A7: Dictionary']
+Text:Latent Dirichlet allocation (LDA) is a widely used topic modeling method. Latent Dirichlet Allocation algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. In our study, we used LDA to extract features from project descriptions where each topic is a feature. The percentage contribution of a topic was the value of the feature that represented that topic.
+
+
+
+(24)TAKEN?False RQUGE:1.5141
+Q1:How to predict crowdfunding success? using semantics
+Q2:Who is the author of this paper?
+Best ans: Uses a unique feature of crowdfunding projects to predict funding goals. uses semantic features extracted from text to build a model of funding success. use recommendations to increase project success.  2019 elsevier b.v, all rights reserved
+['A0: Uses a unique feature of crowdfunding projects to predict funding goals. uses semantic features extracted from text to build a model of funding success. use recommendations to increase project success.  2019 elsevier b.v', 'A1: Uses a unique feature of crowdfunding projects to predict funding goals. uses semantic features extracted from text to build a model of funding success. use recommendations to increase project success.  2019 elsevier b.v, all rights reserved', 'A2: Uses a unique feature of crowdfunding projects to predict funding goals. uses semantic features extracted from text to build a model of funding success. use recommendations to increase project success.', 'A3: Uses a unique feature of crowdfunding projects to predict funding goals. uses semantic features extracted from text to build a model of funding success.', 'A4: Use semantics to build a predictive model', 'A5: Using semantics to build a predictive model', 'A6: A new approach for crowdfunding success prediction using semantics', 'A7: Introduces a new approach to crowdfunding success prediction']
+Text:By 2020, 34 billion dollars were raised by crowdfunding. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a funding success (FS) if it achieved its funding goal (Le, it raised atleast 100% of the funding goal) Unlike prior studies, we use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. We use semantic features extracted from the text to build a predictive model of funding success. This approach leverages known results and improves upon them to provide high-quality funding success prediction. We show that the introduction of. semantics into funding. prediction indeed improves accuracy, thus justifying our method. The introduction of semantics into.  This allows us to deliver a very accurate prediction model with very low error levels. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project funding success chances. These are based on the results of our study and of earlier studies as well.
+
+
+
