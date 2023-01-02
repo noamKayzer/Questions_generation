@@ -1,8 +1,7 @@
 Q:What terrorist group has been communicating online for years?
 A:Al qaeda
---------------------------------------------------
-Q:What is the purpose of the internet?
-A:It is important for the internet to be designed to ease communication.
+Q:What are some of the ways that terrorists use the internet?
+A:Terrorists radicalize and recruit members, communicate and conspire, and plan and launch attacks online
 --------------------------------------------------
 Q:What are the negatives of the use of the internet by terrorists?
 A:Increasingly difficult for authorities to monitor these communications.
@@ -11,19 +10,21 @@ A:Palestine
 Q:What is the nationality of the ETA movement?
 A:Basque
 --------------------------------------------------
+Q:What is one of the primary uses of the internet by terrorists?
+A:Distributing propaganda is one primary use of online communication by terrorists.
 Q:What covers a range of objectives and audiences?
 A:Terrorist propaganda distributed via the internet
 Q:What is the use of cyberterrorism known as?
 A:Cyberterrorism or cyberwarfare
 --------------------------------------------------
-Q:What was the Tsarnaev brothers motivated by?
-A:Exposure to online messages of radical islam.
 --------------------------------------------------
 Q:When was the first issue of Al Battar published?
 A:Early 2004
 Q:What is Google Earth seen as superior to?
 A:Map
 --------------------------------------------------
+Q:Where did al-Qaeda terrorists use the internet?
+A:Public places and sent messages via public e-mail.
 --------------------------------------------------
 --------------------------------------------------
 Q:Internet connectivity grew by how many percent between 2000 and 2012?
@@ -32,16 +33,14 @@ Q:When did top-down websites begin?
 A:Mid-1990s
 Q:What was Phase 2?
 A:Top-down websites
-Q:What happened to the internet connectivity between 2000 and 2012?
-A:During the period 2000-2012, internet connectivity grew by 566 percent worldwide.
 --------------------------------------------------
 Q:What has the internet become the leading instrument of?
 A:Al -qaeda's communication, propaganda, recruitment, and networking.
 --------------------------------------------------
 Q:What year did Al Qaeda's official online debut date back to?
 A:2000
-Q:When did al Qaeda lose its internet domain?
-A:July 2002
+Q:In what year did al Qaeda lose its internet domain?
+A:2002
 Q:What does Al Qaeda use modern technology for?
 A:To produce its video statements. to distribute them to the world.
 --------------------------------------------------

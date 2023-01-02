@@ -45,6 +45,9 @@ class flanT5MCQ:
         self.tokenizer = T5Tokenizer.from_pretrained(self.checkpoint)
         self.model = T5ForConditionalGeneration.from_pretrained(self.checkpoint)
         self.model.to(self.device)
+        self.min_words_in_section=30
+        self.question_similarity_thrs = 0.95 
+        self.answer_similarity_thrs =  0.8 # combined questions + answers
         if COMPUTE_ANSWERS:
             self.QA_model_checkpoint = "allenai/unifiedqa-v2-t5-3b-1363200" # you can specify the model size here
             self.QA = QA(self.QA_model_checkpoint)
@@ -153,8 +156,8 @@ class flanT5MCQ:
             chunks.append(' '.join(chunk).strip())
         return chunks
 
-    def filter_questions(self,questions, q_sim_mat,similarity_thrs=0.65,
-                         ans_sim_mat=None,n_thrs=7,rquge_scores=None, return_index=False):
+    def filter_questions(self,questions, q_sim_mat,ans_sim_mat=None,
+                              n_thrs=7,rquge_scores=None, return_index=False):
 
       if ans_sim_mat is None:
         ans_sim_mat = np.zeros_like(q_sim_mat)
@@ -170,8 +173,8 @@ class flanT5MCQ:
         elif len(selected_questions_idx) >= n_thrs:
           break
         elif len(selected_questions_idx)==0 or \
-              (all(q_sim_mat[i,selected_questions_idx]<similarity_thrs) and \
-              all(ans_sim_mat[i,selected_questions_idx]<similarity_thrs)):
+              (all(q_sim_mat[i,selected_questions_idx]<self.question_similarity_thrs) and \
+              all(ans_sim_mat[i,selected_questions_idx]<self.answer_similarity_thrs)):
           if rquge_scores[i] >= self.min_rquge:
             selected_questions_idx.append(i)
       if not return_index:
@@ -265,6 +268,7 @@ class flanT5MCQ:
         sections_n = []
         for i,cur_section in enumerate(sections):
           cur_section_chunks = self.text_slicer(cur_section)
+          cur_section_chunks = list(filter(lambda x: x is not None and len(x.split())>self.min_words_in_section, cur_section_chunks))
           n_chunks = len(cur_section_chunks)
           sections_chunks.extend(cur_section_chunks)
           if n_chunks==1:

@@ -34,7 +34,7 @@ Text:Since the late 1980s, the Internet has proven to be a fast and efficient pl
 
 
 
-(4)TAKEN?False RQUGE:5.0784
+(4)TAKEN?True RQUGE:5.0784
 Q1:What is the primary use of online communication by terrorists?
 Q2:What is one of the primary uses of the internet by terrorists?
 Best ans: Distributing propaganda is one primary use of online communication by terrorists.
@@ -70,7 +70,7 @@ Text:Finally, they send the final product(s) off to their media outlets that fun
 
 
 
-(8)TAKEN?True RQUGE:5.0625
+(8)TAKEN?False RQUGE:5.0625
 Q1:When did al qaeda lose its internet domain?
 Q2:When did al Qaeda lose its internet domain?
 Best ans: July 2002
@@ -79,7 +79,7 @@ Text:Al Qaeda’s official online debut dates back to February 2000, with the cr
 
 
 
-(9)TAKEN?False RQUGE:5.0502
+(9)TAKEN?True RQUGE:5.0502
 Q1:In what year did al qaeda lose its internet domain?
 Q2:In what year did al Qaeda lose its internet domain?
 Best ans: 2002
@@ -115,16 +115,7 @@ Text:Between 2000 and 2012, Internet connectivity grew by 566 percent worldwide.
 
 
 
-(13)TAKEN?True RQUGE:5.0031
-Q1:Why was it important to keep it that way?
-Q2:What is the purpose of the internet?
-Best ans: It is important for the internet to be designed to ease communication.
-['A0: It is important for the internet to be designed to ease communication.', 'A1: This statement explains why the internet was created. the internet was designed to ease communications between people. therefore, the final answer is yes.', 'A2: The internet was designed to ease communication. the internet is designed to be used for communication. therefore, the final answer is yes. the final answer: yes.', 'A3: Internet was designed to ease communication. the internet was created to make communication easier. therefore, the final answer is yes.', 'A4: Ease communication.', 'A5: Easy to use and use', 'A6: Easy to use', 'A7: To ease communication']
-Text:The Internet was designed to ease communication, and it must stay that way.
-
-
-
-(14)TAKEN?True RQUGE:5.0
+(13)TAKEN?True RQUGE:5.0
 Q1:What allows these loosely interconnected networks to function, communicate, and maintain ideological solidarity?
 Q2:What allows loosely interconnected networks to function, communicate, and maintain ideological solidarity?
 Best ans: Use of the internet
@@ -133,7 +124,7 @@ Text:Finally, they send the final product(s) off to their media outlets that fun
 
 
 
-(15)TAKEN?True RQUGE:4.9767
+(14)TAKEN?True RQUGE:4.9767
 Q1:The internet has become the leading instrument of what?
 Q2:What has the internet become the leading instrument of?
 Best ans: Al -qaeda's communication, propaganda, recruitment, and networking.
@@ -142,7 +133,7 @@ Text:They post important news items and have the power to delete threads and ban
 
 
 
-(16)TAKEN?True RQUGE:4.9481
+(15)TAKEN?True RQUGE:4.9481
 Q1:Where does hama's originate from
 Q2:The Popular Front for the Liberation of what country is a terrorist organization?
 Best ans: Palestine
@@ -151,7 +142,7 @@ Text: The Internet is in many ways an ideal arena for activity by terrorist and 
 
 
 
-(17)TAKEN?True RQUGE:4.9429
+(16)TAKEN?True RQUGE:4.9429
 Q1:In which country is the basque army based
 Q2:What is the nationality of the ETA movement?
 Best ans: Basque
@@ -160,7 +151,7 @@ Text: The Internet is in many ways an ideal arena for activity by terrorist and 
 
 
 
-(18)TAKEN?True RQUGE:4.9139
+(17)TAKEN?False RQUGE:4.9139
 Q1:Where has internet connectivity grew by 566 percent worldwide?
 Q2:What happened to the internet connectivity between 2000 and 2012?
 Best ans: During the period 2000-2012, internet connectivity grew by 566 percent worldwide.
@@ -169,7 +160,7 @@ Text:Between 2000 and 2012, Internet connectivity grew by 566 percent worldwide.
 
 
 
-(19)TAKEN?True RQUGE:4.8857
+(18)TAKEN?True RQUGE:4.8857
 Q1:When was al battar training camp published?
 Q2:When was the first issue of Al Battar published?
 Best ans: Early 2004
@@ -178,16 +169,7 @@ Text:Terrorists can learn a wide variety of details about targets such as transp
 
 
 
-(20)TAKEN?False RQUGE:4.847
-Q1:The internet was designed for what purpose?
-Q2:What was the purpose of the internet?
-Best ans: It was designed to ease communication. the purpose of the internet was communication. therefore, the final answer is to ease communications.
-['A0: To ease communication, the internet was designed. the final answer: ease communication.', 'A1: It was designed to ease communication. the purpose of the internet was communication. therefore, the final answer is to ease communications.', 'A2: ', 'A3: ', 'A4: Easy', 'A5: Simplicity', 'A6: Communication', 'A7: Ease communication']
-Text:The Internet was designed to ease communication, and it must stay that way.
-
-
-
-(21)TAKEN?True RQUGE:4.7795
+(19)TAKEN?True RQUGE:4.7795
 Q1:The use of cyberterrorism has become known as what?
 Q2:What is the use of cyberterrorism known as?
 Best ans: Cyberterrorism or cyberwarfare
@@ -196,7 +178,7 @@ Text:The Internet has become a forum for terrorist groups and individual terrori
 
 
 
-(22)TAKEN?False RQUGE:4.7638
+(20)TAKEN?False RQUGE:4.7638
 Q1:Who used digital maps from google earth to learn their way around?
 Q2:Who used Google Earth to learn their way around?
 Best ans: Terrorists that attacked various locations in south mumbai in november 2008
@@ -205,7 +187,7 @@ Text:Terrorists can learn a wide variety of details about targets such as transp
 
 
 
-(23)TAKEN?False RQUGE:4.6083
+(21)TAKEN?True RQUGE:4.6083
 Q1:To preserve their anonymity what did al-qaeda terrorists use the internet in?
 Q2:Where did al-Qaeda terrorists use the internet?
 Best ans: Public places and sent messages via public e-mail.
@@ -214,7 +196,7 @@ Text:In November 2008, SITE Intelligence Group reported that al-Nusra Media Batt
 
 
 
-(24)TAKEN?False RQUGE:4.5989
+(22)TAKEN?True RQUGE:4.5989
 Q1:Why do terrorists use websites to spread propaganda?
 Q2:What are some of the ways that terrorists use the internet?
 Best ans: Terrorists radicalize and recruit members, communicate and conspire, and plan and launch attacks online
@@ -223,7 +205,7 @@ Text:Since the late 1980s, the Internet has proven to be a fast and efficient pl
 
 
 
-(25)TAKEN?False RQUGE:4.5596
+(23)TAKEN?False RQUGE:4.5596
 Q1:In what way does the internet allow terrorists to spread their message?
 Q2:What is one of the primary uses of the internet by terrorists?
 Best ans: One of the primary uses of online communication by terrorists is for dissemination of propaganda. this generally takes the form of multimedia communications providing ideological, political or religious explanations, justifications, or promotion of terrorist activities.
@@ -232,7 +214,7 @@ Text:The Internet has become a forum for terrorist groups and individual terrori
 
 
 
-(26)TAKEN?True RQUGE:4.5552
+(24)TAKEN?True RQUGE:4.5552
 Q1:Which of these services is superior to google earth?
 Q2:What is Google Earth seen as superior to?
 Best ans: Map
@@ -241,7 +223,7 @@ Text:Terrorists can learn a wide variety of details about targets such as transp
 
 
 
-(27)TAKEN?True RQUGE:4.5478
+(25)TAKEN?False RQUGE:4.5478
 Q1:In what way did the brothers become interested in islamic extremism?
 Q2:What was the Tsarnaev brothers motivated by?
 Best ans: Exposure to online messages of radical islam.
@@ -250,7 +232,7 @@ Text:Recruitment, radicalization and incitement to terrorism should be viewed as
 
 
 
-(28)TAKEN?False RQUGE:4.3891
+(26)TAKEN?False RQUGE:4.3891
 Q1:Where do terrorist groups use to recruit children?
 Q2:What is AQIM doing?
 Best ans: Cyberspace may be an ideal platform for the recruitment of children and youth who comprise a high proportion of users. al-qaeda in the islamic maghreb (aqim) is changing its strategy to target children at an early age to lure them to its radical ideology.
@@ -259,7 +241,7 @@ Text:Recruitment, radicalization and incitement to terrorism should be viewed as
 
 
 
-(29)TAKEN?False RQUGE:4.367
+(27)TAKEN?False RQUGE:4.367
 Q1:How many terrorist organizations maintain websites?
 Q2:What do all active terrorist organizations maintain websites?
 Best ans: All active terrorist organizations maintain websites
@@ -268,7 +250,7 @@ Text: The Internet is in many ways an ideal arena for activity by terrorist and 
 
 
 
-(30)TAKEN?False RQUGE:4.3458
+(28)TAKEN?False RQUGE:4.3458
 Q1:How does online terrorism affect the flow of information and ideas worldwide?
 Q2:What does the use of the internet for terrorist purposes do?
 Best ans: Online terrorism creates both challenges and opportunities in the endless war against terrorism
@@ -277,16 +259,7 @@ Text:Since the late 1980s, the Internet has proven to be a fast and efficient pl
 
 
 
-(31)TAKEN?False RQUGE:4.2277
-Q1:How does this affect the economy?
-Q2:What is a good thing about the internet?
-Best ans: It is a good thing that the internet was designed to ease communication. the internet has greatly increased the amount of information that can be exchanged.
-['A0: This means that the internet is a great tool for communication and a major contributor in the economy.', 'A1: It is a good thing that the internet was designed to ease communication. the internet has greatly increased the amount of information that can be exchanged.', 'A2: Internet users are able to communicate with each other more easily than ever before. the internet has greatly facilitated the growth of the economy. therefore, the final answer is yes.', 'A3: ', 'A4: It will help the economy to grow', 'A5: It will help the economy', 'A6: It is a good thing', 'A7: The economy is more competitive']
-Text:The Internet was designed to ease communication, and it must stay that way.
-
-
-
-(32)TAKEN?False RQUGE:4.1644
+(29)TAKEN?False RQUGE:4.1644
 Q1:What are two types o terrorist propaganda?
 Q2:What types of explanations are provided for terrorist activities?
 Best ans: Political or religious
@@ -295,7 +268,7 @@ Text:The Internet has become a forum for terrorist groups and individual terrori
 
 
 
-(33)TAKEN?False RQUGE:4.1376
+(30)TAKEN?False RQUGE:4.1376
 Q1:Which terrorist group has their own websites?
 Q2:What terrorist groups have communicated online for years?
 Best ans: Al qaeda terrorist groups
@@ -304,7 +277,7 @@ Text:Since the late 1980s, the Internet has proven to be a fast and efficient pl
 
 
 
-(34)TAKEN?False RQUGE:4.0873
+(31)TAKEN?False RQUGE:4.0873
 Q1:Why did some extremists choose the net over traditional channels of communication
 Q2:What did Gary Bunt conclude about the internet?
 Best ans: Many extremist islamist activists and terrorists now see the internet as a vital tool
@@ -313,7 +286,7 @@ Text:Between 2000 and 2012, Internet connectivity grew by 566 percent worldwide.
 
 
 
-(35)TAKEN?False RQUGE:4.08
+(32)TAKEN?False RQUGE:4.08
 Q1:How did the brothers become interested in islamic extremism?
 Q2:What motivated the Tsarnaev brothers?
 Best ans: Exposure to online messages of radical islam. the brothers became interested in islamic extremism in recent years.
@@ -322,16 +295,7 @@ Text:Recruitment, radicalization and incitement to terrorism should be viewed as
 
 
 
-(36)TAKEN?False RQUGE:4.0377
-Q1:What is the primary purpose of the internet?
-Q2:What is the primary purpose of the internet?
-Best ans: Internet was designed to ease communication. the primary purpose of the internet is to facilitate communication. therefore, the final answer is to ease communications and to facilitate information.
-['A0: Internet was designed to ease communication. the primary purpose of the internet is to facilitate communication. therefore, the final answer is to ease communications and to facilitate information.', 'A1: A computer is used for communicating with other people. the primary purpose of the internet is to facilitate communication. therefore, the final answer is to ease communication.', 'A2: To ease communication, the internet was designed. the internet was created to facilitate communication. therefore, the final answer is to ease communication.', 'A3: The internet was designed to ease communication. the primary purpose of the internet is to facilitate communication. therefore, the final answer is to ease communications.', 'A4: Communicate', 'A5: Communications', 'A6: Communication', 'A7: Ease communication']
-Text:The Internet was designed to ease communication, and it must stay that way.
-
-
-
-(37)TAKEN?False RQUGE:4.0295
+(33)TAKEN?False RQUGE:4.0295
 Q1:Terrorist organizations are using the internet to raise funds in part through what?
 Q2:What is another way terrorists are using the internet to raise funds?
 Best ans: Criminal activities such as credit card fraud
@@ -340,7 +304,7 @@ Text:Two emerging technologies are now used by terrorists: the growing use of mo
 
 
 
-(38)TAKEN?False RQUGE:4.0098
+(34)TAKEN?False RQUGE:4.0098
 Q1:Where can you find terrorist propaganda?
 Q2:What has the internet become a forum for
 Best ans: Terrorist propaganda can be found on the internet. the internet has become a forum for terrorist groups and individual terrorists to spread their messages of hate and violence.
@@ -349,7 +313,7 @@ Text:The Internet has become a forum for terrorist groups and individual terrori
 
 
 
-(39)TAKEN?False RQUGE:3.9313
+(35)TAKEN?False RQUGE:3.9313
 Q1:Where can you find jihadist forums
 Q2:Where was the explosives series posted?
 Best ans: Al-qaeda-affiliated forum al-ekhlaas. twitter. facebook. youtube.
@@ -358,7 +322,7 @@ Text:In November 2008, SITE Intelligence Group reported that al-Nusra Media Batt
 
 
 
-(40)TAKEN?False RQUGE:3.8794
+(36)TAKEN?False RQUGE:3.8794
 Q1:What was the name of the website that al qaeda created in 2001?
 Q2:What is the name of al qaeda's media arm?
 Best ans: As-sahab media production establishment is the name of the website that al qaeda created in 2001.
@@ -367,16 +331,7 @@ Text:Al Qaeda’s official online debut dates back to February 2000, with the cr
 
 
 
-(41)TAKEN?False RQUGE:3.8493
-Q1:Where do people communicate on the internet today
-Q2:What was designed to make communication easier?
-Best ans: There are many places people can communicate on the internet today. the internet was designed to make communication easier. therefore, the final answer is the internet.
-['A0: The internet was designed to allow people to communicate with each other. the internet is a network of computers that allow people and organizations to communicate. the internet is accessed through computers. the final answer: computers.', 'A1: In the past, the internet was used to communicate with each other. the internet was designed to make communication easier. the internet was designed for communication to be easier. therefore, the final answer is the internet.', 'A2: There are many places people can communicate on the internet today. the internet was designed to make communication easier. therefore, the final answer is the internet.', 'A3: ', 'A4: Online', 'A5: Worldwide', 'A6: In private', 'A7: On computers']
-Text:The Internet was designed to ease communication, and it must stay that way.
-
-
-
-(42)TAKEN?False RQUGE:3.701
+(37)TAKEN?False RQUGE:3.701
 Q1:Why might a child be a good target for terrorist recruitment
 Q2:What is the main target of terrorist recruitment?
 Best ans: Youth comprise a high proportion of users of the internet. terrorist recruitment-oriented communication is often tailored to appeal to vulnerable and marginalized groups in society.
@@ -385,7 +340,7 @@ Text:Recruitment, radicalization and incitement to terrorism should be viewed as
 
 
 
-(43)TAKEN?False RQUGE:3.6657
+(38)TAKEN?False RQUGE:3.6657
 Q1:What is the most popular online training manual?
 Q2:What did the 11th issue of inspire magazine glorify?
 Best ans: Inspire magazine is an important brand-building tool, not just of al-qaeda in the arabian peninsula but of all al-qaeda branches, franchises and affiliates. the 11 th issue of inspire devoted almost all of its 40-odd pages to glorifying the "bbb" -- the " blessed boston bombings.
@@ -394,7 +349,7 @@ Text:In November 2008, SITE Intelligence Group reported that al-Nusra Media Batt
 
 
 
-(44)TAKEN?False RQUGE:3.6452
+(39)TAKEN?False RQUGE:3.6452
 Q1:Which terrorist organization maintains more than one website?
 Q2:What is one of the terrorist groups that uses the internet?
 Best ans: Hamas (the islamic resistance movement)
@@ -403,7 +358,7 @@ Text: The Internet is in many ways an ideal arena for activity by terrorist and 
 
 
 
-(45)TAKEN?False RQUGE:3.5978
+(40)TAKEN?False RQUGE:3.5978
 Q1:Which of al-qaeda's media outlets functions as a distribution network online?
 Q2:What new channels has al-qaeda begun to use?
 Best ans: Social media platforms that target individuals, emphasize interactivity and appeal to youth. al-qaeda has recognized online jihadism as a contribution to the jihadist campaign.
@@ -412,7 +367,7 @@ Text:Finally, they send the final product(s) off to their media outlets that fun
 
 
 
-(46)TAKEN?False RQUGE:3.5539
+(41)TAKEN?False RQUGE:3.5539
 Q1:When did al awlaki join the terrorist group?
 Q2:What are the most recent attacks linked to Al Awlaki?
 Best ans: From september 11, 2001, to the shootings at fort hood in november 2009
@@ -421,7 +376,7 @@ Text:Since the late 1980s, the Internet has proven to be a fast and efficient pl
 
 
 
-(47)TAKEN?False RQUGE:3.4233
+(42)TAKEN?False RQUGE:3.4233
 Q1:Who is a loosely interconnected network?
 Q2:What has al-qaeda become?
 Best ans: A huge global network of affiliated, semi-independent cells that have no single commanding hierarchy. al-qaeda.
@@ -430,7 +385,7 @@ Text:Finally, they send the final product(s) off to their media outlets that fun
 
 
 
-(48)TAKEN?False RQUGE:3.411
+(43)TAKEN?False RQUGE:3.411
 Q1:Why is al-qaida's organization more virtual?
 Q2:What is unique about al-qaeda's online production?
 Best ans: Being on the run means being on the move. the unique unstructured and decentralized nature of al-qaeda affects it online production line.
@@ -439,7 +394,7 @@ Text:Al Qaeda’s official online debut dates back to February 2000, with the cr
 
 
 
-(49)TAKEN?False RQUGE:3.117
+(44)TAKEN?False RQUGE:3.117
 Q1:Who has more power to delete threads and ban users?
 Q2:Who are operating numerous websites, forums, chatrooms, twitter, facebook, youtube,
 Best ans: Online communities have moderators. moderators post and moderate content. al-qaeda operatives and supporters are operating numerous websites, forums, chatrooms, twitter, facebook, youtube, and myspace accounts. al qaeda  militants and supporters.
@@ -448,7 +403,7 @@ Text:They post important news items and have the power to delete threads and ban
 
 
 
-(50)TAKEN?False RQUGE:2.7984
+(45)TAKEN?False RQUGE:2.7984
 Q1:What is the advantage of using google earth over maps?
 Q2:What is the advantage of using Google Earth?
 Best ans: Google earth provides up-to-date maps of the location of terrorists' intended targets.
@@ -457,7 +412,7 @@ Text:Terrorists can learn a wide variety of details about targets such as transp
 
 
 
-(51)TAKEN?False RQUGE:2.7272
+(46)TAKEN?False RQUGE:2.7272
 Q1:What are two emerging technologies used by terrorists?
 Q2:What are the two emerging technologies used by terrorists?
 Best ans: A growing use mobile computing technologies and the rapid spread of “cloud computing. terrorist organizations are already using social networking applications as the latest method for raising funds.
@@ -466,7 +421,7 @@ Text:Two emerging technologies are now used by terrorists: the growing use of mo
 
 
 
-(52)TAKEN?False RQUGE:2.4556
+(47)TAKEN?False RQUGE:2.4556
 Q1:Where did al-qaeda's first online instruction come from
 Q2:What was the name of the first online magazine published by al-qaeda?
 Best ans: Al battar training camp. in early-2004, al-qaeda published online the first issue of al battari.
@@ -475,7 +430,7 @@ Text:Terrorists can learn a wide variety of details about targets such as transp
 
 
 
-(53)TAKEN?False RQUGE:2.1802
+(48)TAKEN?False RQUGE:2.1802
 Q1:How do terrorists raise funds online?
 Q2:What are two emerging technologies used by terrorists?
 Best ans: Mobile computing technologies and the rapid spread of "cloud computing. terrorists use a variety of techniques to raise funds online for their activities. many terrorist organizations also create so-called "charitable organizations" through which they solicit funds promising to use the money to feed and dress the poor.
@@ -484,7 +439,7 @@ Text:Two emerging technologies are now used by terrorists: the growing use of mo
 
 
 
-(54)TAKEN?False RQUGE:2.1441
+(49)TAKEN?False RQUGE:2.1441
 Q1:How does al-qaeda operate its websites?
 Q2:What are some uses of the internet for al-qaeda?
 Best ans: A group of al-qaeda supporters are responsible for maintaining the website. al-qaeda uses the internet for communication. al quaida uses the internet for recruitment. al qaeda uses twitter to communicate with its supporters.
@@ -493,7 +448,7 @@ Text:They post important news items and have the power to delete threads and ban
 
 
 
-(55)TAKEN?False RQUGE:1.9944
+(50)TAKEN?False RQUGE:1.9944
 Q1:Which of these services uses a variety to ensure anonymity online?
 Q2:What is the best way to keep your identity anonymous?
 Best ans: I2p network uses a variety of peer-to-peer and encryption technologies to hide internet protocol addresses. the tor project uses fewer technologies to ensure anonymity online. the final answer: the tor project.
@@ -502,7 +457,7 @@ Text:In November 2008, SITE Intelligence Group reported that al-Nusra Media Batt
 
 
 
-(56)TAKEN?False RQUGE:1.8549
+(51)TAKEN?False RQUGE:1.8549
 Q1:What are some examples of terrorist recruitment-oriented communication?
 Q2:What is al-qaeda doing to attract children?
 Best ans: Cartoons, popular music videos, or computer games are examples of propaganda disseminated via the internet with the aim of recruiting minors. al-qaeda in the islamic maghreb (aqim) is changing its strategy to target children at an early age to lure them to its radical ideology.
@@ -511,7 +466,7 @@ Text:Recruitment, radicalization and incitement to terrorism should be viewed as
 
 
 
-(57)TAKEN?False RQUGE:1.544
+(52)TAKEN?False RQUGE:1.544
 Q1:Why do terrorists use the internet?
 Q2:What are the benefits of the internet for terrorists?
 Best ans: For indoctrination, propaganda, and recruitment. for the practical application of terror.
@@ -520,7 +475,7 @@ Text:Terrorists can learn a wide variety of details about targets such as transp
 
 
 
-(58)TAKEN?False RQUGE:1.4591
+(53)TAKEN?False RQUGE:1.4591
 Q1:What are some examples of terrorist organizations that maintain websites?
 Q2:What are some of the terrorist groups that are online?
 Best ans: Al-qaeda in the maghreb muslim brotherhood (egypt), al shabab in somalia and numerous al-qaida affiliates including groups in sudan algeria, and lybia.
@@ -529,7 +484,7 @@ Text: The Internet is in many ways an ideal arena for activity by terrorist and 
 
 
 
-(59)TAKEN?False RQUGE:1.4355
+(54)TAKEN?False RQUGE:1.4355
 Q1:In what country is hamas activists in the middle east?
 Q2:Where is the West Bank?
 Best ans: Palestine
@@ -538,16 +493,7 @@ Text:In November 2008, SITE Intelligence Group reported that al-Nusra Media Batt
 
 
 
-(60)TAKEN?False RQUGE:1.1396
-Q1:Which of these is not a benefit of the internet?
-Q2:Which of these is not a benefit of the internet?
-Best ans: Telephones
-['A0: Telephones can not be used for communication. telephones are not a benefit of the internet. the final answer: telephones.', 'A1: People are not allowed the freedom of speech that the internet provides. the freedom of expression is a benefit of the internet. the final answer: freedom of the press.', 'A2: The internet is designed to be used for communication. the internet was designed to make communication easier. the final answer: the internet.', 'A3: ', 'A4: Telephones', 'A5: Sending a message', 'A6: Telephone', 'A7: Phone calls and emails']
-Text:The Internet was designed to ease communication, and it must stay that way.
-
-
-
-(61)TAKEN?False RQUGE:1.0515
+(55)TAKEN?False RQUGE:1.0515
 Q1:How many years did internet connectivity grow by 566 percent worldwide?
 Q2:How many terrorist groups were online in 2012?
 Best ans: 12
