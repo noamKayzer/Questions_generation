@@ -173,6 +173,7 @@ class flanT5MCQ:
         model_for_upload.to('cuda')
 
     def text_slicer(self, text):
+        assert text is not None, 'Text cannot be empty'
         num_of_tokens_reserved = 25 # keeping more tokens for the prompt and the answers
         if len(self.tokenizer(text, return_tensors="pt")["input_ids"][0]) <= self.tokenizer.model_max_length-num_of_tokens_reserved :
             return [text]
@@ -222,8 +223,6 @@ class flanT5MCQ:
         return [questions[a] for a in selected_questions_idx]
       else:
         return selected_questions_idx
-    
-
 
     def clean_questions(self,questions_list):
       output_qs =[]
@@ -302,6 +301,15 @@ class flanT5MCQ:
         self.abrv_dict=abrv_dict
         return partial(self.replace_abbreviations,abrv_dict=abrv_dict,only_first=True) 
 
+    def filter_section(self,sections, sections_n,condition_idx):
+      filter_sections=[]
+      filter_sections_n=[]
+      for i in range(len(sections_n)):
+          if condition_idx[i] and sections[i] is not None:
+            filter_sections.append(sections[i])
+            filter_sections_n.append(sections_n[i])
+      return filter_sections, filter_sections_n
+
     def generate_questions(self,sections,org_sections,sections_ranks,
                           verbose=False,answers_model=False):
         if not answers_model:
@@ -311,28 +319,23 @@ class flanT5MCQ:
         questions_df = pd.DataFrame((),columns=['section_n','section_n_chunk','section_rank','text','question','question_ppl',
                                                 'answer_1','answer_2','answer_3','answer_4',
                                                 'short_answer_1','short_answer_2','short_answer_3','short_answer_4'])
+        
+        
         sections_chunks = []
         sections_n = []
         for i,cur_section in enumerate(sections):
-          cur_section_chunks = self.text_slicer(cur_section)
-          n_chunks = len(cur_section_chunks)
-          sections_chunks.extend(cur_section_chunks)
-          if n_chunks==1:
-              sections_n.append(float(i))
-          else:
-              sections_n.extend([i+0.1*k for k in range(n_chunks)])
+          if cur_section is not None:
+            cur_section_chunks = self.text_slicer(cur_section)
+            n_chunks = len(cur_section_chunks)
+            sections_chunks.extend(cur_section_chunks)
+            if n_chunks==1:
+                sections_n.append(float(i))
+            else:
+                sections_n.extend([i+0.1*k for k in range(n_chunks)])
         
         #filter chunks by `self.min_words_in_section`
         chunk_above_min_words_thrs = [len(x.split())>self.min_words_in_section for x in sections_chunks]
-        '''sections_chunks = list(filter(lambda x: x[1] is not None and chunk_above_min_words_thrs[x[0]], enumerate(sections_chunks)))
-        sections_n = list(filter(lambda x: x[1] is not None and chunk_above_min_words_thrs[x[0]], enumerate(sections_n)))
-        '''
-        filter_sections_chunks=[]
-        filter_sections_n=[]
-        for i in range(len(sections_n)):
-          if chunk_above_min_words_thrs[i] and sections_chunks[i] is not None:
-            filter_sections_chunks.append(sections_chunks[i])
-            filter_sections_n.append(sections_n[i])
+        filter_sections_chunks, filter_sections_n =self.filter_section(sections_chunks,sections_n,chunk_above_min_words_thrs)
 
         for section_i,cur in tqdm(zip(filter_sections_n,filter_sections_chunks)):
             cur = solve_abrv_func(cur,target_form='long')

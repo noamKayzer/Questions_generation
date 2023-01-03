@@ -135,7 +135,7 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
     # Each sections questions ordered by chunks of the section (when the section_len > model_max_len, and the text were splitted to chunks).
     # Chunks questions ordered by RQUGE score.
     output = []
-    for i in np.unique(questions_df.section_n):
+    for i in range(max(questions_df.section_n)):
         section_output = {'question':[],'answer':[],'score':[]}
         for chunk in np.unique(questions_df.loc[questions_df.section_n==i,'section_n_chunk']):
             chunk_questions = questions_df.query(f'section_n_chunk=={chunk}')
