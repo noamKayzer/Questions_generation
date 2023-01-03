@@ -6,10 +6,10 @@
 
 #nltk.download('punkt')
 
-from transformers import AutoTokenizer,AutoModel,T5Tokenizer,T5ForConditionalGeneration,pipeline
+from transformers import T5Tokenizer,T5ForConditionalGeneration,pipeline
 import numpy as np
 import pandas as pd
-import sklearn
+
 from sentence_transformers import SentenceTransformer
 from collections import Counter
 import torch
@@ -22,7 +22,7 @@ import nltk
 from nltk.corpus import stopwords
 STOPWORDS = set(stopwords.words('english'))
 from scispacy.abbreviation import AbbreviationDetector
-from scispacy.hyponym_detector import HyponymDetector
+#from scispacy.hyponym_detector import HyponymDetector
 from rquge_score import RQUGE
 import spacy
 
@@ -45,6 +45,8 @@ class flanT5MCQ:
         self.tokenizer = T5Tokenizer.from_pretrained(self.checkpoint)
         self.model = T5ForConditionalGeneration.from_pretrained(self.checkpoint)
         self.model.to(self.device)
+        self.sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
+        
         self.min_words_in_section=30
         self.question_similarity_thrs = 0.95 
         self.answer_similarity_thrs =  0.8 # combined questions + answers
@@ -56,9 +58,25 @@ class flanT5MCQ:
                                 device=self.QA.model.device)
             self.min_rquge = 2.5
             self.QG = QG()
-        self.sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
         #summarizer = SummarizeText('cpu', "sshleifer/distilbart-cnn-12-6", False, with_model=False)
         [setattr(self,cur_arg,args[cur_arg]) for cur_arg in args.keys()]
+
+    def get_sections_from_JSON(self,JSON_path,save_file_name=None,save_file_path=None):
+      import os
+      from datetime import datetime
+      import json 
+
+      if save_file_name:
+        if save_file_path is None:
+          self.dir_path = '../outputs/'+datetime.now().strftime("%d_%m_%y")+'_'+save_file_name+'/'
+        if not os.path.isdir(self.dir_path):
+          os.mkdir(self.dir_path)
+      with open(JSON_path) as f:
+        result = json.load(f)
+            
+      sections = [s['summary']['text'] if 'summary' in s.keys() and 'text' in s['summary'].keys() else None for k,s in result['sections'].items() ]
+      org_text = [s['original']['text'] if 'original' in s.keys() and 'text' in s['original'].keys() else None  for k,s in result['sections'].items() ]
+      return sections, org_text
 
     def get_output_from_prompt(self,model,prompt,args):
       input_ids = self.tokenizer.encode(prompt, return_tensors="pt").to(model.device)
@@ -95,8 +113,6 @@ class flanT5MCQ:
         q_sim_mat = np.dot(q_embeddings,q_embeddings.T).round(3)
         ans_sim_mat = np.dot(a_embeddings,a_embeddings.T).round(3)
         return q_sim_mat, ans_sim_mat
-
-
 
     def plot_similarity_matrix(self,questions_list):
       #x_label,y_label = ['']*questions_list.shape[0],['']*questions_list.shape[0]
@@ -227,6 +243,7 @@ class flanT5MCQ:
             cur_qs = cur_qs.replace('? -','?')
             output_qs.append(cur_qs.capitalize())
       return output_qs
+      
     def show_qs(self,df,i):
           q= df.loc[i,:]
           out=f''
@@ -255,28 +272,39 @@ class flanT5MCQ:
         self.abrv_dict=abrv_dict
         return partial(self.replace_abbreviations,abrv_dict=abrv_dict,only_first=True) 
 
-    def compute_questions(self,sections,org_sections,sections_ranks,
+    def generate_questions(self,sections,org_sections,sections_ranks,
                           verbose=False,answers_model=False):
         if not answers_model:
             answers_model = self.model
         solve_abrv_func = self.init_abrv_solver(org_sections,only_first=True) # return a function that solve the abbreviations that were found in the current original text, in the first place of each input
         assert len(sections_ranks)==len(sections), 'Sections ranks aren\'t consistant with number of ranks'
-        questions_df = pd.DataFrame((),columns=['section_n','section_rank','text','question','question_ppl',
+        questions_df = pd.DataFrame((),columns=['section_n','section_n_chunk','section_rank','text','question','question_ppl',
                                                 'answer_1','answer_2','answer_3','answer_4',
                                                 'short_answer_1','short_answer_2','short_answer_3','short_answer_4'])
         sections_chunks = []
         sections_n = []
         for i,cur_section in enumerate(sections):
           cur_section_chunks = self.text_slicer(cur_section)
-          cur_section_chunks = list(filter(lambda x: x is not None and len(x.split())>self.min_words_in_section, cur_section_chunks))
           n_chunks = len(cur_section_chunks)
           sections_chunks.extend(cur_section_chunks)
           if n_chunks==1:
               sections_n.append(float(i))
           else:
               sections_n.extend([i+0.1*k for k in range(n_chunks)])
+        
+        #filter chunks by `self.min_words_in_section`
+        chunk_above_min_words_thrs = [len(x.split())>self.min_words_in_section for x in sections_chunks]
+        '''sections_chunks = list(filter(lambda x: x[1] is not None and chunk_above_min_words_thrs[x[0]], enumerate(sections_chunks)))
+        sections_n = list(filter(lambda x: x[1] is not None and chunk_above_min_words_thrs[x[0]], enumerate(sections_n)))
+        '''
+        filter_sections_chunks=[]
+        filter_sections_n=[]
+        for i in range(len(sections_n)):
+          if chunk_above_min_words_thrs[i] and sections_chunks[i] is not None:
+            filter_sections_chunks.append(sections_chunks[i])
+            filter_sections_n.append(sections_n[i])
 
-        for section_i,cur in tqdm(zip(sections_n,sections_chunks)):
+        for section_i,cur in tqdm(zip(filter_sections_n,filter_sections_chunks)):
             cur = solve_abrv_func(cur,target_form='long')
             input_string = "generate question: " + cur
             try:
@@ -289,7 +317,6 @@ class flanT5MCQ:
             if verbose:
                 for cur_qs in qs:
                     print(f'Qs:{cur_qs}')
-            if verbose:
                 self.plot_similarity_matrix(qs)
             #similarity_matrix = self.find_similarity(qs)
             #qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
@@ -320,7 +347,7 @@ class flanT5MCQ:
                     assert len(short_ans_output)>=4
                 else:
                     ans_output,short_ans_output=['','','',''],['','','','']
-                questions_df.loc[len(questions_df)] = [section_i,np.round(sections_ranks[int(section_i)],4),cur,cur_qs,qs_ppl[i],
+                questions_df.loc[len(questions_df)] = [int(section_i),section_i,np.round(sections_ranks[int(section_i)],4),cur,cur_qs,qs_ppl[i],
                                                         ans_output[0],ans_output[1],ans_output[2],ans_output[3],
                                                         short_ans_output[0],short_ans_output[1],short_ans_output[2],short_ans_output[3]]
                 
@@ -332,7 +359,7 @@ class flanT5MCQ:
 
 
 class QA:
-    def __init__(self,checkpoint) -> None:
+    def __init__(self,checkpoint="allenai/unifiedqa-v2-t5-3b-1363200") -> None:
         self.tokenizer = T5Tokenizer.from_pretrained(checkpoint)
         self.model = T5ForConditionalGeneration.from_pretrained(checkpoint)
         self.checkpoint = checkpoint
@@ -350,6 +377,7 @@ class QA:
       return text.lower().strip() in patterns
 
     def score_string_similarity(self,str1, str2):
+        # from unifiedV2 GitHub
         if str1 == str2:
             return 3.0   # Better than perfect token match
         str1 = self.fix_buggy_characters(self.replace_punctuation(str1))
@@ -379,10 +407,6 @@ class QA:
         return text.lower()
 
     def run_QA_model(self,context,question_and_answers, **generator_args):
-        '''  question_and_answers_ids = QA_tokenizer.encode(norm_text_for_QA_model(question_and_answers), return_tensors="pt")
-        qs_and_answers_token_len = question_and_answers_ids.shape[1]
-        context_ids = QA_tokenizer.encode(norm_text_for_QA_model(context), return_tensors="pt",max_length =QA_tokenizer.model_max_length-qs_and_answers_token_len,truncation=True)
-        input_ids = torch.cat((question_and_answers_ids[:,:-1],context_ids[:,1:]),1)'''
 
         input_ids = self.tokenizer.encode(self.norm_text_for_QA_model(question_and_answers+context), return_tensors="pt").to(self.model.device)
         res = self.model.generate(input_ids, **generator_args)
@@ -407,7 +431,7 @@ class QA:
                                     ' (e)'+qs.short_answer_1 +' (f) '+qs.short_answer_2+' (g) '+qs.short_answer_3+' (h) '+qs.short_answer_4 +' \n ' 
                                     ,max_new_tokens=150 )#,return_dict_in_generate =True,output_scores=True)
             questions_df.loc[i,'generated_selected_ans'] = qa_output[0]
-            sim_scores = [self.score_string_similarity(qa_output[0].strip().lower(), s.strip().lower()) for s in ans_list]
+            sim_scores = [self.score_string_similarity(qa_output[0].strip().lower(), s.strip().lower()) for s in ans_list] # model output is lowercase and some deleted version of one of the answers, therefore we compute the most similar input answer, and take it as the model output
             questions_df.loc[i,'selected_ans'] = ans_list[int(np.argmax(sim_scores))]
         questions_df = self.filter_by_answers(questions_df,questions_df.selected_ans)
         return questions_df
