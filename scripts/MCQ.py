@@ -38,7 +38,29 @@ COMPUTE_ANSWERS = True
 class flanT5MCQ:
     def __init__(self,**args) -> None:
         # args should contain `generator_args`,`answers_generator_args`,`short_answers_generator_args`
-
+        '''
+          flanT5MCQ use pipeline of few models for generate free questions, answer on the questions, select the best answer and generate new question based on the text and the selected answer, than the questions are scored and filtered.
+          There are few parts in the pipeline (main function is `generate_questions`):
+          1. Preprocessing - find abbreviation, use text slicer for splitting the text for chunks fits the model max length. 
+          2. Using flanT5-large model for generating free question (without answer), with the prompt:"generate question from the following text: {section}" 
+          3. For each generated question:
+             Using flanT5-large model for generating answers, in 2 ways: 1) Long answers - With the prompt:"generate answer for the question, step by step: {question} \n text: {section}".
+                                                                            the `step by step` instruction in the prompt ask from the model for Chain-of-Thought (CoT) output, which encourage a detailed answers, sometimes in the pattarn of "{explnation}, so the final answer is x".
+                                                                         2) Short answers - with similar prompt except of the "step by step" words. 
+                                                                         
+                                                                         The 2 requests differ also in the generator arguments, in the short answer, long answers were penalized more (by `length_penalty`)
+             Each model output was 4 answers, so overall we stored, 1 question, 4 long answers and 3 short answers. 
+          4. QA model - Using the QA class, the question, context and the suggested answers are concatenated for the pattern of multiple choice question (although there are no distractions, just few variants of suggestion for the best answer)
+                        then a QA model (UnifiedV2) choose the best answer. 
+          5.            Answers are filtered based on a blacklist of answers (e.g. 'we', 'the authors').
+          6. QG model - Using the QG class, another model use the selected answers and the sections for building a new question.
+                        The usage of second "closed" model (to say, a model which use a specific target answer) seems to results in a better answers, more structured as an answer.
+          7.            Original questions the are negative (e.g. "which one of the following methods aren't good for X?"), cannot be built based on there "answer", therefore when the original question is negative we won't rebuild a new question.
+          8. RQUGE scoring - Each question RQUGE score is calculated based on the selected answer and text. 
+                             RQUGE use the QA model, for generating the answer based on the text and than find similarity between the selected answer and the predicted answer, by concatenating the text, 
+                             the 2 answers and the questions and feed a model that were trained to score the quality of an automatic-answer in relation to a gold answer, similar to what Humans would scored it. 
+          9. question filtering based on minimum RQUGE score, and semantic similarity for previous questions. or for question+answer
+        '''
         self.device=  'cuda' if torch.cuda.is_available() else 'cpu'
         self.COMPUTE_ANSWERS = COMPUTE_ANSWERS
         self.checkpoint = "google/flan-t5-large"#"IsaacBot/flan-t5-small-mfaq-finetuned-question-generation-context-only"# "google/flan-t5-xl"#"google/flan-t5-large"
@@ -48,6 +70,8 @@ class flanT5MCQ:
         self.sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
         
         self.min_words_in_section=30
+        self.N_MAX_QUESTIONS = 30 #max questions generated per article
+
         self.question_similarity_thrs = 0.95 
         self.answer_similarity_thrs =  0.8 # combined questions + answers
         if COMPUTE_ANSWERS:
@@ -173,8 +197,9 @@ class flanT5MCQ:
         return chunks
 
     def filter_questions(self,questions, q_sim_mat,ans_sim_mat=None,
-                              n_thrs=7,rquge_scores=None, return_index=False):
-
+                              n_thrs=None,rquge_scores=None, return_index=False):
+      if n_thrs is None:
+        n_thrs = self.N_MAX_QUESTIONS
       if ans_sim_mat is None:
         ans_sim_mat = np.zeros_like(q_sim_mat)
       if rquge_scores is None:
@@ -189,8 +214,8 @@ class flanT5MCQ:
         elif len(selected_questions_idx) >= n_thrs:
           break
         elif len(selected_questions_idx)==0 or \
-              (all(q_sim_mat[i,selected_questions_idx]<self.question_similarity_thrs) and \
-              all(ans_sim_mat[i,selected_questions_idx]<self.answer_similarity_thrs)):
+              (all(q_sim_mat[i,selected_questions_idx] < self.question_similarity_thrs) and \
+              all(ans_sim_mat[i,selected_questions_idx] < self.answer_similarity_thrs)):
           if rquge_scores[i] >= self.min_rquge:
             selected_questions_idx.append(i)
       if not return_index:
@@ -198,6 +223,31 @@ class flanT5MCQ:
       else:
         return selected_questions_idx
     
+
+
+    def clean_questions(self,questions_list):
+      output_qs =[]
+      for q in questions_list:
+            cur_qs = q.strip()
+            cur_qs = re.sub(r'\.+', '.', cur_qs) # replace multiple dots with single dot (T5 model sometimes generate some of the following punctuations marks, mostly at the end of the generate text )
+            cur_qs = re.sub(r'\?+', '?', cur_qs)
+            cur_qs = re.sub(r'_+$', '', cur_qs)
+            cur_qs = re.sub(r'(?<=\?)\s*[^\w\s\S]*\S*(?=$)', '', cur_qs) #replace any combination of punctuations marks and spaces generate after the question mark
+            cur_qs = cur_qs.replace('? -','?')
+            output_qs.append(cur_qs.capitalize())
+      return output_qs
+      
+    def show_qs(self,df,i):
+          q= df.loc[i,:]
+          out=f''
+          out+=f'Q1:{q.question}\n'
+          if COMPUTE_ANSWERS:
+                  out+=f'Q2:{q.new_question}\nBest ans: {q.selected_ans}\n'
+                  ans = ['A'+str(i)+': '+q[cur] for i,cur in enumerate(['answer_1', 'answer_2', 'answer_3', 'answer_4', 'short_answer_1',
+                        'short_answer_2', 'short_answer_3', 'short_answer_4'])]
+                  out+=str(ans)+'\n'
+          out+=f'Text:{q.text}\n\n'
+          return out
 
     def replace_abbreviations(self, text, abrv_dict, only_first = False,target_form='full'):
       '''
@@ -231,32 +281,12 @@ class flanT5MCQ:
         pattern = re.compile(r'(^|\s|\.)'+abrv+ r'( |[\W\s])')
         text = re.sub(pattern,target(abrv,long_form_abbr) , text, count=only_first)
       return text
-
-    def clean_questions(self,questions_list):
-      output_qs =[]
-      for q in questions_list:
-            cur_qs = q.strip()
-            cur_qs = re.sub(r'\.+', '.', cur_qs) # replace multiple dots with single dot (T5 model sometimes generate some of the following punctuations marks, mostly at the end of the generate text )
-            cur_qs = re.sub(r'\?+', '?', cur_qs)
-            cur_qs = re.sub(r'_+$', '', cur_qs)
-            cur_qs = re.sub(r'(?<=\?)\s*[^\w\s\S]*\S*(?=$)', '', cur_qs) #replace any combination of punctuations marks and spaces generate after the question mark
-            cur_qs = cur_qs.replace('? -','?')
-            output_qs.append(cur_qs.capitalize())
-      return output_qs
-      
-    def show_qs(self,df,i):
-          q= df.loc[i,:]
-          out=f''
-          out+=f'Q1:{q.question}\n'
-          if COMPUTE_ANSWERS:
-                  out+=f'Q2:{q.new_question}\nBest ans: {q.selected_ans}\n'
-                  ans = ['A'+str(i)+': '+q[cur] for i,cur in enumerate(['answer_1', 'answer_2', 'answer_3', 'answer_4', 'short_answer_1',
-                        'short_answer_2', 'short_answer_3', 'short_answer_4'])]
-                  out+=str(ans)+'\n'
-          out+=f'Text:{q.text}\n\n'
-          return out
           
     def init_abrv_solver(self,sections,only_first=True):
+        '''
+        `init_abrv_solver` build a dictionary of abbreviations compute upon the original text, 
+                           and return a `replace_abbreviations` function which replace the abbreviations in a given text. 
+        '''
         doc = abrv_nlp('.\n '.join(sections).replace('..\n','.\n'))
         abrv_dict ={}
         for abrv in doc._.abbreviations:
