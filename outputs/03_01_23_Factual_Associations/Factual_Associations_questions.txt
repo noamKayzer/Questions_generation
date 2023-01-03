@@ -1,0 +1,79 @@
+Q:What do we analyze?
+A:Analyzing the storage and recall of factual associations in autoregressive transformer language models
+--------------------------------------------------
+Q:What method is used to test the finding in model weights?
+A:Rank-one model editing for factual knowledge prediction in gpt models.
+Q:What does the paper investigate?
+A:The paper investigates how factual knowledge is stored within gpt-like transformer models.
+--------------------------------------------------
+Q:What achieves good generalization and specificity simultaneously?
+A:Rome
+Q:What does ROME achieve?
+A:Compared to previous fine-tuning (zhu and colleagues, 2020), interpretability-based methods, rome achieves good generalization and specificity simultaneously simultaneously.
+Q:What is the difference between the fine-tuning and ROME methods?
+A:Rome achieves good generalization and specificity simultaneously simultaneously. rome is a method for achieving good generalizabity and specificitiy simultaneously.
+Q:What is the difference between ROME and other model editing approaches?
+A:Rank-one model editing achieves good generalization and specificity simultaneously simultaneously, whereas previous approaches sacrifice one or the other.
+--------------------------------------------------
+Q:Using an autoregressive transformer model, which of these is not true?
+A:Mlp contributions dominate the early site.
+Q:What is surprising about the language model?
+A:It is surprising that strongly causal states at an ‘early site’ in middle layers is a new discovery about the language model.
+Q:What is the final answer to the question about attention?
+A:The last layer of a neural network is the mlp layer. attention is important at the late site. the final answer: (c).
+Q:What is the importance of attention at the late site?
+A:C) attention is important at the late site. each layer’s mlp is a two-layer neural network.
+--------------------------------------------------
+Q:How do we select ?
+A:In this paper, we propose a method for analyzing a causal graph using g, which is a graph representation of the underlying causal graph. we use the gpt method for causal mediation analysis. we select  to be 3 times larger than the empirical standard deviation of embeddings.
+Q:Why is the corruption a natural case for causal mediation analysis?
+A:G loses some information about the subject when it continues normally. the corruption is a natural case for causal mediation analysis because it is the result of a corrupted baseline.
+--------------------------------------------------
+Q:At what layer did the AIE=8.7% occur?
+A:Layer 15
+--------------------------------------------------
+Q:What is the basis of the architecture?
+A:In this paper, we propose an mlp-like architecture that stores factual associations in the middle layers of the mlp. the architecture is based on causal traces.
+--------------------------------------------------
+Q:What type of memory can MLPs be modeled as?
+A:Associative
+--------------------------------------------------
+Q:How does the optimization affect the model weights?
+A:Optimization does not directly alter model weight; it identifies a vector representation v that when output at the targeted mlp module represents the new property for the subject s.
+--------------------------------------------------
+Q:What does this paper evaluate?
+A:This paper evaluates rank one model editing on the zero shot re-
+Q:Is ROME competitive with hypernetworks and fine-tuned methods?
+A:It is competitive with hypernetworks and fine-tuning methods despite its simplicity.
+--------------------------------------------------
+Q:What is COUNTERFACT?
+A:A dataset for evaluation of counterfactual edits in language models
+--------------------------------------------------
+Q:What do the layers of edits correspond to?
+A:The layers at which edits generalize best correspond to middle layers of the early site identified by 7
+--------------------------------------------------
+--------------------------------------------------
+Q:How do volunteers evaluate the model?
+A:They compare generated text samples on the basis of both fluency and consistency with the inserted fact in order to evaluate model accuracy and effectiveness in producing text.
+--------------------------------------------------
+Q:How many facts does Rank-one Model Editing edit at a time?
+A:One
+Q:What is the purpose of rank-one model editing?
+A:Rome and causal tracing shed light on factual association within gpt, but we have not investigated other kinds of learned beliefs such as logical, spatial, or numerical knowledge. therefore, the final answer is learned beliefs. rank-one model editing is to serve as a tool for understanding mechanisms of knowledge storage.
+--------------------------------------------------
+Q:What method do we use to measure the causal structure of models?
+A:Causal tracing method
+Q:What does the Causal Tracing method do?
+A:Causal tracing method introduces paired interventions that allow explicit measurement of causal indirect effects of individual hidden state vectors.
+--------------------------------------------------
+Q:What has the study done on the information flow in autoregressive transformers?
+A:Autoregressive transformer. we have clarified information flow during knowledge recall in autoregressive transformers.
+Q:Where can the Rank-one Model Editing Code be found?
+A:Open-sourced at https://rome.baulab.info
+--------------------------------------------------
+--------------------------------------------------
+Q:What is the purpose of the integrated gradients saliency maps?
+A:Visualizing the same cases as in figure 10 and figure 11
+Q:How is a model trained on a dataset?
+A:Using a model that is trained on a dataset. using the model as a training set.
+--------------------------------------------------

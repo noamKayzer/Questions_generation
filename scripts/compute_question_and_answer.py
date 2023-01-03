@@ -72,6 +72,11 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
     with torch.no_grad():
         questions_df = mcq.generate_questions(sections=summary_sections,org_sections=original_sections,
                                               sections_ranks=np.ones(len(summary_sections)))
+
+    # When the model hasn't succeeded to generate any questions, may results from too short or no text as input,
+    if len(questions_df) == 0:
+        return [{'question':[],'answer':[],'score':[]}]*len(summary_sections)
+
     if save_name:
         questions_df.to_pickle(dir_path+'GQ.pickle')
         print(f"Stage 1:{dir_path+'GQ.pickle'} has been saved")
@@ -121,16 +126,14 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
             
         with open(f'{dir_path}{save_name}_questions.txt', 'w') as f:
             text_outuput=''
-            print(np.unique(questions_df.section_n_chunk))
             for i in np.unique(questions_df.section_n_chunk):
                 qs_in_sections = questions_df.query(f'section_n_chunk == {i} and use_question == True')
                 for q,a in zip(qs_in_sections[questions_used],qs_in_sections.selected_ans):
                     text_outuput+=f'Q:{q}\nA:{a}\n'
                 text_outuput+= '-'*50 + '\n'
             f.write(text_outuput)
-            print(f"Stage 5:{dir_path}{name}_questions.txt has been saved")
+            print(f"Stage 5:{dir_path}{save_name}_questions.txt has been saved")
 
-    output = []
     # output is a list of questions per section. 
     # Each sections questions ordered by chunks of the section (when the section_len > model_max_len, and the text were splitted to chunks).
     # Chunks questions ordered by RQUGE score.

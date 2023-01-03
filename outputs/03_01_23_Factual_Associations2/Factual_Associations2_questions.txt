@@ -1,0 +1,18 @@
+Q:What do we analyze?
+A:Analyzing the storage and recall of factual associations in autoregressive transformer language models
+Q:What do we analyze in this paper?
+A:In this paper, we analyze the storage and recall of factual associations and find evidence these associations correspond to localized, directly-editable computations.
+Q:What is the purpose of this paper?
+A:Model editing for factual association recall in transformer language models
+--------------------------------------------------
+Q:What method is used to test the finding in model weights?
+A:Rank-one model editing for factual knowledge prediction in gpt models.
+Q:What does the paper investigate?
+A:The paper investigates how factual knowledge is stored within gpt-like transformer models.
+Q:What is the title of this paper?
+A:Modeling factor knowledge: a modeling approach to modeling factual knowledge
+Q:What is a Rank-One Model Editing method?
+A:A method for storing factual knowledge about the world in gpt-like transformer models.
+Q:What determines the weights of transformer models?
+A:Mlps at different middle layers determine the weights of transformer models.
+--------------------------------------------------
