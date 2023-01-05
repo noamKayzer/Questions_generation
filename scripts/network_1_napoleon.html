@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 700px;
+                 height: 700px;
+                 background-color: #eeeeee;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#00FF00", "id": "Great Depression", "label": "Great Depression", "shape": "circle"}, {"color": "#00FF00", "id": "1930", "label": "1930", "shape": "circle"}, {"color": "#00FF00", "id": "1930s", "label": "1930s", "shape": "circle"}, {"color": "#00FF00", "id": "2003", "label": "2003", "shape": "circle"}, {"color": "#00FF00", "id": "Variance", "label": "Variance", "shape": "circle"}, {"color": "#00FF00", "id": "Probability", "label": "Probability", "shape": "circle"}, {"color": "#00FF00", "id": "Hard and soft science", "label": "Hard and soft science", "shape": "circle"}, {"color": "#00FF00", "id": "Science", "label": "Science", "shape": "circle"}, {"color": "#00FF00", "id": "Mathematical model", "label": "Mathematical model", "shape": "circle"}, {"color": "#00FF00", "id": "Statistical model", "label": "Statistical model", "shape": "circle"}, {"color": "#00FF00", "id": "Mathematics", "label": "Mathematics", "shape": "circle"}, {"color": "#00FF00", "id": "Investor", "label": "Investor", "shape": "circle"}, {"color": "#00FF00", "id": "Investment", "label": "Investment", "shape": "circle"}, {"color": "#00FF00", "id": "Risk", "label": "Risk", "shape": "circle"}, {"color": "#00FF00", "id": "Discipline", "label": "Discipline", "shape": "circle"}, {"color": "#00FF00", "id": "Finance", "label": "Finance", "shape": "circle"}, {"color": "#00FF00", "id": "Standard deviation", "label": "Standard deviation", "shape": "circle"}, {"color": "#00FF00", "id": "Covariance", "label": "Covariance", "shape": "circle"}, {"color": "#00FF00", "id": "Random variable", "label": "Random variable", "shape": "circle"}, {"color": "#00FF00", "id": "2000", "label": "2000", "shape": "circle"}, {"color": "#00FF00", "id": "2002", "label": "2002", "shape": "circle"}, {"color": "#00FF00", "id": "Crisis", "label": "Crisis", "shape": "circle"}, {"color": "#00FF00", "id": "Stock market", "label": "Stock market", "shape": "circle"}, {"color": "#00FF00", "id": "Insurance", "label": "Insurance", "shape": "circle"}, {"color": "#00FF00", "id": "Apple", "label": "Apple", "shape": "circle"}, {"color": "#00FF00", "id": "S\u0026P 500", "label": "S\u0026P 500", "shape": "circle"}, {"color": "#00FF00", "id": "Warren Buffett", "label": "Warren Buffett", "shape": "circle"}, {"color": "#00FF00", "id": "The Home Depot", "label": "The Home Depot", "shape": "circle"}, {"color": "#00FF00", "id": "Walmart", "label": "Walmart", "shape": "circle"}, {"color": "#00FF00", "id": "Steve Jobs", "label": "Steve Jobs", "shape": "circle"}, {"color": "#00FF00", "id": "Pancreatic cancer", "label": "Pancreatic cancer", "shape": "circle"}, {"color": "#00FF00", "id": "NeXT Computer", "label": "NeXT Computer", "shape": "circle"}, {"color": "#00FF00", "id": "Benoit Mandelbrot", "label": "Benoit Mandelbrot", "shape": "circle"}, {"color": "#00FF00", "id": "Probability theory", "label": "Probability theory", "shape": "circle"}, {"color": "#00FF00", "id": "Parabola", "label": "Parabola", "shape": "circle"}, {"color": "#00FF00", "id": "Function (mathematics)", "label": "Function (mathematics)", "shape": "circle"}, {"color": "#00FF00", "id": "Fat-tailed distribution", "label": "Fat-tailed distribution", "shape": "circle"}, {"color": "#00FF00", "id": "Normal distribution", "label": "Normal distribution", "shape": "circle"}, {"color": "#00FF00", "id": "Wall Street Crash of 1929", "label": "Wall Street Crash of 1929", "shape": "circle"}, {"color": "#00FF00", "id": "1929", "label": "1929", "shape": "circle"}, {"color": "#00FF00", "id": "1928", "label": "1928", "shape": "circle"}, {"color": "#00FF00", "id": "Black Monday (1987)", "label": "Black Monday (1987)", "shape": "circle"}, {"color": "#00FF00", "id": "Law of large numbers", "label": "Law of large numbers", "shape": "circle"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "Great Depression", "label": "start time", "title": "start time", "to": "1930"}, {"arrows": "to", "from": "Great Depression", "label": "point in time", "title": "point in time", "to": "1930s"}, {"arrows": "to", "from": "2003", "label": "point in time", "title": "point in time", "to": "2003"}, {"arrows": "to", "from": "Variance", "label": "facet of", "title": "facet of", "to": "Probability"}, {"arrows": "to", "from": "Variance", "label": "part of", "title": "part of", "to": "Probability"}, {"arrows": "to", "from": "Hard and soft science", "label": "subclass of", "title": "subclass of", "to": "Science"}, {"arrows": "to", "from": "Mathematical model", "label": "subclass of", "title": "subclass of", "to": "Statistical model"}, {"arrows": "to", "from": "Mathematics", "label": "has part", "title": "has part", "to": "Statistical model"}, {"arrows": "to", "from": "Statistical model", "label": "part of", "title": "part of", "to": "Mathematics"}, {"arrows": "to", "from": "Investor", "label": "field of this occupation", "title": "field of this occupation", "to": "Investment"}, {"arrows": "to", "from": "Investment", "label": "practiced by", "title": "practiced by", "to": "Investor"}, {"arrows": "to", "from": "Risk", "label": "instance of", "title": "instance of", "to": "Discipline"}, {"arrows": "to", "from": "Risk", "label": "studied by", "title": "studied by", "to": "Finance"}, {"arrows": "to", "from": "Standard deviation", "label": "subclass of", "title": "subclass of", "to": "Variance"}, {"arrows": "to", "from": "Covariance", "label": "subclass of", "title": "subclass of", "to": "Variance"}, {"arrows": "to", "from": "Covariance", "label": "facet of", "title": "facet of", "to": "Random variable"}, {"arrows": "to", "from": "2000", "label": "point in time", "title": "point in time", "to": "2000"}, {"arrows": "to", "from": "2002", "label": "point in time", "title": "point in time", "to": "2002"}, {"arrows": "to", "from": "Crisis", "label": "facet of", "title": "facet of", "to": "Stock market"}, {"arrows": "to", "from": "Insurance", "label": "part of", "title": "part of", "to": "Finance"}, {"arrows": "to", "from": "Insurance", "label": "subclass of", "title": "subclass of", "to": "Finance"}, {"arrows": "to", "from": "Insurance", "label": "facet of", "title": "facet of", "to": "Finance"}, {"arrows": "to", "from": "Apple", "label": "part of", "title": "part of", "to": "S\u0026P 500"}, {"arrows": "to", "from": "Apple", "label": "owned by", "title": "owned by", "to": "Warren Buffett"}, {"arrows": "to", "from": "Warren Buffett", "label": "owner of", "title": "owner of", "to": "Apple"}, {"arrows": "to", "from": "The Home Depot", "label": "parent organization", "title": "parent organization", "to": "Walmart"}, {"arrows": "to", "from": "Walmart", "label": "inception", "title": "inception", "to": "2000"}, {"arrows": "to", "from": "Apple", "label": "subsidiary", "title": "subsidiary", "to": "Walmart"}, {"arrows": "to", "from": "Steve Jobs", "label": "significant event", "title": "significant event", "to": "Pancreatic cancer"}, {"arrows": "to", "from": "Apple", "label": "founded by", "title": "founded by", "to": "Steve Jobs"}, {"arrows": "to", "from": "Steve Jobs", "label": "employer", "title": "employer", "to": "Apple"}, {"arrows": "to", "from": "Apple", "label": "stock exchange", "title": "stock exchange", "to": "Stock market"}, {"arrows": "to", "from": "Apple", "label": "instance of", "title": "instance of", "to": "Stock market"}, {"arrows": "to", "from": "S\u0026P 500", "label": "instance of", "title": "instance of", "to": "Stock market"}, {"arrows": "to", "from": "NeXT Computer", "label": "founded by", "title": "founded by", "to": "Steve Jobs"}, {"arrows": "to", "from": "Benoit Mandelbrot", "label": "field of work", "title": "field of work", "to": "Probability theory"}, {"arrows": "to", "from": "Parabola", "label": "subclass of", "title": "subclass of", "to": "Function (mathematics)"}, {"arrows": "to", "from": "Fat-tailed distribution", "label": "opposite of", "title": "opposite of", "to": "Normal distribution"}, {"arrows": "to", "from": "Wall Street Crash of 1929", "label": "point in time", "title": "point in time", "to": "1929"}, {"arrows": "to", "from": "1929", "label": "point in time", "title": "point in time", "to": "1929"}, {"arrows": "to", "from": "1928", "label": "point in time", "title": "point in time", "to": "1928"}, {"arrows": "to", "from": "Black Monday (1987)", "label": "point in time", "title": "point in time", "to": "Black Monday (1987)"}, {"arrows": "to", "from": "Law of large numbers", "label": "subclass of", "title": "subclass of", "to": "Probability"}, {"arrows": "to", "from": "Law of large numbers", "label": "instance of", "title": "instance of", "to": "Probability"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.2,
+            "damping": 0.09,
+            "nodeDistance": 200,
+            "springConstant": 0.05,
+            "springLength": 200
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

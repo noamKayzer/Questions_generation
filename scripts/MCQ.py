@@ -196,6 +196,18 @@ class flanT5MCQ:
         if chunk:
             chunks.append(' '.join(chunk).strip())
         return chunks
+    def filter_questions_by_re(self,q):
+      #start with
+      who_start_re = r'([Ww]ho|WHO .*)'
+      # What is the final answer to the question
+      q_ref_re = r'[Ww]hat is|are the final answer|answers to the question|questions'
+      starts_excluded_re = [who_start_re,q_ref_re]
+      # must have expressions
+      q_mark_re = r'.*\?'
+      start_filter = [re.match(cur_re, q)!=None for cur_re in starts_excluded_re]
+      print(q,re.search(q_mark_re, q))
+      #return True if question is discard
+      return any(start_filter) or re.search(q_mark_re, q)==None
 
     def filter_questions(self,questions, q_sim_mat,ans_sim_mat=None,
                               n_thrs=None,rquge_scores=None, return_index=False):
@@ -210,7 +222,7 @@ class flanT5MCQ:
         cur_qs = questions[i].strip()
         cur_qs = re.sub(r'\.+', '.', cur_qs)
         cur_qs = re.sub(r'\?+', '?', cur_qs)
-        if (not cur_qs.endswith('?')) or cur_qs.lower().startswith('who'):
+        if self.filter_questions_by_re(cur_qs):
           continue
         elif len(selected_questions_idx) >= n_thrs:
           break
@@ -235,7 +247,16 @@ class flanT5MCQ:
             cur_qs = cur_qs.replace('? -','?')
             output_qs.append(cur_qs.capitalize())
       return output_qs
-      
+    
+    def clean_answers(self,answers_list):
+      output_a =[]
+      for a in answers_list:
+          cur_a = a.strip()
+          cur_a = re.sub(r"^\([a-zA-Z]\)|^[a-zA-Z]\)", "", cur_a) # Remove (a) in the start of the answer
+          cur_a = re.sub(r'[Tt]he final answer(:| is: |s are:| is) ?\([A-Za-z]\)\.?$','',cur_a, re.IGNORECASE) #Remove "The final answer is (a)"
+          output_a.append(cur_a.strip().capitalize())
+      return output_a
+
     def show_qs(self,df,i):
           q= df.loc[i,:]
           out=f''
@@ -267,19 +288,21 @@ class flanT5MCQ:
         return [self.replace_abbreviations(cur_text,abrv_dict,only_first,target_form=target_form) for cur_text in text]
 
       if target_form in ['all','both','definition']:
-        target =lambda abrv,long_form_abrv: f' {long_form_abrv} ({abrv})'+ r'\1'
+        target =lambda abrv,long_form_abrv: f'{long_form_abrv} ({abrv})'
       elif target_form=='short':
-        target =lambda abrv,long_form_abrv: f' {abrv}'+ r'\1'
+        target =lambda abrv,long_form_abrv: f'{abrv}'
       elif target_form=='long':
-        target =lambda abrv,long_form_abrv: f' {long_form_abrv}'+ r'\1'
+        target =lambda abrv,long_form_abrv: f'{long_form_abrv}'
 
       #`only_first` resolve only the first abbreviation in the text (e.g. if the text includes the results section, and the abbreviation was define at the introduction, the method will resolve once the abbreviation in the text the model is exposed to)
       for abrv,long_form_abbr in abrv_dict.items():
         text = text.replace(f'{long_form_abbr} ({abrv})',abrv) #first the function abbreviate all occurrences
         text = text.replace(f'{long_form_abbr}({abrv})',abrv) 
-        pattern = re.compile(r'(^|\s|\.)'+abrv+ r'( |[\W\s])')
-        text = re.sub(pattern,target(abrv,long_form_abbr) , text, count=only_first)
-      return text
+        #text = text.replace(long_form_abbr,abrv) 
+        text = re.sub(re.compile(r''+long_form_abbr, re.IGNORECASE),abrv , text)
+        pattern = re.compile(r'(^|\s|\.)('+abrv+')(\W)', re.IGNORECASE)
+        text = re.sub(pattern,r'\1'+target(abrv,long_form_abbr)+ r'\3' ,  text, count=only_first) 
+      return text.strip()
           
     def init_abrv_solver(self,sections,only_first=True):
         '''
@@ -299,7 +322,7 @@ class flanT5MCQ:
         print("Abbreviation", "\t", "Definition")
         print(abrv_dict)
         self.abrv_dict=abrv_dict
-        return partial(self.replace_abbreviations,abrv_dict=abrv_dict,only_first=True) 
+        return partial(self.replace_abbreviations,abrv_dict=abrv_dict,only_first=only_first) 
 
     def filter_section(self,sections, sections_n,condition_idx):
       filter_sections=[]
@@ -364,13 +387,13 @@ class flanT5MCQ:
                     except:
                         print('moving model to cpu!')
                         ans_output,_ = self.get_output_from_prompt(answers_model,ans_input_string,self.answers_generator_args)
-                    ans_output =  solve_abrv_func(ans_output,target_form='all')
+                    ans_output =  solve_abrv_func(self.clean_answers(ans_output),target_form='all')
                     if verbose:
                         for ans in ans_output:
                             print('----Ans:--',ans)
                     short_ans_input_string = "answer to the question: "+cur_qs+" </s> context: " + cur
                     short_ans_output,_ = self.get_output_from_prompt(answers_model,short_ans_input_string,self.short_answers_generator_args)
-                    short_ans_output = solve_abrv_func(short_ans_output,target_form='all')
+                    short_ans_output = solve_abrv_func(self.clean_answers(short_ans_output),target_form='all')
                     if verbose:
                         for ans in short_ans_output:
                             print('----Short Ans:--',ans)
@@ -399,7 +422,7 @@ class QA:
         self.answers_black_list = ['we','they','the authors','authors','author','the author','you','you are','we are',
                                 'the speaker','speaker','the lecturer','lecturer',
                                 'he','he is','she','she is',
-                                  'I','these','those','they are','we do','it','it is']
+                                  'I','these','those','they are','we do','it']
 
     def similar_to_blacklist(self, text):
       text = text.replace('_','')
