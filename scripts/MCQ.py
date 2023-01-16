@@ -84,7 +84,90 @@ class flanT5MCQ:
             self.QG = QG()
         #summarizer = SummarizeText('cpu', "sshleifer/distilbart-cnn-12-6", False, with_model=False)
         [setattr(self,cur_arg,args[cur_arg]) for cur_arg in args.keys()]
+    
+    def generate_questions(self,sections,org_sections,sections_ranks,
+                          verbose=False,answers_model=False):
+        if not answers_model:
+            answers_model = self.model
+        self.solve_abrv_func = self.init_abrv_solver(org_sections,only_first=True) # return a function that solve the abbreviations that were found in the current original text, in the first place of each input
+        assert len(sections_ranks)==len(sections), 'Sections ranks aren\'t consistant with number of ranks'
+        questions_df = pd.DataFrame((),columns=['section_n','section_n_chunk','section_rank','text','question','question_ppl',
+                                                'answer_1','answer_2','answer_3','answer_4',
+                                                'short_answer_1','short_answer_2','short_answer_3','short_answer_4'])
+        
+        
+        sections_chunks = []
+        sections_n = []
+        for i,cur_section in enumerate(sections):
+          if cur_section is not None:
+            cur_section_chunks = self.text_slicer(cur_section)
+            n_chunks = len(cur_section_chunks)
+            sections_chunks.extend(cur_section_chunks)
+            if n_chunks==1:
+                sections_n.append(float(i))
+            else:
+                sections_n.extend([i+0.1*k for k in range(n_chunks)])
+        
+        #filter chunks by `self.min_words_in_section`
+        chunk_above_min_words_thrs = [len(x.split())>self.min_words_in_section for x in sections_chunks]
+        filter_sections_chunks, filter_sections_n =self.filter_section(sections_chunks,sections_n,chunk_above_min_words_thrs)
 
+        for section_i,cur in tqdm(zip(filter_sections_n,filter_sections_chunks)):
+            cur = self.solve_abrv_func(cur,target_form='long')
+            input_string = "generate question: " + cur
+            try:
+                qs,qs_ppl = self.get_output_from_prompt(self.model,input_string,self.generator_args)
+            except:
+                print('moving model to cpu!')
+                
+                qs,qs_ppl = self.get_output_from_prompt(self.model.to('cpu'),input_string,self.generator_args)
+            qs = self.clean_questions(qs)
+            print(f'Total text shape is {self.tokenizer.encode(cur, return_tensors="pt",truncation=False).shape}')
+            if verbose:
+                for cur_qs in qs:
+                    print(f'Qs:{cur_qs}')
+                self.plot_similarity_matrix(qs)
+            #similarity_matrix = self.find_similarity(qs)
+            #qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
+            for i,cur_qs in enumerate(qs):
+                cur_qs = self.solve_abrv_func(cur_qs,target_form='all')
+                print(f'Qs:{cur_qs}')
+                if COMPUTE_ANSWERS:
+                    ans_output, short_ans_output = self.generate_answers( cur_qs, cur, answers_model,verbose)
+                    
+                    while (len(ans_output)<=4 or len(short_ans_output)<=4): #sometimes the outputs results with less than 4 answers
+                        short_ans_output.append('')
+                        ans_output.append('')
+
+                else:
+                    ans_output,short_ans_output=['','','',''],['','','','']
+                questions_df.loc[len(questions_df)] = [int(section_i),section_i,np.round(sections_ranks[int(section_i)],4),cur,cur_qs,qs_ppl[i],
+                                                        ans_output[0],ans_output[1],ans_output[2],ans_output[3],
+                                                        short_ans_output[0],short_ans_output[1],short_ans_output[2],short_ans_output[3]]
+                
+                if verbose:
+                    self.plot_similarity_matrix(qs)
+        return questions_df
+    
+    def generate_answers(self, question, context, answers_model,verbose=False):
+        ans_input_string = "answer to the question, step by step: "+question+" </s> context: " + context #'step by step prefix apply the Chain of Thought reasoning which enables more detailed answer
+        try:
+            ans_output,_ = self.get_output_from_prompt(answers_model,ans_input_string,self.answers_generator_args)
+        except:
+            print('moving model to cpu!')
+            ans_output,_ = self.get_output_from_prompt(answers_model.to('cpu'),ans_input_string,self.answers_generator_args)
+        ans_output =  self.solve_abrv_func(self.clean_answers(ans_output),target_form='all')
+        if verbose:
+            for ans in ans_output:
+                print('----Ans:--',ans)
+        short_ans_input_string = "answer to the question: "+question+" </s> context: " + context
+        short_ans_output,_ = self.get_output_from_prompt(answers_model,short_ans_input_string,self.short_answers_generator_args)
+        short_ans_output = self.solve_abrv_func(self.clean_answers(short_ans_output),target_form='all')
+        if verbose:
+            for ans in short_ans_output:
+                print('----Short Ans:--',ans)
+        return ans_output, short_ans_output
+    
     def get_sections_from_JSON(self,JSON_path,save_file_name=None,save_file_path=None):
       import os
       from datetime import datetime
@@ -196,6 +279,7 @@ class flanT5MCQ:
         if chunk:
             chunks.append(' '.join(chunk).strip())
         return chunks
+    
     def filter_questions_by_re(self,q):
       #start with
       who_start_re = r'([Ww]ho|WHO .*)'
@@ -205,7 +289,7 @@ class flanT5MCQ:
       # must have expressions
       q_mark_re = r'.*\?'
       start_filter = [re.match(cur_re, q)!=None for cur_re in starts_excluded_re]
-      print(q,re.search(q_mark_re, q))
+      #print(q,re.search(q_mark_re, q))
       #return True if question is discard
       return any(start_filter) or re.search(q_mark_re, q)==None
 
@@ -246,6 +330,7 @@ class flanT5MCQ:
             cur_qs = re.sub(r'(?<=\?)\s*[^\w\s\S]*\S*(?=$)', '', cur_qs) #replace any combination of punctuations marks and spaces generate after the question mark
             cur_qs = cur_qs.replace('? -','?')
             output_qs.append(cur_qs.capitalize())
+
       return output_qs
     
     def clean_answers(self,answers_list):
@@ -333,83 +418,6 @@ class flanT5MCQ:
             filter_sections_n.append(sections_n[i])
       return filter_sections, filter_sections_n
 
-    def generate_questions(self,sections,org_sections,sections_ranks,
-                          verbose=False,answers_model=False):
-        if not answers_model:
-            answers_model = self.model
-        solve_abrv_func = self.init_abrv_solver(org_sections,only_first=True) # return a function that solve the abbreviations that were found in the current original text, in the first place of each input
-        assert len(sections_ranks)==len(sections), 'Sections ranks aren\'t consistant with number of ranks'
-        questions_df = pd.DataFrame((),columns=['section_n','section_n_chunk','section_rank','text','question','question_ppl',
-                                                'answer_1','answer_2','answer_3','answer_4',
-                                                'short_answer_1','short_answer_2','short_answer_3','short_answer_4'])
-        
-        
-        sections_chunks = []
-        sections_n = []
-        for i,cur_section in enumerate(sections):
-          if cur_section is not None:
-            cur_section_chunks = self.text_slicer(cur_section)
-            n_chunks = len(cur_section_chunks)
-            sections_chunks.extend(cur_section_chunks)
-            if n_chunks==1:
-                sections_n.append(float(i))
-            else:
-                sections_n.extend([i+0.1*k for k in range(n_chunks)])
-        
-        #filter chunks by `self.min_words_in_section`
-        chunk_above_min_words_thrs = [len(x.split())>self.min_words_in_section for x in sections_chunks]
-        filter_sections_chunks, filter_sections_n =self.filter_section(sections_chunks,sections_n,chunk_above_min_words_thrs)
-
-        for section_i,cur in tqdm(zip(filter_sections_n,filter_sections_chunks)):
-            cur = solve_abrv_func(cur,target_form='long')
-            input_string = "generate question: " + cur
-            try:
-                qs,qs_ppl = self.get_output_from_prompt(self.model,input_string,self.generator_args)
-            except:
-                print('moving model to cpu!')
-                qs,qs_ppl = self.get_output_from_prompt(self.model.to('cpu'),input_string,self.generator_args)
-            qs = self.clean_questions(qs)
-            print(f'Total text shape is {self.tokenizer.encode(cur, return_tensors="pt",truncation=False).shape}')
-            if verbose:
-                for cur_qs in qs:
-                    print(f'Qs:{cur_qs}')
-                self.plot_similarity_matrix(qs)
-            #similarity_matrix = self.find_similarity(qs)
-            #qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
-            for i,cur_qs in enumerate(qs):
-                cur_qs = solve_abrv_func(cur_qs,target_form='all')
-                print(f'Qs:{cur_qs}')
-                if COMPUTE_ANSWERS:
-                    ans_input_string = "answer to the question, step by step: "+cur_qs+" </s> context: " + cur #'step by step prefix apply the Chain of Thought reasoning which enables more detailed answer
-                    #ans_input_string = "answer to the question: "+cur_qs+" </s> context: " + cur
-                    try:
-                        ans_output,_ = self.get_output_from_prompt(answers_model,ans_input_string,self.answers_generator_args)
-                    except:
-                        print('moving model to cpu!')
-                        ans_output,_ = self.get_output_from_prompt(answers_model,ans_input_string,self.answers_generator_args)
-                    ans_output =  solve_abrv_func(self.clean_answers(ans_output),target_form='all')
-                    if verbose:
-                        for ans in ans_output:
-                            print('----Ans:--',ans)
-                    short_ans_input_string = "answer to the question: "+cur_qs+" </s> context: " + cur
-                    short_ans_output,_ = self.get_output_from_prompt(answers_model,short_ans_input_string,self.short_answers_generator_args)
-                    short_ans_output = solve_abrv_func(self.clean_answers(short_ans_output),target_form='all')
-                    if verbose:
-                        for ans in short_ans_output:
-                            print('----Short Ans:--',ans)
-                    while (len(ans_output)<=4 or len(short_ans_output)<=4): #sometimes the outputs results with less than 4 answers
-                        short_ans_output.append('')
-                        ans_output.append('')
-                    assert len(short_ans_output)>=4
-                else:
-                    ans_output,short_ans_output=['','','',''],['','','','']
-                questions_df.loc[len(questions_df)] = [int(section_i),section_i,np.round(sections_ranks[int(section_i)],4),cur,cur_qs,qs_ppl[i],
-                                                        ans_output[0],ans_output[1],ans_output[2],ans_output[3],
-                                                        short_ans_output[0],short_ans_output[1],short_ans_output[2],short_ans_output[3]]
-                
-                if verbose:
-                    self.plot_similarity_matrix(qs)
-        return questions_df
 
 
 
@@ -479,6 +487,7 @@ class QA:
     def select_best_answer(self,questions_df):
         questions_df['generated_selected_ans']=''
         questions_df['selected_ans']=''
+        questions_df['details']=''
         for i in range(len(questions_df)):
             qs = questions_df.iloc[i]
             ans_list = [qs.answer_1,qs.answer_2,qs.answer_3,qs.answer_4,qs.short_answer_1,qs.short_answer_2,qs.short_answer_3,qs.short_answer_4]
@@ -488,7 +497,9 @@ class QA:
                                     ,max_new_tokens=150 )#,return_dict_in_generate =True,output_scores=True)
             questions_df.loc[i,'generated_selected_ans'] = qa_output[0]
             sim_scores = [self.score_string_similarity(qa_output[0].strip().lower(), s.strip().lower()) for s in ans_list] # model output is lowercase and some deleted version of one of the answers, therefore we compute the most similar input answer, and take it as the model output
-            questions_df.loc[i,'selected_ans'] = ans_list[int(np.argmax(sim_scores))]
+            answer_idx = int(np.argmax(sim_scores))
+            questions_df.loc[i,'selected_ans'] = ans_list[answer_idx]
+            questions_df.loc[i,'details'] = 'ANSWER: long .' if answer_idx <=3 else 'ANSWER: short .'
         questions_df = self.filter_by_answers(questions_df,questions_df.selected_ans)
         return questions_df
 
@@ -503,20 +514,26 @@ class QG:
     #self.nlp.add_pipe(Negex(self.nlp))
 
   def check_if_questions_is_negative(self,q):
-    return any([token.dep_=='neg' for token in self.neg_nlp(q)])
+        for token in self.neg_nlp(q):
+            if token.dep_=='neg':
+                return token
+        return False
 
   def format_inputs(self,context: str, answer: str):
     if isinstance(context,list):
-      return [f"{cur_answer} \\n {cur_context}" for cur_answer,cur_context in zip(answer,context)]
+      return [f"{cur_answer} \\n {cur_context}" 
+              for cur_answer,cur_context in zip(answer,context)]
     else:
       return f"{answer} \\n {context}" 
 
   def create_question_MixQG(self,questions_df):
     questions_df['new_question']=''
-
     for i in tqdm(questions_df.index.values):
-      if not self.check_if_questions_is_negative(questions_df.loc[i,'question']):
-        questions_df.loc[i,'new_question']= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
-      else:
-        questions_df.loc[i,'new_question'] = questions_df.loc[i,'question']
+        neg_token =self.check_if_questions_is_negative(questions_df.loc[i,'question'])
+        if not neg_token:
+            questions_df.loc[i,'new_question']= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
+        else:
+            questions_df.loc[i,'new_question'] = questions_df.loc[i,'question']
+            questions_df.loc[i,'details'] = questions_df.loc[i,'details']+ ' NEGATIVE: '+neg_token.text
     return questions_df
+

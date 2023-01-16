@@ -49,7 +49,7 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
         "no_repeat_ngram_size": 3,
         #'force_words_ids':[tokenizer.encode(['.'])],
         'top_p' :0.97,
-        'diversity_penalty':float(8),
+        'diversity_penalty':float(6),
         'num_beam_groups':8,#10,
         "return_dict_in_generate" :True,
         'output_scores':True,
@@ -101,51 +101,55 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
         questions_df.loc[filter_idx,'use_question']=True
         if save_name:
             print(f"Stage 3:{dir_path+'GQ+QA+GQ.pickle'} has been saved")
-            '''fig = mcq.plot_similarity_matrix((questions_df[questions_used]).to_list())
-            fig.update_layout(
-                autosize=False,
-                width=2000,
-                height=2000)
-            fig.show()
-            #both
-            fig = mcq.plot_similarity_matrix((questions_df[questions_used]+' '+questions_df['selected_ans']).to_list())
-            fig.update_layout(
-                autosize=False,
-                width=2000,
-                height=2000)'''
-
 
     if save_name:
         with open(f'{dir_path}{save_name}_questions_full.txt', 'w') as f:
             qs_text =[mcq.show_qs(questions_df,i) for i in questions_df.index.values]
-            text_outuput=''
+            text_output=''
             for i,qs in zip(questions_df.index.values,qs_text):
-                text_outuput += f"({i})TAKEN?{questions_df['use_question'][i]} RQUGE:{round(questions_df['RQUGE'][i],4)}"+'\n'+ qs+"\n\n"
-            f.write(text_outuput)
+                text_output += f"({i})TAKEN?{questions_df['use_question'][i]} RQUGE:{round(questions_df['RQUGE'][i],4)}"+'\n'+ qs+"\n\n"
+            f.write(text_output)
             print(f"Stage 4:{dir_path}{save_name}_questions_full.txt has been saved")
             
         with open(f'{dir_path}{save_name}_questions.txt', 'w') as f:
-            text_outuput=''
+            text_output=''
             for i in np.unique(questions_df.section_n_chunk):
                 qs_in_sections = questions_df.query(f'section_n_chunk == {i} and use_question == True')
                 for q,a in zip(qs_in_sections[questions_used],qs_in_sections.selected_ans):
-                    text_outuput+=f'Q:{q}\nA:{a}\n'
-                text_outuput+= '-'*50 + '\n'
-            f.write(text_outuput)
+                    text_output+=f'Q:{q}\nA:{a}\n'
+                text_output+= '-'*50 + '\n'
+            f.write(text_output)
             print(f"Stage 5:{dir_path}{save_name}_questions.txt has been saved")
 
     # output is a list of questions per section. 
     # Each sections questions ordered by chunks of the section (when the section_len > model_max_len, and the text were splitted to chunks).
     # Chunks questions ordered by RQUGE score.
     output = []
-    for i in range(max(questions_df.section_n)):
-        section_output = {'question':[],'answer':[],'score':[]}
+    for i in range(max(questions_df.section_n)+1):
+        section_output = {'question':[],'answer':[],'score':[],'details':[],'context':[]}
         for chunk in np.unique(questions_df.loc[questions_df.section_n==i,'section_n_chunk']):
             chunk_questions = questions_df.query(f'section_n_chunk=={chunk}')
-            for _,q in chunk_questions.iterrows():
-                if q.use_question:
-                    section_output['question'].append(q.new_question)
-                    section_output['answer'].append(q['selected_ans'])
-                    section_output['score'].append(q['RQUGE'])
+            for _,question in chunk_questions.iterrows():
+                if question.use_question:
+                    section_output['question'].append(question.new_question)
+                    section_output['answer'].append(question['selected_ans'])
+                    section_output['score'].append(question['RQUGE'])
+                    section_output['details'].append(question['details'])
+                    section_output['context'].append(question['text'])
         output.append(section_output)
-    return output
+        
+    from Distractors import Distractors
+    find_dist = Distractors(mcq,original_sections)
+    dist_out = find_dist.generate_distractors(output)
+    if save_name:
+        with open(f'{dir_path}{save_name}_questions_with_distractors.txt', 'w') as f:
+            text_output=''
+            for section_i,section in enumerate(dist_out):
+                for i in range(len(section['question'])):
+                    dist = section['distractors'][i] if section['distractors'][i]!=False else ''
+                    text_output +=f"section {section_i+1} - ({i+1}) {section['question'][i]} --- {section['answer'][i]}\n {dist}\n"
+                text_output += '-'*50+'\n'
+            f.write(text_output)
+            print(f"Stage 6:{dir_path}{save_name}_questions_with_distractors.txt has been saved")
+            
+    return dist_out
