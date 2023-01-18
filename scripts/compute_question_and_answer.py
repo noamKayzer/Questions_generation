@@ -102,7 +102,7 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
         questions_df.loc[filter_idx,'use_question']=True
         if save_name:
             print(f"Stage 3:{dir_path+'GQ+QA+GQ.pickle'} has been saved")
-
+    
     if save_name:
         with open(f'{dir_path}{save_name}_questions_full.txt', 'w') as f:
             qs_text =[mcq.show_qs(questions_df,i) for i in questions_df.index.values]

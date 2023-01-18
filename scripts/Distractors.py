@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import copy
 from sense2vec import Sense2Vec
+from distractors_with_GPTneo import generate_distractors
 
 common_answers_prefix = {'according to', 'as far as','as for','as regards','as to',
                         'based on','concerning','in answer to','in connection with',
@@ -83,6 +84,8 @@ class Distractors:
                                     print('question jitter')'''
                     distractors = [self.mcq_class.solve_abrv_func(d,target_form='all') for d in distractors] \
                                         if distractors!= False else False
+                    if not distractors:
+                        distractors = self.distractors_by_autoregressive_model(q, a, self.original_doc)
                     if distractors != False:
                         print(f'{q} --- {a}\n {distractors}')
                     else:
@@ -152,8 +155,9 @@ class Distractors:
             distractors = self.check_distractors(distractors, answer)
             if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
-
-            return [answer.replace(answer_entity.text,d) for d in distractors]
+            return [re.compile(re.escape(answer_entity.text),re.IGNORECASE).sub(d,answer) for d in distractors]
+         
+            #return [answer.replace(answer_entity.text,d) for d in distractors]
         else:
             return False
     
@@ -187,8 +191,12 @@ class Distractors:
             if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
                 #print([sim_np[i] for i in distractors])
-            return [answer.replace(answer_np.text,d) 
-                    for d in distractors]
+            '''if answer=='All active terrorist organizations maintain websites.':
+                import pdb
+                pdb.set_trace()'''
+            return [re.compile(re.escape(answer_np.text),re.IGNORECASE).sub(d,answer) for d in distractors]
+            #return [answer.replace(answer_np.text,d) 
+            #        for d in distractors]
         else:
             return False
         
@@ -202,7 +210,16 @@ class Distractors:
                     for dist in part_based_distractors:
                         answer_entity_parts[i]=dist
                         distractors += [" ".join(answer_entity_parts)]
-        return distractors    
+        return distractors 
+       
+    def distractors_by_autoregressive_model(self,q, a, doc):
+        
+        distractors = generate_distractors(q, a)
+        distractors = self.check_distractors(distractors, a)
+        if distractors:
+                return distractors
+        else:
+                return []
     
     def find_distractors_s2v(self, term, n=5):
         try:
@@ -246,13 +263,17 @@ class Distractors:
     def check_distractors(self,distractors, answer):
         if distractors==False:
             return False
-        
         good_distractors=[]
         for dist in distractors:
             cur_dist_strip = dist.lower().strip()
-            if cur_dist_strip!='' and cur_dist_strip !=answer.lower():
+            if cur_dist_strip!='' and cur_dist_strip !=answer.strip().lower() and \
+                cur_dist_strip not in [g.lower() for g in good_distractors]:
                 good_distractors.append(dist)
-        return good_distractors
+                
+        if len(good_distractors)==0:
+            return False
+        else:
+            return good_distractors
     
     def get_sim_ents(self, answer_entity, n_output=5, thrs=[0.5,0.8]):
         sim_ents_str = []
