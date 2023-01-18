@@ -1,0 +1,100 @@
+--------------------------------------------------
+TEXT: Crowdfunding platforms allow entrepreneurs to publish projects and raise funds for realizing them. Hence, the question of what influences projects’ fundraising success is very important. Previous studies examined various factors such as project goals and project duration that may influence the outcomes of fundraising campaigns. We present a novel model for predicting the success of crowdfunding projects in meeting their funding goals. Our model focuses on semantic features only, whose performance is comparable to that of previous models. In an additional model we developed, we examine both project metadata and project semantics, delivering a comprehensive study of factors influencing crowdFS. Further, we analyze a large dataset of crowdfunding project data, larger than reported in the art. Finally, we show that when combining semantics and metadata, we arrive at F1 score accuracy of 96.2%. We compare our model’s accuracy to the accuracy of previous research models by applying their methods on our dataset, and demonstrate higher accuracy of our model. In addition to our scientific contribution, we provide practical recommendations that may increase project Funding Success chances.
+
+section 1 - (1) What do we present? --- A novel model for predicting the success of crowdfunding projects in meeting their funding goals.
+ 
+section 1 - (2) What do entrepreneurs use crowdfunding platforms for? --- To raise funds
+ 
+section 1 - (3) What dataset did we analyze? --- In this paper, we present a novel model for crowdfunding projects in meeting their funding goals, which examines both project metadata and project semantics. we analyze large dataset of crowdfunding project data, larger than reported in the art.
+ 
+--------------------------------------------------
+TEXT: In recent years, crowdfunding has emerged as a popular financing mechanism that allows various types of projects to get funded. Three main parties are involved in crowdfunding: entrepreneurs (and their projects), individuals or groups who support the project, and online platforms, i.e., crowdfunding websites. The average success rate of funded crowdfunding projects in Kickstarter is 37.5% [4] In this paper, we refer to a project as a Funding Success (FS) if it achieved its funding goal (i.e.  In contrast to prior studies, we take a more comprehensive approach to studying and predicting FS. We use unique features (for example, the use of buzzwords) and perform extensive research on the semantics of the projects’ text. Our main research objective is to find characteristics, with a focus on semantic characteristics, which affect the success of a project in meeting its funding goal via crowdfunding. This approach leverages known results and improves upon them to provide high-quality FS prediction.  Achieving these research objectives should provide new insights into the relationship between crowdfunding project’s data and their FS. This should provide entrepreneurs with additional and desirable ways to improve their chances of reaching their funding goals. The accuracy of the semantic-model (in terms of F-score and correctly classified instances) is comparable to the accuracy of state-of-the-art models which are based on metadata features such as the number of updates, number of images, etc.  The accuracy of the combined-model is higher than the accuracy derived in previous studies that use other models [11–14] Fourth, we show that buzzwords and Linguistic Inquiry and Word Count are among the highly correlate features with the project’s success in fund raising. Fifth, to the best of our knowledge, our research relies on the largest dataset used to date for developing models that predict FS of crowdfunding projects. In addition to the scientific contributions listed above, we provide a set of recommendations that may increase project FS chances.  The Methodology section focuses on the research methodology applied, including the acquisition of our dataset, preprocessing, feature extraction and selection. The Results section presents the empirical evaluation of our research model and discusses the results. It further compares our models to models in earlier studies.
+section 2 - (1) What does this study show about buzzwords and LIWC? --- Buzzwords and Linguistic Inquiry and Word Count (LIWC) are among the highly correlates features with the project’s success in fund raising, which is a promising approach for crowdfunding.
+ 
+--------------------------------------------------
+TEXT: In this section, we discuss the features used in our models, highlighting where we differ from previous studies. We also present the metric used to measure the accuracy of the models. For semantic analysis, the projects’ textual data is required.
+
+section 3 - (1) What type of textual data is required for semantic analysis? --- Projects
+ ['Only technological projects', 'Their project information', 'Studies', 'Project’s semantic properties']
+--------------------------------------------------
+TEXT: The relationship between Funding Success and buzzwords used in the description of the project was not examined. The buzzword dataset used in this study contains words from different categories: general conversation, education, business, sales and marketing, science and technology, politics, and current affairs.
+
+section 4 - (1) What categories of buzzwords were used in this study? --- Using the buzzword data set, this study found buzzwords in the following categories: general conversation, education, business, sales and marketing, science and technology, politics, and current affairs.
+ 
+section 4 - (2) The relationship between funding success and buzzwords used in the description of the project was what? --- A dataset of buzzwords was used in this study. the buzzword dataset used in the study contains words from different categories: general conversation. the buzzword dataset was a collection of words from various categories. the number of buzz words in the dataset is not examined. the final answer: not examined
+ 
+--------------------------------------------------
+TEXT: We used the Linguistic Inquiry and Word Count software tool to extract features from the text. LIWC analysis measures the appearance of dictionary words in a specific text. The measure is a numeric value in the range [0..1]. It reflects the degree to which the text being analyzed is related to the theme of the dictionary. The output of LIWC is VD = SD/NT, which is the value of the feature that corresponds to D. Previous studies on crowdfunding used LIWC to analyze the textual description part of projects.  The number and diversity of features in our study are much larger than previously published, and our dataset is significantly greater as well. As a result, we arrive at much higher model accuracy.
+
+section 5 - (1) What did we use to extract features from the text? --- Language inquiry and word count software tool
+ 
+section 5 - (2) What was liwc used for in previous studies? --- Using Linguistic Inquiry and Word Count (LIWC) analysis measures the appearance of dictionary words in a specific text. the output of liwc is vd = sd/nt. liwc was used to analyze textual description part of projects in previous studies.
+ 
+--------------------------------------------------
+TEXT: Latent Dirichlet Allocation (LDA) is a widely used topic modeling method. LDA algorithm considers each document as a collection of topics, where each word in the document belongs to one or some of these topics. Previous studies on crowdfunding used LDA to perform topic analysis on the text of project updates. We used the Gensim Python package LDA implementation (from GitHub.com) to execute LDA. The latter is known to run faster than other implementations and generates better topic segregation [16].  The three main inputs to the LDA topic model are the dictionary, the corpus, and the number of topics. Model perplexity and topic coherence provide a convenient measure to judge how good a given topic model is [16] To avoid overfitting, we chose the one that derived the highest coherence value and the smallest number of. topics. There were 30 topics that derived. the highest. coherence values for the All_D dataset, 15 for the Tech_D and 15 for Market_D datasets.
+
+section 6 - (1) What datasets had the highest coherence values? --- Alld, techd,marketd
+ 
+section 6 - (2) What did previous studies on crowdfunding use LDA to perform? --- Topic analysis on the text of project updates
+ 
+--------------------------------------------------
+TEXT: We incorporated metadata features known to affect Funding Success. The metadata features we used were extracted from projects’ posts via Python web scraping. The set we used for our analysis included the number of photos, the. number of videos, the number. of updates, the. number of previously created projects by.
+
+section 7 - (1) How many previously created projects by one person was the answer to our analysis question? --- One of our analysis questions was: how many projects were previously created?. the answer: 1. the number of previously created projects by one person was 1.
+ 
+section 7 - (2) Which of these features is not used to determine Funding Success (FS)? --- Previous created projects by.
+ []
+section 7 - (3) How were the metadata features extracted? --- Projects’ posts were analyzed for metadata features known to affect Funding Success (FS) by using python web scraping.
+ 
+--------------------------------------------------
+TEXT: The following additional topics were deduced: Explanation words: example, explain, for instance, i.e., mean, in other words, in that, that is, etc. Feelings words: angry, annoyed, afraid, awkward, affectionate, anxious, alarmed, awed, aggravated, amazed, amazed.
+
+section 8 - (1) What are words that describe a feeling? --- Words that describe feeling include: awed. awed is a feeling.
+ 
+--------------------------------------------------
+--------------------------------------------------
+TEXT: We used a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. We obtained these data from the Kaggle website for 2018. We used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc. For each record in the dataset, we obtained the values of five metadata features and about 120 semantic features, including buzzwords, Linguistic Inquiry and Word Count outputs, feelings words, explanation words, and Latent Dirichlet Allocation outputs. We removed LDA topics that overlapped with LIWC topics by comparing the topic sets.  To study the relationship between features and the project category, we built three datasets: All_D, Tech_D and Market_D. The division aims to address the following analysis goals: First, it facilitates improvement in the LDA topic coherence score. Second, it allows us to determine whether a category affects the features that are highly correlated with Funding Success. Third, to study the correlation between buzzwords and FS, it is preferable for datasets to be separated into specific subdomains.  For each dataset, the original features space was reduced into three Principal Components The sum of the explained variance ratio of these three PCs is 78% of the total variance. To identify the most Significant Set of Features (MSSF) that has the highest impact on FS, we use the CFS (correlation-based feature selection) algorithm. The Principal Component Analysis plots in Fig 1 present the distribution of the All_D, Market_D and Tech_D datasets. Dots in blue represent unsuccessfully funded projects and red represent successfully funded projects.  The models’ design, derivation, and operational tests were conducted using the following Python packages: scikit-learn, scikits-feature and LightGBM. We employed a 10-fold cross-validation test to evaluate the prediction performance. Fig 2 includes a flowchart of the methodology. To validate the results of our study, we compared our model’s accuracy to previous research models by applying their methods on our dataset. To this end, we have developed the combined-model, whose novelty lies in the combination of semantic and meta-data features.
+
+section 10 - (1) What did we develop? --- A combined model for Funding Success (FS) (fs) in kickstarter and indiegogo projects.
+ 
+section 10 - (2) What are the three datasets used to study the relationship between features and project category? --- All_d, market_d and tech_d datasets.
+ ['Every dataset.', 'Market_d.', 'Tech_d.', 'All_d..']
+section 10 - (3) What was the test dataset used to train the model? --- A large dataset of kickstarter and indiegogo projects was used to train the model, which is a combination of semantic and meta-data features. the model was trained on the dataset of 50,000 kickstarter projects and 50,00 indiegog projects. the models were trained on a 10-fold cross-validation test.
+ 
+section 10 - (4) What was developed to combine the features of the three datasets? --- A large dataset of kickstarter and indiegogo projects was used to train the model to predict Funding Success (FS) (fs). the model was trained on the following datasets: all_d, market_d and tech_d. the model performed well in predicting fs. the combined model was developed to combine the features of the three dataset.
+ 
+--------------------------------------------------
+--------------------------------------------------
+TEXT: In this section, we provide details of the data setup, the usage of the Latent Dirichlet Allocation algorithm, the feature correlation analysis, and the feature selection process. In what follows we describe the way in which we found the features that are most influential for Funding Success. The CFS algorithm evaluates subsets of features based on the individual predictive ability of each feature along with the degree of redundancy between them.  The semantic features buzzwords and Linguistic Inquiry and Word Count are among the features that have a higher correlation in all datasets. An important, unique conclusion of our study is that the features correlated to FS are dependent on the project category. Among the top 10 features, about 70% of the features are the same across datasets. For example, the features feelings_num and buzz_num appear in the three top 10 lists. In contrast, the parameter WC is unique in the R_Tech _D top 10 list and the parameter number is distinctive.
+
+section 12 - (1) Which datasets has a unique parameter WC? --- R_tech _d datasets
+ 
+section 12 - (2) What are the most influential features for Funding Success? --- This paper describes the data setup, the usage of Latent Dirichlet Allocation (LDA) algorithm, the feature correlation analysis, and the feature selection process. we find that the following feature are most influential for Funding Success (FS): buzzwords linguistic inquiry word count word %
+ 
+section 12 - (3) What does the cfs algorithm evaluate? --- This paper describes the data setup, the usage of Latent Dirichlet Allocation (LDA) algorithm, the feature correlation analysis, and the feature selection process. the cfs algorithm evaluates subsets of features based on the individual predictive ability of each feature along with the degree of redundancy between them.
+ 
+--------------------------------------------------
+TEXT: For the development of the Semantic-Model, semantic features were used as input. We utilized several machine learning algorithms (including SVM, J48, Random Forest, LightGBM, SDG, DNN, and more) on All_D. Table 2 presents the accuracies metrics of the combined-model: Combined model.  The semantic-model we have developed is comparable in accuracy with the state of the art (metadata) models, exhibiting an accuracy level of 91.2%. The LightGBM algorithm exhibited a high accuracy level for all three datasets. In particular, the accuracy of the prediction model is greater than 94% for all datasets.
+
+section 13 - (1) What was used as input for the development of the semantic-model? --- To develop the semantic-model, semantic features were used as input.
+ 
+section 13 - (2) On what dataset was the proposed model evaluated? --- The proposed models were evaluated on the following datasets: all_d.
+ 
+section 13 - (3) What machine learning algorithms were used? --- Semantic features were used as input. we utilized several machine learning algorithms (including svm, j48, random forest, lightgbm, sdg, dnn, and more) on all_d.
+ 
+section 13 - (4) On what datasets did we utilize machine learning algorithms? --- All_d datasets.
+ ['A much smaller and very specific dataset.', 'R_all_d.', 'Its general data structure.', 'The all records.']
+--------------------------------------------------
+TEXT: The study aims to examine whether the set of features we use for prediction and the dataset on which learning was applied deliver a better model by means of F-score accuracy. We trained the Latent Dirichlet Allocation-Model and the Metadata-Model with the algorithms that were used in the studies above, and with additional algorithms, including SVM, J48, Random forest, LightGBM, SDG, and DNN. This training was performed on All_D with 10-fold cross-validation.  F-score is used for consistency with the earlier studies to which we compare. Figure shows that the model we developed has the highest accuracy. The accuracy of the Semantic-Model is similar to that of the LDA-Model and the Metadata-Model.
+
+section 14 - (1) How was the training performed? --- Using a set of features we use for prediction and the dataset on which learning was applied, we trained a model on all_d with 10-fold cross_validation.
+ 
+section 14 - (2) What does the figure show? --- Model we developed has the highest accuracy. the accuracy of the semantic-model is similar to that of the Latent Dirichlet Allocation (LDA)-model and the metadata-model.
+ 
+--------------------------------------------------
+TEXT: The study is the first that investigates the relationship between Funding Success and buzzwords. The buzzwords feature is among the features that are highly correlated to FS compared to other parameters that we examined and that other researchers examined. We developed a novel model based on semantic features only and achieved similar accuracy level as previous studies. We also developed a prediction model with an impressive Fscore of 96.2%, focusing on both project-specific aspects and semantics of project descriptions. The results of our study are highly relevant to fundraisers using crowdfunding web platforms.  Future research could further improve accuracy by considering the characteristics of images, video content and the semantics of video scripts. Further improvements in the model’s performance could be achieved via novel feature selection algorithms.
+
+section 15 - (1) What feature is highly correlated to FS? --- Buzzwords feature
+ ['The semantic features buzzwords feature', 'The topic–keyword distribution feature', 'Terms feature', 'Semantics feature']
+section 15 - (2) What model did we develop? --- Model based on semantic features only. model focusing on both project-specific aspects and semantics of project descriptions.
+ 

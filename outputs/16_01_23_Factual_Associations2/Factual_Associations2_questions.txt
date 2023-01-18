@@ -1,0 +1,15 @@
+Q:Where does the information accumulate?
+A:Middle layer of the mlp
+--------------------------------------------------
+Q:What type of memory can MLPs be modeled as?
+A:Associative
+--------------------------------------------------
+Q:How does the optimization affect the model weights?
+A:Optimization does not directly alter model weight; it identifies a vector representation v that when output at the targeted mlp module represents the new property for the subject s.
+Q:Why can't a convolutional network solve this problem?
+A:It can only solve the least-squares problem.
+Q:What are the steps in selecting the subject?
+A:Choose inputs that represent the subject at its last token as a key. choose some vector value vâ that encodes a new relation (r, o) as property of subject. sample inputs by using g and g(m(l) i:= z)
+Q:How does Bau solve the constrained least-squares problem?
+A:We solve the constrained least-squares problem using a fully connected layer. we use the moore-penrose pseudoinverse to solve the problem.
+--------------------------------------------------

@@ -1,0 +1,6 @@
+section 1 - (1) Where does the information accumulate? --- Middle layer of the mlp
+ 
+--------------------------------------------------
+section 2 - (1) What type of memory can MLPs be modeled as? --- Associative
+ What type of memory can mlps be modeled as?
+--------------------------------------------------

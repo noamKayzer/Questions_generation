@@ -329,7 +329,7 @@ class flanT5MCQ:
             cur_qs = re.sub(r'_+$', '', cur_qs)
             cur_qs = re.sub(r'(?<=\?)\s*[^\w\s\S]*\S*(?=$)', '', cur_qs) #replace any combination of punctuations marks and spaces generate after the question mark
             cur_qs = cur_qs.replace('? -','?')
-            output_qs.append(cur_qs.capitalize())
+            output_qs.append(cur_qs.strip())
 
       return output_qs
     
@@ -339,7 +339,7 @@ class flanT5MCQ:
           cur_a = a.strip()
           cur_a = re.sub(r"^\([a-zA-Z]\)|^[a-zA-Z]\)", "", cur_a) # Remove (a) in the start of the answer
           cur_a = re.sub(r'[Tt]he final answer(:| is: |s are:| is) ?\([A-Za-z]\)\.?$','',cur_a, re.IGNORECASE) #Remove "The final answer is (a)"
-          output_a.append(cur_a.strip().capitalize())
+          output_a.append(cur_a.strip())
       return output_a
 
     def show_qs(self,df,i):
@@ -534,7 +534,7 @@ class QG:
         neg_token =self.check_if_questions_is_negative(questions_df.loc[i,'question'])
         if not neg_token:
             new_question= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
-            if all([word in questions_df.loc[i,'question'] for word in new_question.split()]):
+            if all([word.lower() in questions_df.loc[i,'question'].lower() for word in new_question.split()]):
                 questions_df.loc[i,'new_question']= questions_df.loc[i,'question']
             else:
                 questions_df.loc[i,'new_question']= new_question  

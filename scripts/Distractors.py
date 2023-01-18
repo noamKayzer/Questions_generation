@@ -81,7 +81,7 @@ class Distractors:
                                 distractors = self.distractors_by_question_np_jittering(q,self.original_doc,context)
                                 if distractors:
                                     print('question jitter')'''
-                    distractors = [self.mcq_class.solve_abrv_func(d,target_form='all').capitalize() for d in distractors] \
+                    distractors = [self.mcq_class.solve_abrv_func(d,target_form='all') for d in distractors] \
                                         if distractors!= False else False
                     if distractors != False:
                         print(f'{q} --- {a}\n {distractors}')
@@ -119,6 +119,7 @@ class Distractors:
             distractors = short_ans_output
         if distractors == ['']:
             return False
+        distractors = self.check_distractors(distractors, answer)
         if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
         distractors = filter_distractors(answer, distractors)
@@ -136,18 +137,19 @@ class Distractors:
                 if len(distractors) < self.n_outputs:
                     distractors += self.find_distractors_s2v(answer_entity.text+'|'+answer_entity.label_,70)
                     distractors = self.filter_date_distractors(answer_entity.text,answer_entity.label_,distractors)
+
             else:
                 sim_ents = self.get_sim_ents(answer_entity,n_output=20,thrs=[0.3,0.9])
                 distractors = filter_distractors(answer_entity.text, [ent for ent in list(sim_ents.keys())])
-                
+                distractors = self.check_distractors(distractors, answer)
                 if len(distractors) < self.n_outputs:
                     distractors += self.find_distractors_s2v(answer_entity.text+'|'+answer_entity.label_,10)
                     distractors = filter_distractors(answer_entity.text,distractors)
-                    
+            distractors = self.check_distractors(distractors, answer)        
             if len(distractors) < self.n_outputs:
                 # if the answer contains entity with number 3 minutes, we can split the number and find distractors based on the number, and than add the second part 
                 distractors = self.distractors_by_number(question,answer_entity.text,doc,distractors)
-
+            distractors = self.check_distractors(distractors, answer)
             if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
 
@@ -164,6 +166,7 @@ class Distractors:
                 answer_nlp.ents[0].label_ in ['TIME','PERCENT','MONEY','QUANTITY','ORDINAL','CARDINAL'] and \
                     answer_nlp.ents[0].has_vector: 
                 distractors = self.distractors_by_ents(question, answer_nlp.ents[0].text, doc)
+                distractors = self.check_distractors(distractors, answer)
                 if distractors:
                     return [answer.replace(answer_nlp.ents[0].text,d) 
                         for d in distractors]
@@ -171,6 +174,7 @@ class Distractors:
             sim_np = self.get_sim_noun_phrases(answer_np,doc,n_output=70,thrs=[0.4, 0.75])
             distractors = filter_distractors(answer_np.text, [ent for ent in list(sim_np.keys())])
             
+            distractors = self.check_distractors(distractors, answer)
             if len(distractors) < self.n_outputs:
                 distractors += self.find_distractors_s2v(answer_np.text+'|NOUN',10)
                 distractors = filter_distractors(answer_np.text,distractors)
@@ -178,10 +182,11 @@ class Distractors:
                     # if the answer contains entity with number 3 minutes, we can split the number and find distractors based on the number, and than add the second part 
                     distractors = self.distractors_by_number(question,answer_np.text,doc,distractors)
                     print(distractors)
+            distractors = self.check_distractors(distractors, answer)
+            
             if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
                 #print([sim_np[i] for i in distractors])
-
             return [answer.replace(answer_np.text,d) 
                     for d in distractors]
         else:
@@ -237,7 +242,18 @@ class Distractors:
             return [candidates[i] for i in same_format]
         elif ent_type=='TIME':
             return candidates
-
+        
+    def check_distractors(self,distractors, answer):
+        if distractors==False:
+            return False
+        
+        good_distractors=[]
+        for dist in distractors:
+            cur_dist_strip = dist.lower().strip()
+            if cur_dist_strip!='' and cur_dist_strip !=answer.lower():
+                good_distractors.append(dist)
+        return good_distractors
+    
     def get_sim_ents(self, answer_entity, n_output=5, thrs=[0.5,0.8]):
         sim_ents_str = []
         sim_ents = {}

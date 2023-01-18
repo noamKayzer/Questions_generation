@@ -1,0 +1,66 @@
+section 1 - (1) What do machine-learning systems increasingly use? --- Class of techniques called deep learning.
+ 
+section 1 - (2) Which of these is not a type of machine learning? --- Human engineering
+ Pattern recognition
+section 1 - (3) What are some of the applications of machine learning? --- Machine-learning systems are used to identify objects in images, transcribe speech into text, match news items, posts or products with users’ interests, and select relevant results of search. increasingly, these applications make use of a class of techniques called deep learning.
+ Deep neural networks
+--------------------------------------------------
+section 2 - (1) What procedure do most practitioners use? --- Stochastic Gradient Descent (SGD))
+ 
+section 2 - (2) What does deep learning allow? --- Recurrent nets have shone light on sequential data such as text and speech using deep learning. deep learning allows computational models that are composed of multiple processing layers to learn representations of data with multiple levels of abstraction.
+ 
+section 2 - (3) What does the gradient vector do? --- To properly adjust the weight vector, the learning algorithm computes a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount.
+ 
+section 2 - (4) What has deep learning dramatically improved? --- In speech recognition, visual object recognition, object detection and many other domains such as drug discovery and genomics.
+ 
+section 2 - (5) What does the SGD process do? --- Stochastic Gradient Descent (SGD) (sgd) is the process whereby practitioners show the input vector for a few examples and compute the outputs and errors, and computing the average gradient for those examples, and adjusting the weights accordingly. to properly adjust the weight vector, the learning algorithm computes a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount.
+ 
+section 2 - (6) Where do we compute the error derivative with respect to the output of each unit? --- Each hidden layer
+ Several layers
+section 2 - (7) How does a deep learning network learn to recognize objects? --- In this example, we are going to use a simple deep learning architecture to learn to recognize objects. the basic idea is that the network learns to recognize the objects by performing a series of tasks on the input data. each task is performed on the output of the previous task and the output is compared to the input.
+ | multilayer neural networks
+--------------------------------------------------
+section 3 - (1) When was interest in deep feedforward networks revived? --- 2006
+ 
+section 3 - (2) Which of these is not a serious issue in general in general? --- Local minima are not a serious issue in general in general.
+ Hidden layers can be seen as distorting the input
+section 3 - (3) What do many applications of deep learning use? --- Deep learning uses feedforward neural networks to map a fixed-size input (for example, an image) to a fix size output.
+ 
+section 3 - (4) During what decade was the idea of backpropagation discovered? --- 1980s
+ 2009
+--------------------------------------------------
+section 4 - (1) Where are units in a ConvNet organized? --- In feature maps
+ In higher-level features
+section 4 - (2) What are the first few stages of a ConvNet composed of? --- Two types of layers: convolutional layers and pooling layers.
+ In recognition
+--------------------------------------------------
+section 5 - (1) How many layers of relus are in a convnet architecture? --- 10 to 20 layers of relus are in a convnet architecture.
+ 15 layers of relus are in a convnet architecture.
+section 5 - (2) What other applications are ConvNets being used for? --- Mobileye and nvidia are using convnet-based methods in their autonomous mobile robots and self-driving cars. other applications gaining importance involve natural language understanding14 and speech recognition7
+ 3 layers of relus are in a convnet architecture.
+section 5 - (3) What are two examples of ConvNet-based applications that are gaining in importance? --- Face recognition and speech recognition
+ 4 layers of relus are in a convnet architecture.
+--------------------------------------------------
+section 6 - (1) What are the word vectors in a language model composed of? --- These word vectors are composed of learned features that were not determined ahead of time by experts, but automatically discovered by the neural network
+ 
+section 6 - (2) What does deep-learning theory show about deep nets? --- Using distributed representations deep nets have two different exponential advantages over classic learning algorithms that do not use distributed representation21. both of these advantages arise from the power of composition and depend on the underlying data-generating distribution having an appropriate componential structure40.
+ 
+section 6 - (3) What are the two advantages of deep nets over classic learning algorithms? --- Power of composition and depend on the underlying data-generating distribution having an appropriate componential structure40
+ 
+--------------------------------------------------
+section 7 - (1) What can one do instead of translating a French sentence into an English sentence? --- Translating the meaning of an image
+ 
+section 7 - (2) What was backpropagation first introduced to? --- Recurrent Neural Networks (RNNs) were first introduced to train RNNs (rnns)
+ 
+section 7 - (3) What have long short-term memory networks proven to be more effective than conventional RNNs? --- They have several layers for each time step87, enabling an entire speech recognition system that goes all the way from acoustics to the sequence of characters in the transcription. memory networks have yielded excellent performance on standard question-answering benchmarks.
+ 
+--------------------------------------------------
+section 8 - (1) What do we expect to see in the future? --- We expect much of the future progress in vision to come from systems that are trained end-to-end and combine convnets with Recurrent Neural Networks (RNNs) that use reinforcement learning to decide where to look.
+ 
+section 8 - (2) What type of learning is largely unsupervised? --- Learning is largely unsupervised: we discover the structure of the world by observing it, not by being told the name of every object. human and animal learning is mainly unsupervised.
+ 
+section 8 - (3) What are the parameters of a RNN? --- Recurrent Neural Networks (RNNs) are trained by using reinforcement learning. reinforcement learning is used to train RNNs. the same parameters (matrices u,v,w) are used at each time step.
+ 
+section 8 - (4) Which of these is not a type of neural network? --- An unfolded network.
+ Reinforcement learning
+--------------------------------------------------

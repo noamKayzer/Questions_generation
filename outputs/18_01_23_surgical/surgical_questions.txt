@@ -1,0 +1,94 @@
+Q:What do we present in this study?
+A:A supervised model for Duration of Surgery (DOS).
+Q:How is the accuracy of the DOS prediction model improved?
+A:To improve the accuracy of Duration of Surgery (DOS) prediction models, we introduce a novel feature set on which the model was trained.
+Q:What did we identify?
+A:The 10 most influential features and the 10 causal features
+--------------------------------------------------
+Q:What are some of the things we do to help the model's predictions?
+A:In this paper, we use Machine Learning (ML) to predict Duration of Surgery (DOS) for both elective and emergency surgeries. we use a broad range of patient features and surgical staff features to explain the model’s predictions. we also use explanatory algorithms to analyze our model’ s predictions and causal inference algorithms. we provide a prediction for both the elective (elective surgery) and the emergency surgery classes. we study a wide range of patients and surgical personnel features. we analyze the model's predictions using explanatorial algorithms.
+--------------------------------------------------
+Q:What are the six stages of the methodology?
+A:Collecting and preprocessing a dataset, finding the causal relationship between features and Duration of Surgery (DOS); developing a dos-supervised regression model, referred to as dosm.
+--------------------------------------------------
+Q:What was used to handle missing data of other features?
+A:Sequence of Regression Models (SRM) technique.
+Q:Where was the data obtained from?
+A:Tel Aviv Sourasky Medical Center (TASM) (a public hospital)
+--------------------------------------------------
+Q:What are the two main Machine Learning model types?
+A:Propensity score and heterogeneity model
+Q:What does the Average Treatment Effect of a feature do?
+A:Measures difference in the mean between data records with different values assigned to a feature whose value range is binary
+Q:What are the two main Machine Learning model types used for estimating causal effects?
+A:Average Treatment Effect (ATE) values could not be computed accurately, as a feature in a surgery record only has an observed value and cannot be assigned other values. we use eq (1) and its extensions to calculate ate. two main Machine Learning (ML) model types, propensity and heterogeneity models, are used for estimating causal effects.
+Q:What are the heterogeness and propensity models?
+A:Propensity models are used to reduce confounding variables’ effects and the implied bias. the latter models are use for estimating the heterogeneity of the treatment effect. to develop the heterogeness model, we used forest-based algorithms.
+--------------------------------------------------
+Q:What dataset was used for training and testing?
+A:The Surgery Dataset (SD) was used
+Q:What percentage of the Surgery Dataset was used for training model?
+A:70% of the Surgery Dataset (SD) was used for training model.
+Q:What models were used to predict binary and high-variance continuous variables in the healthcare domain?
+A:We used the following models: rf Gradient Boosted Trees (GBT) Deep Neural Networks (DNNs).
+Q:What did we split for training and testing?
+A:Surgery Dataset (SD): 70% for training and 30% for testing.
+Q:What three types of models were used?
+A:A model was trained on this dataset. the model was composed of: rf, Gradient Boosted Trees (GBT), and Deep Neural Networks (DNNs).
+--------------------------------------------------
+Q:What method is commonly used to fully and effectively utilize data?
+A:This method is used to evaluate the performance of a model. the metrics used are Mean Absolute Error (MAE), mean absolutity percentage (map), and root mean square erron (rmse). the k-fold cross-validation method is commonly used to fully and effectively utilize data.
+Q:What method was used to evaluate the grid search output?
+A:Mean Absolute Error (MAE), mean absolutity percentage erron and Root Mean Square Error (RMSE) are regression metrics. k-fold cross-validation is a commonly used method to fully and effectively utilize data.
+Q:What metrics were used to evaluate the model's performance?
+A:Three regression metrics were used: Mean Absolute Error (MAE), mean absolutity percentage erron and root mean square err.
+--------------------------------------------------
+Q:What was the baseline model able to predict?
+A:The baseline was a model that used a single feature to predict the Duration of Surgery (DOS). the model was able to predict a significant amount of the duration.
+Q:What methods did we use to compute the correlation between the independent features and the dependent feature?
+A:Pearson correlation and SHAP
+Q:What did we use to identify the features that influence the Duration of Surgery prediction?
+A:We used pearson correlation to compute the correlation between the independent features and the dependent feature and then, we used Shapley Additive Explanations (SHAP) to estimate the contribution of each feature to the model’s prediction.
+--------------------------------------------------
+Q:What did we do so that the comparison would not be based on highly correlated features?
+A:Filtered out features that had high correlation with the causal
+Q:What was the DOSM-F model used for?
+A:The model dosm-f is similar to dosm, but with filtered feature set. the model was used to estimate the potential change in the Duration of Surgery (DOS) as a result of variations in causal feature values.
+--------------------------------------------------
+--------------------------------------------------
+Q:What dataset were the causal analysis models trained on?
+A:Surgery Dataset (SD).
+Q:What are the inputs to the causal analysis models?
+A:Counterfactual features x and vector for the model’s target feature y
+Q:What model was used for causal analysis?
+A:We used the Heterogeneity Treatment Effect (HTE) model. the propensity model was used for causal analysis.
+Q:How many of the top 10 causal features are among the novel features?
+A:A total of 10 causal feature vectors were used to model a Surgery Dataset (SD). the top 10 causal features are shown in table 1. half of these features are among the novel features.
+--------------------------------------------------
+Q:What was the derived uncertainty of the model?
+A:4.1 minutes
+--------------------------------------------------
+Q:What dataset was the Barket-FM-DOSM trained on?
+A:Surgery Dataset (SD).
+Q:Does the dataset or machine learning algorithms have a bearing on the model's performance?
+A:No one
+Q:What model is used in the paper?
+A:The paper uses the barket-fm-dosm model
+--------------------------------------------------
+Q:Where is Table 1 located?
+A:Section 2
+Q:What was used to compute feature importance?
+A:The Shapley Additive Explanations (SHAP) algorithm.
+Q:3 out of 8 features selected are the same for which two methods?
+A:Shapley Additive Explanations (SHAP) and pearson correlation.
+--------------------------------------------------
+Q:What model had the best performance?
+A:A Gradient Boosted Trees (GBT) model
+Q:Did the model outperform earlier models?
+A:The study used supervised Machine Learning (ML) models to develop supervised models that predict Duration of Surgery (DOS) from features related to patients, physicians, and surgeries. the model outperformed earlier models.
+Q:What did the model do in terms of MAE?
+A:Models that predict Duration of Surgery (DOS) from features related to patients, physicians, and surgeries. models outperformed earlier models in terms of Mean Absolute Error (MAE).
+Q:What did we do to decrease patient waiting time?
+A:Using Machine Learning (ML) to predict Duration of Surgery (DOS) from features related to patients
+--------------------------------------------------
+--------------------------------------------------

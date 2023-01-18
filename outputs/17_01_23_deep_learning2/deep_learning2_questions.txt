@@ -1,0 +1,32 @@
+Q:What do machine-learning systems increasingly use?
+A:Class of techniques called deep learning.
+Q:Which of these is not a type of machine learning?
+A:Human engineering
+Q:What are some of the applications of machine learning?
+A:Machine-learning systems are used to identify objects in images, transcribe speech into text, match news items, posts or products with users’ interests, and select relevant results of search. increasingly, these applications make use of a class of techniques called deep learning.
+--------------------------------------------------
+Q:What procedure do most practitioners use?
+A:Stochastic Gradient Descent (SGD))
+Q:What does deep learning allow?
+A:Recurrent nets have shone light on sequential data such as text and speech using deep learning. deep learning allows computational models that are composed of multiple processing layers to learn representations of data with multiple levels of abstraction.
+Q:What does the gradient vector do?
+A:To properly adjust the weight vector, the learning algorithm computes a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount.
+Q:What has deep learning dramatically improved?
+A:In speech recognition, visual object recognition, object detection and many other domains such as drug discovery and genomics.
+Q:What does the SGD process do?
+A:Stochastic Gradient Descent (SGD) (sgd) is the process whereby practitioners show the input vector for a few examples and compute the outputs and errors, and computing the average gradient for those examples, and adjusting the weights accordingly. to properly adjust the weight vector, the learning algorithm computes a gradient vector that, for each weight, indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount.
+--------------------------------------------------
+Q:Where do we compute the error derivative with respect to the output of each unit?
+A:Each hidden layer
+Q:How does a deep learning network learn to recognize objects?
+A:In this example, we are going to use a simple deep learning architecture to learn to recognize objects. the basic idea is that the network learns to recognize the objects by performing a series of tasks on the input data. each task is performed on the output of the previous task and the output is compared to the input.
+--------------------------------------------------
+Q:When was interest in deep feedforward networks revived?
+A:2006
+Q:Which of these is not a serious issue in general in general?
+A:Local minima are not a serious issue in general in general.
+Q:What do many applications of deep learning use?
+A:Deep learning uses feedforward neural networks to map a fixed-size input (for example, an image) to a fix size output.
+Q:During what decade was the idea of backpropagation discovered?
+A:1980s
+--------------------------------------------------

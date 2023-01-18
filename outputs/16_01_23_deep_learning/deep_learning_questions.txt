@@ -1,0 +1,7 @@
+Q:What do machine-learning systems increasingly use?
+A:Class of techniques called deep learning.
+Q:Which of these is not a type of machine learning?
+A:Human engineering
+Q:What are some of the applications of machine learning?
+A:Machine-learning systems are used to identify objects in images, transcribe speech into text, match news items, posts or products with users’ interests, and select relevant results of search. increasingly, these applications make use of a class of techniques called deep learning.
+--------------------------------------------------
