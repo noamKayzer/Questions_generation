@@ -11,7 +11,8 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
     output - [
               { 'question': [Q1,Q2,...,Q_max],
                 'answer': [A1,A2,...,A_max],
-                'score': [score1,score2,...,score_max]},
+                'score': [score1,score2,...,score_max],
+                'context': [text1,text2,...,text_max]}
                 ...,
               {'question': [Q1,Q2,...,Q_max],
                'answer': [A1,A2,...,A_max],
@@ -145,11 +146,28 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
         with open(f'{dir_path}{save_name}_questions_with_distractors.txt', 'w') as f:
             text_output=''
             for section_i,section in enumerate(dist_out):
+                text_output += '-'*50+'\n'
+                if len(section['question'])==0:
+                    continue
+                text_output+=(f"TEXT: {section['context'][0]}\n\n")
                 for i in range(len(section['question'])):
                     dist = section['distractors'][i] if section['distractors'][i]!=False else ''
-                    text_output +=f"section {section_i+1} - ({i+1}) {section['question'][i]} --- {section['answer'][i]}\n {dist}\n"
-                text_output += '-'*50+'\n'
+                    text_output += f"section {section_i+1} - ({i+1}) {section['question'][i]} --- {section['answer'][i]}\n {dist}\n"
             f.write(text_output)
             print(f"Stage 6:{dir_path}{save_name}_questions_with_distractors.txt has been saved")
+            
+    if save_name:
+        with open(f'{dir_path}{save_name}_questions_without_distractors.txt', 'w') as f:
+            text_output=''
+            for section_i,section in enumerate(dist_out):
+                text_output += '-'*50+'\n'
+                if len(section['question'])==0:
+                    continue
+                text_output+=(f"TEXT: {section['context'][0]}\n\n")
+                for i in range(len(section['question'])):
+                    if not section['distractors'][i]:
+                        text_output += f"Qs: {section['question'][i]} --- {section['answer'][i]}\n"
+            f.write(text_output)
+            print(f"Stage 7:{dir_path}{save_name}_questions_without_distractors.txt has been saved")
             
     return dist_out

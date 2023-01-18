@@ -11,6 +11,8 @@ from functools import partial
 import pandas as pd
 import numpy as np
 import copy
+from sense2vec import Sense2Vec
+
 common_answers_prefix = {'according to', 'as far as','as for','as regards','as to',
                         'based on','concerning','in answer to','in connection with',
                         'in consideration of','in light of','in occurrence of','in order to',
@@ -49,18 +51,26 @@ class Distractors:
                                        zip(self.original_np_list,self.smodel_embeddings)}
 
         self.n_outputs = 4 #number of distractors per questions
-    
+
+        self.s2v = model_loader(
+            'sense2vec',
+            "s2v",
+            lambda : Sense2Vec().from_disk("/home/ubuntu/Questions_generation/s2v_reddit_2019_lg") # large 
+        )
+        
+        
+        
     def generate_distractors(self,questions_sections):
         for section in questions_sections:
             section_distractors =[]
             for q,a,details,context in zip(section['question'], section['answer'],section['details'],section['context']):
-                
+                a = self.mcq_class.solve_abrv_func(a,target_form='long')
                 if q:
                     print('-'*50)
-                    distractors = [False]
+                    distractors = False
                     if 'NEGATIVE' in details:
                         distractors = self.distractors_by_neg_questions(q, a, details, context)
-                    if distractors == [False]:    
+                    if distractors == False:    
                         distractors = self.distractors_by_ents(q, a, self.original_doc)
                         if not distractors:
                             distractors = self.distractors_by_np(q, a, self.original_doc)
@@ -71,12 +81,13 @@ class Distractors:
                                 distractors = self.distractors_by_question_np_jittering(q,self.original_doc,context)
                                 if distractors:
                                     print('question jitter')'''
-                        distractors = [self.mcq_class.solve_abrv_func(d,target_form='long').capitalize() for d in distractors] if distractors!= False else [False]
-                    if distractors != [False]:
+                    distractors = [self.mcq_class.solve_abrv_func(d,target_form='all').capitalize() for d in distractors] \
+                                        if distractors!= False else False
+                    if distractors != False:
                         print(f'{q} --- {a}\n {distractors}')
                     else:
                         print(f'distractors not found! {q}')
-                    section_distractors += distractors
+                    section_distractors += [distractors]
             section['distractors'] =  section_distractors
         return questions_sections
                     
@@ -107,7 +118,7 @@ class Distractors:
         elif answer_type == 'short':
             distractors = short_ans_output
         if distractors == ['']:
-            return [False]
+            return False
         if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
         distractors = filter_distractors(answer, distractors)
@@ -121,23 +132,37 @@ class Distractors:
                 return self.distractors_by_np(question, answer,doc) # if the entity vector hasn't found, we will use the similarity based on sentence model, as used for noun phrases  
             if answer_entity.label_ in ['DATE','TIME']:
                 sim_ents = self.get_sim_ents(answer_entity,n_output=500,thrs=[0.3,0.93])
-                distractors = self.filter_date_distractors(answer_entity,[ent for ent in list(sim_ents.keys())])
+                distractors = self.filter_date_distractors(answer_entity,answer_entity.label_,[ent for ent in list(sim_ents.keys())])
+                if len(distractors) < self.n_outputs:
+                    distractors += self.find_distractors_s2v(answer_entity.text+'|'+answer_entity.label_,70)
+                    distractors = self.filter_date_distractors(answer_entity.text,answer_entity.label_,distractors)
             else:
                 sim_ents = self.get_sim_ents(answer_entity,n_output=20,thrs=[0.3,0.9])
                 distractors = filter_distractors(answer_entity.text, [ent for ent in list(sim_ents.keys())])
+                
+                if len(distractors) < self.n_outputs:
+                    distractors += self.find_distractors_s2v(answer_entity.text+'|'+answer_entity.label_,10)
+                    distractors = filter_distractors(answer_entity.text,distractors)
+                    
+            if len(distractors) < self.n_outputs:
+                # if the answer contains entity with number 3 minutes, we can split the number and find distractors based on the number, and than add the second part 
+                distractors = self.distractors_by_number(question,answer_entity.text,doc,distractors)
+
             if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
-                print([sim_ents[i] for i in distractors])
+
             return [answer.replace(answer_entity.text,d) for d in distractors]
         else:
             return False
-
+    
     def distractors_by_np(self, question, answer, doc):
         answer_np = self.only_noun_phrases(question, answer)
         if answer_np:
             answer_nlp =  self.nlp(answer_np.text)
             # if noun phrase is in a pattern of "X Things", e.g. 10 persons, three ways, first experiment ... we will use the `distractors_by_ents` function with the entity of the number . 
-            if len(answer_nlp.ents)==1 and answer_nlp.ents[0].label_ in ['PERCENT','MONEY','QUANTITY','ORDINAL','CARDINAL']: 
+            if len(answer_nlp.ents)==1 and \
+                answer_nlp.ents[0].label_ in ['TIME','PERCENT','MONEY','QUANTITY','ORDINAL','CARDINAL'] and \
+                    answer_nlp.ents[0].has_vector: 
                 distractors = self.distractors_by_ents(question, answer_nlp.ents[0].text, doc)
                 if distractors:
                     return [answer.replace(answer_nlp.ents[0].text,d) 
@@ -145,20 +170,63 @@ class Distractors:
             #ent_idx = [ent for id,ent in enumerate(list(doc.noun_chunks)) if ent.text.lower()==answer_entity.text.lower()][0]
             sim_np = self.get_sim_noun_phrases(answer_np,doc,n_output=70,thrs=[0.4, 0.75])
             distractors = filter_distractors(answer_np.text, [ent for ent in list(sim_np.keys())])
+            
+            if len(distractors) < self.n_outputs:
+                distractors += self.find_distractors_s2v(answer_np.text+'|NOUN',10)
+                distractors = filter_distractors(answer_np.text,distractors)
+                if len(distractors) < self.n_outputs:
+                    # if the answer contains entity with number 3 minutes, we can split the number and find distractors based on the number, and than add the second part 
+                    distractors = self.distractors_by_number(question,answer_np.text,doc,distractors)
+                    print(distractors)
             if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
-                print([sim_np[i] for i in distractors])
+                #print([sim_np[i] for i in distractors])
+
             return [answer.replace(answer_np.text,d) 
                     for d in distractors]
         else:
             return False
+        
+    def distractors_by_number(self,question,answer,doc,distractors):
+        answer_entity_parts = answer.split()
+        for i,part_i in enumerate(answer_entity_parts):
+            cur_part_doc = self.nlp(part_i) 
+            if len(cur_part_doc.ents)==1 and cur_part_doc.ents[0].label_ in ['QUANTITY','ORDINAL','CARDINAL']:
+                part_based_distractors = self.distractors_by_ents(question, cur_part_doc.ents[0].text, doc)
+                if part_based_distractors:
+                    for dist in part_based_distractors:
+                        answer_entity_parts[i]=dist
+                        distractors += [" ".join(answer_entity_parts)]
+        return distractors    
+    
+    def find_distractors_s2v(self, term, n=5):
+        try:
+            candidates = [
+                        result[0].split("|")[0].replace("_"," ")
+                        for result in self.s2v.most_similar(term, n=30)
+                        if result[0].split("|")[1] == term.split("|")[1]
+                        and result[0] == self.s2v.get_best_sense(result[0].split("|")[0].replace("_"," "))
+            ]
+            # print(candidates)
+            if term.split("|")[1] in ['DATE','TIME']:
+                distractors = self.filter_date_distractors(term.split("|")[0],term.split("|")[1],candidates)
+            else:
+                distractors = filter_distractors(term.split("|")[0].replace("_"," "), candidates, n=n ,threshold = 0.7)
 
-    def filter_date_distractors(self, answer_entity,candidates):
+            if distractors:
+                return distractors
+            else:
+                return []
+        except ValueError as e:
+            return []
+    def filter_date_distractors(self, answer_entity,ent_type, candidates):
 
         #https://github.com/jeffreystarr/dateinfer.git
         #import dateinfer
         #dateinfer.infer(['Mon Jan 13 09:52:52 MST 2014', 'Tue Jan 21 15:30:00 EST 2014'])
-        if answer_entity.label_=='DATE':
+        if not isinstance(answer_entity, (spacy.tokens.token.Token, spacy.tokens.span.Span, spacy.tokens.doc.Doc)):
+            answer_entity = self.nlp(answer_entity)
+        if ent_type=='DATE':
             #from dateinfer import infer
             import infer
             ref_format = infer.infer(answer_entity.text)
@@ -167,7 +235,7 @@ class Distractors:
                 if ref_format == infer.infer(candidate):
                     same_format.append(i)
             return [candidates[i] for i in same_format]
-        elif answer_entity.label_=='TIME':
+        elif ent_type=='TIME':
             return candidates
 
     def get_sim_ents(self, answer_entity, n_output=5, thrs=[0.5,0.8]):
@@ -387,33 +455,10 @@ def edits(word):
     inserts    = [L + c + R               for L, R in splits for c in letters]
     return set(deletes + transposes + replaces + inserts)
 
-'''
+pre_loaded = {}
+
 def model_loader(kind, name, load):
   name = kind + ":" + name
   if name not in pre_loaded:
     pre_loaded[name] = load()
   return pre_loaded[name]
-
-pre_loaded = {}
-s2v = model_loader(
-    'sense2vec',
-    "s2v",
-    lambda : Sense2Vec().from_disk('./support/models/sense2vec/s2v_reddit_2019_lg') # large 
-)
-
-def find_distractors_s2v(term, n=5):
-    try:
-        candidates = [
-                    result[0].split("|")[0].replace("_"," ")
-                    for result in s2v.most_similar(term, n=30)
-                    if result[0].split("|")[1] == term.split("|")[1]
-                    and result[0] == s2v.get_best_sense(result[0].split("|")[0].replace("_"," "))
-        ]
-        # print(candidates)
-        
-        distractors = filter_distractors(term.split("|")[0].replace("_"," "), candidates, n=n ,threshold = 0.7)
-
-        if distractors:
-            return distractors
-    except ValueError as e:
-        return'''

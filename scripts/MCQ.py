@@ -70,17 +70,17 @@ class flanT5MCQ:
         self.sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
         
         self.min_words_in_section=30
-        self.N_MAX_QUESTIONS = 30 #max questions generated per article
+        self.N_MAX_QUESTIONS = 40 #max questions generated per article
 
         self.question_similarity_thrs = 0.95 
-        self.answer_similarity_thrs =  0.8 # combined questions + answers
+        self.answer_similarity_thrs =  0.78 # combined questions + answers
         if COMPUTE_ANSWERS:
             self.QA_model_checkpoint = "allenai/unifiedqa-v2-t5-3b-1363200" # you can specify the model size here
             self.QA = QA(self.QA_model_checkpoint)
             self.rquge = RQUGE(sp_scorer_path='quip-512-mocha',
                                 qa_model_or_model_path=self.QA.model,qa_model_tokenizer=self.QA.tokenizer,
                                 device=self.QA.model.device)
-            self.min_rquge = 2.5
+            self.min_rquge = 2.3
             self.QG = QG()
         #summarizer = SummarizeText('cpu', "sshleifer/distilbart-cnn-12-6", False, with_model=False)
         [setattr(self,cur_arg,args[cur_arg]) for cur_arg in args.keys()]
@@ -381,12 +381,14 @@ class flanT5MCQ:
 
       #`only_first` resolve only the first abbreviation in the text (e.g. if the text includes the results section, and the abbreviation was define at the introduction, the method will resolve once the abbreviation in the text the model is exposed to)
       for abrv,long_form_abbr in abrv_dict.items():
-        text = text.replace(f'{long_form_abbr} ({abrv})',abrv) #first the function abbreviate all occurrences
-        text = text.replace(f'{long_form_abbr}({abrv})',abrv) 
+        pattern = re.compile(r''+long_form_abbr+r'\s*\(\s*'+abrv+r'\s*\)', re.IGNORECASE)
+        text = re.sub(pattern,abrv,text)
         #text = text.replace(long_form_abbr,abrv) 
         text = re.sub(re.compile(r''+long_form_abbr, re.IGNORECASE),abrv , text)
-        pattern = re.compile(r'(^|\s|\.)('+abrv+')(\W)', re.IGNORECASE)
+        pattern = re.compile(r'(^|\s|\.|\,)('+abrv+')(\W)',re.MULTILINE | re.IGNORECASE)
         text = re.sub(pattern,r'\1'+target(abrv,long_form_abbr)+ r'\3' ,  text, count=only_first) 
+        pattern = re.compile(r'(^|\s|\.|\,)(\(\s*'+abrv+r'\s*\))\s*\(\s*'+abrv+r'\s*\)',re.MULTILINE | re.IGNORECASE) #fix (AAA) (aaa) cases
+        text = re.sub(pattern,r'\1\2',text,count=0)
       return text.strip()
           
     def init_abrv_solver(self,sections,only_first=True):
@@ -531,7 +533,11 @@ class QG:
     for i in tqdm(questions_df.index.values):
         neg_token =self.check_if_questions_is_negative(questions_df.loc[i,'question'])
         if not neg_token:
-            questions_df.loc[i,'new_question']= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
+            new_question= self.nlp(self.format_inputs(questions_df.loc[i,'text'], questions_df.loc[i,'selected_ans']))[0]['generated_text']
+            if all([word in questions_df.loc[i,'question'] for word in new_question.split()]):
+                questions_df.loc[i,'new_question']= questions_df.loc[i,'question']
+            else:
+                questions_df.loc[i,'new_question']= new_question  
         else:
             questions_df.loc[i,'new_question'] = questions_df.loc[i,'question']
             questions_df.loc[i,'details'] = questions_df.loc[i,'details']+ ' NEGATIVE: '+neg_token.text
