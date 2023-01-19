@@ -5,8 +5,13 @@ import numpy as np
 import torch
 from MCQ import flanT5MCQ
 from datetime import datetime
-
-def compute_question_and_answer(summary_sections,original_sections,save_name=None):
+import pynvml
+def get_memory_free_MiB(gpu_index):
+    pynvml.nvmlInit()
+    handle = pynvml.nvmlDeviceGetHandleByIndex(int(gpu_index))
+    mem_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+    return mem_info.free // 1024 ** 2
+def compute_question_and_answer(summary_sections,original_sections,title=False,save_name=None):
     '''
     output - [
               { 'question': [Q1,Q2,...,Q_max],
@@ -138,10 +143,18 @@ def compute_question_and_answer(summary_sections,original_sections,save_name=Non
                     section_output['details'].append(question['details'])
                     section_output['context'].append(question['text'])
         output.append(section_output)
-        
+    import pickle
+    with open(r"out_example2.pickle", "wb") as output_file:
+        pickle.dump(output, output_file)
+    print(f'Avaliable memory:{get_memory_free_MiB(0)}')
+    mcq_model_cpu = mcq.model.cpu()
+    del mcq.model
+    mcq.model = mcq_model_cpu
+    print(f'Avaliable memory after moving flanT5 to cpu:{get_memory_free_MiB(0)}')
     from Distractors import Distractors
     find_dist = Distractors(mcq,original_sections)
-    dist_out = find_dist.generate_distractors(output)
+    print(f'Avaliable memory after loading GPTneo:{get_memory_free_MiB(0)}')
+    dist_out = find_dist.generate_distractors(output,title)
     if save_name:
         with open(f'{dir_path}{save_name}_questions_with_distractors.txt', 'w') as f:
             text_output=''

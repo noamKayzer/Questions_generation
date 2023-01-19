@@ -1,0 +1,94 @@
+Q:What do we present?
+A:A novel model for predicting the success of crowdfunding projects in meeting their funding goals.
+Q:What do entrepreneurs use crowdfunding platforms for?
+A:To raise funds
+Q:What dataset do we analyze?
+A:In this paper, we present a novel model for crowdfunding projects in meeting their funding goals, which examines both project metadata and project semantics. We analyze large dataset of crowdfunding project data, larger than reported in the art.
+--------------------------------------------------
+Q:What do we show about buzzwords and LIWC?
+A:Buzzwords and Linguistic Inquiry and Word Count (LIWC) are among the highly correlates features with project’s success in fund raising.
+Q:What does this paper do?
+A:We use a semantic model to predict the Funding Success (FS) of a crowdfunding project.
+Q:What do we use unique features to find?
+A:In this paper, we use unique features (for example, the use of buzzwords) to find characteristics that affect the success of a project in meeting its funding goal via crowdfunding. We use a combined model to predict the success.
+--------------------------------------------------
+Q:What type of textual data is required for semantic analysis?
+A:Projects
+--------------------------------------------------
+Q:What categories of buzzwords were used in this study?
+A:Using the buzzword data set, this study found buzzwords in the following categories: general conversation, education, business, sales and marketing, science and technology, politics, and current affairs.
+--------------------------------------------------
+Q:What did we use to extract features from the text?
+A:Language Inquiry and Word Count software tool
+Q:What did previous studies on crowdfunding use LIWC for?
+A:previous studies used Linguistic Inquiry and Word Count (LIWC) to analyze the textual description part of projects.
+--------------------------------------------------
+Q:How many topics were in the All_D dataset?
+A:The All_D dataset had 30 topics. The Tech_D had 15 topics. and the Market_D was 15 topics for the All_d dataset. The total number of topics was 30. The final answer: 30.
+Q:What did previous studies on crowdfunding use LDA for?
+A:Performing a topic analysis on the text of project updates.
+Q:How did we choose the topic model to use?
+A:Model perplexity and topic coherence provide a convenient measure to judge how good a given topic model is [16] To avoid overfitting, we chose. the one that derived the highest coherency value and the smallest number of topics.
+Q:Which datasets had the highest coherence values?
+A:All_D dataset All_d dataset Tech_d and Market_d
+--------------------------------------------------
+Q:How did we get the data we used?
+A:Data was extracted from projects’ posts via Python web scraping.
+Q:Which of these features is not used to determine Funding Success (FS)?
+A:Previous created projects by.
+Q:How many previously created projects by one person was the answer to one of our analysis questions?
+A:One of our analysis questions was: How many projects were previously created?. The answer: 1. The number of previously created projects by one person was 1.
+--------------------------------------------------
+Q:What are words that describe a feeling?
+A:Words that describe feeling include: awed. Awed is a feeling.
+Q:What are some feelings words?
+A:Anxious, affectionate, anxious, awed, amazed, aggravated
+Q:What are the words for awed and amazed?
+A:Addition to: feeling
+Q:What was the person explaining to someone because they were confused?
+A:The person was explaining something to someone because they were confused.
+--------------------------------------------------
+Q:What does the f-score measure?
+A:Model’s precision and recall are the same. F-score is the weighted harmonic mean of a model’s accuracy and recall. The final answer: accuracy.
+--------------------------------------------------
+Q:What did we develop?
+A:A combined Model for Funding Success (FS) in Kickstarter and Indiegogo projects.
+Q:What was the test that was used to evaluate the prediction performance?
+A:Datasets were obtained from Kaggle.com. We used Beautifulsup to extract additional metadata features. The data was re-scraped using Beautifulsdown. We reconstructed the data into three datasets: All_D (all Kickstarter projects), Tech_D(Tech_D projects) and Market_D. The model was trained on the datasets. The models were tested on a 10-fold cross validation test.
+Q:What are the three datasets used to study the relationship between features and project category?
+A:All_D, Market_D and Tech_D datasets.
+Q:What did we develop to validate the results of our study?
+A:To study Funding Success (FS), we used the following features: Buzzwords, Linguistic Inquiry, Word count and feeling words. We used the CFS (correlation-based feature selection) algorithm to select the most Significant Set of Features (MSSF). We performed a 10-fold cross-validation test to evaluate the model’s performance. We developed the combined-model, whose novelty lies in the combination of semantic and meta-data features.
+Q:What datasets were used to study the relationship between features and project category?
+A:In this paper we combine semantic and meta-data features to predict Funding Success (FS) using a dataset of 50,000 Kickstarter and 50,00 Indiegogo projects. We obtained these data from the Kaggle website for 2018. We used Beautifulsup (a Python web scraping package) to gain additional metadata features, such as, description content, number of updates, etc, for each record in the dataset. For each record, the values of five metadata features and about 120 semantic features, including buzzwords. We removed Latent Dirichlet Allocation (LDA) topics that overlapped with Linguistic Inquiry and Word Count (LIWC) topics by comparing topic sets. To study the relationship between features and project category, we built three datasets: All_D, Tech_D and Market
+--------------------------------------------------
+Q:Which datasets has a unique parameter WC?
+A:R_Tech _D datasets
+Q:What does the CFS algorithm evaluate?
+A:CFS algorithm evaluates subsets of features based on the individual predictive ability of each feature along with the degree of redundancy between them.
+Q:What features are most influential for Funding Success?
+A:This paper describes the data setup, the usage of Latent Dirichlet Allocation (LDA) algorithm, the feature correlation analysis, and the feature selection process. We find that the following feature are most influential for Funding Success (FS): buzzwords Linguistic Inquiry Word Count Word %
+Q:What does this paper describe?
+A:This paper describes the feature selection process for Funding Success (FS).
+--------------------------------------------------
+Q:On what dataset was the proposed model evaluated?
+A:The proposed models were evaluated on the following datasets: All_D.
+Q:What machine learning algorithms were used?
+A:To develop the Semantic-Model, semantic features were used as input. We utilized several machine learning algorithms (including SVM, J48, Random Forest, LightGBM, SDG, DNN, and more) on All_D.
+Q:What were semantic features used for?
+A:To develop the Semantic-Model, semantic features were used as input.
+Q:On what datasets did we utilize machine learning algorithms?
+A:All_D datasets.
+Q:What datasets were utilized in this study?
+A:In this study, we utilized three datasets: All_D. The Semantic-Model was developed on the datasets All_d.
+Q:What was the result of the LightGBM algorithm?
+A:A model was developed that utilizes a combination of several machine learning algorithms. The model was able to achieve a high accuracy level for all three datasets.
+--------------------------------------------------
+Q:How was the training performed?
+A:Using a set of features we use for prediction and the dataset on which learning was applied, we trained a model on All_D with 10-fold cross_validation.
+Q:What does the figure show?
+A:Model we developed has the highest accuracy. The accuracy of the Semantic-Model is similar to that of the Latent Dirichlet Allocation (LDA)-Model and the Metadata-Model.
+--------------------------------------------------
+Q:What feature is highly correlated to FS?
+A:Buzzwords feature
+--------------------------------------------------

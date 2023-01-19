@@ -2,16 +2,21 @@ import torch
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 from sentence_transformers import SentenceTransformer
 MODEL_EMBEDDING = SentenceTransformer('all-mpnet-base-v2', device=DEVICE)
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM,AutoTokenizer, OPTForCausalLM
 import spacy
+import numpy as np
 spacy.prefer_gpu()
 nlp = spacy.load("en_core_web_trf")
 #!pip install -U pip setuptools wheel
 #!pip install -U spacy[cuda100] # [cuda113]
 #!python -m spacy download en_core_web_trf
+'''
 checkpoint = "EleutherAI/gpt-neo-1.3B" #"gpt2" EleutherAI/gpt-neo-1.3B EleutherAI/gpt-neo-2.7B
 MODEL = AutoModelForCausalLM.from_pretrained(checkpoint).to(DEVICE)
-TOKENIZER = AutoTokenizer.from_pretrained(checkpoint)
+TOKENIZER = AutoTokenizer.from_pretrained(checkpoint)'''
+TOKENIZER = AutoTokenizer.from_pretrained("facebook/galactica-1.3b")
+MODEL = OPTForCausalLM.from_pretrained("facebook/galactica-1.3b", device_map="auto")
+
 
 def get_answer_and_distractor_embeddings(answer,candidate_distractors):
     answer_embedding = MODEL_EMBEDDING.encode([answer])
@@ -23,24 +28,41 @@ def remove_prefix(text, prefix):
 
 import re
 def only_alphanumeric_punctuation(text):
-    match = re.search("^[\w\s\d\.,:\(\)-]+$", text)
+    match = re.search("^[\w\s\d\.,%=+:\(\)-]+$", text)
     return bool(match)
 
-def filter_outputs(outputs, question):
+def filter_outputs(outputs, prefix, answer):
     outputs_filtered = []
+    answer_len = len(answer.split())
+
     for output in outputs:
-        output = remove_prefix(output, question)
-        if not only_alphanumeric_punctuation(output):
-            continue
-        output.replace("e.g.","eg").replace("i.e.","ie")
+        output = remove_prefix(output, prefix)
+        '''if not only_alphanumeric_punctuation(output):
+            
+            continue'''
+        output.replace("e.g.","eg").replace("i.e.","ie").replace("i. e.","ie").replace("e. g.","eg")
+        if "\nAuthors" in output: # for Galactica model
+            output = output[:output.find('\nAuthors')]
+        '''
         if "." not in output:
             continue
-        first_sent = output.split(".")[0] + "."
-        if len(TOKENIZER.encode(first_sent)) > 2:
-            outputs_filtered.append(first_sent.strip().replace("\n"," "))
+        output_split = output.split(".")  # consider take all sentences until the last dot. maybe depend on the answers length.
+
+        sentence_len = [len(out.split()) for out in output_split]
+        max_sentence_taken_idx = np.argmin(np.abs(np.cumsum(sentence_len)-answer_len))        
+        print(output)
+        print()
+        print(max_sentence_taken_idx)
+        output_cut = ". ".join(output_split[:max_sentence_taken_idx+1])+"."
+        '''
+        output_cut = output
+
+        if len(TOKENIZER.encode(output_cut)) > 2:
+            outputs_filtered.append(output_cut.strip().replace("\n"," "))
+
     return outputs_filtered
 
-def generate_distractors(question, answer):
+def generate_distractors( question, answer,title=False):
     if len(answer.split()) <= 3:
         num_words_to_add = (1,2)
     elif len(answer.split()) <= 5:
@@ -52,8 +74,14 @@ def generate_distractors(question, answer):
     else: 
         num_words_to_add = (2,4,6)
     candidate_distractors = []
+    if title:
+        prefix = "Title: "+title+". "+question + " "
+    else:
+        prefix = question + " "
+        
     for num in num_words_to_add:
-        prompt = question + " " + " ".join(answer.split()[:num])
+        
+        prompt =  prefix + " ".join(answer.split()[:num])
         input_ids = TOKENIZER.encode(prompt, return_tensors='pt').to(DEVICE)
         torch.manual_seed(0)
         output_ids = MODEL.generate(
@@ -61,20 +89,20 @@ def generate_distractors(question, answer):
             do_sample = True, 
             min_length = len(TOKENIZER.encode(prompt)) + 5,
             max_length = len(TOKENIZER.encode(prompt)) + 25,
-            top_p = 0.80, # 0.85 
+            top_p = 0.90, # 0.8 
             top_k = 30,   #30
             repetition_penalty  = 10.0,
             temperature = 2.0,
-            num_return_sequences = 10
+            num_return_sequences = 10,
+            early_stopping= True
         ).cpu()
         outputs = [TOKENIZER.decode(output, skip_special_tokens=True) for output in output_ids]
-        candidate_distractors += filter_outputs(outputs, question)
+        candidate_distractors += filter_outputs(outputs, prefix,answer)
     if len(candidate_distractors)==0:
         return False
     answer_embedding, distractor_embeddings = get_answer_and_distractor_embeddings(answer, candidate_distractors)
     distractors = mmr(answer_embedding, distractor_embeddings, candidate_distractors, reverse=True, top_n=5, diversity=0.8)
     return distractors
-
 
 from typing import List, Tuple
 import itertools

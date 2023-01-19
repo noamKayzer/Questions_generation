@@ -69,11 +69,11 @@ class flanT5MCQ:
         self.model.to(self.device)
         self.sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
         
-        self.min_words_in_section=30
-        self.N_MAX_QUESTIONS = 40 #max questions generated per article
+        self.min_words_in_section=40
+        self.N_MAX_QUESTIONS = 35 #max questions generated per article
 
-        self.question_similarity_thrs = 0.95 
-        self.answer_similarity_thrs =  0.78 # combined questions + answers
+        self.question_similarity_thrs = 0.93 
+        self.answer_similarity_thrs =  0.75 # combined questions + answers
         if COMPUTE_ANSWERS:
             self.QA_model_checkpoint = "allenai/unifiedqa-v2-t5-3b-1363200" # you can specify the model size here
             self.QA = QA(self.QA_model_checkpoint)
@@ -385,9 +385,9 @@ class flanT5MCQ:
         text = re.sub(pattern,abrv,text)
         #text = text.replace(long_form_abbr,abrv) 
         text = re.sub(re.compile(r''+long_form_abbr, re.IGNORECASE),abrv , text)
-        pattern = re.compile(r'(^|\s|\.|\,)('+abrv+')(\W)',re.MULTILINE | re.IGNORECASE)
+        pattern = re.compile(r'(^|\s|\.|\,)('+abrv+')(\W)', re.IGNORECASE)
         text = re.sub(pattern,r'\1'+target(abrv,long_form_abbr)+ r'\3' ,  text, count=only_first) 
-        pattern = re.compile(r'(^|\s|\.|\,)(\(\s*'+abrv+r'\s*\))\s*\(\s*'+abrv+r'\s*\)',re.MULTILINE | re.IGNORECASE) #fix (AAA) (aaa) cases
+        pattern = re.compile(r'(^|\s|\.|\,)(\(\s*'+abrv+r'\s*\))\s*\(\s*'+abrv+r'\s*\)', re.IGNORECASE) #fix (AAA) (aaa) cases
         text = re.sub(pattern,r'\1\2',text,count=0)
       return text.strip()
           

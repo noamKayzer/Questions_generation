@@ -58,10 +58,8 @@ class Distractors:
             "s2v",
             lambda : Sense2Vec().from_disk("/home/ubuntu/Questions_generation/s2v_reddit_2019_lg") # large 
         )
-        
-        
-        
-    def generate_distractors(self,questions_sections):
+             
+    def generate_distractors(self,questions_sections,title=False):
         for section in questions_sections:
             section_distractors =[]
             for q,a,details,context in zip(section['question'], section['answer'],section['details'],section['context']):
@@ -82,10 +80,12 @@ class Distractors:
                                 distractors = self.distractors_by_question_np_jittering(q,self.original_doc,context)
                                 if distractors:
                                     print('question jitter')'''
+                                    
+                    if not distractors:
+                        distractors = self.distractors_by_autoregressive_model(q, a,title, self.original_doc)
+                    
                     distractors = [self.mcq_class.solve_abrv_func(d,target_form='all') for d in distractors] \
                                         if distractors!= False else False
-                    if not distractors:
-                        distractors = self.distractors_by_autoregressive_model(q, a, self.original_doc)
                     if distractors != False:
                         print(f'{q} --- {a}\n {distractors}')
                     else:
@@ -104,9 +104,9 @@ class Distractors:
 
         if neg_token.lower() in be_words_antonyms_list.keys():
             pos_form = be_words_antonyms_list[neg_token.lower()]
-            print(neg_token,pos_form)
+            #print(neg_token,pos_form)
         pos_question = question.replace(neg_token,pos_form)
-        print(question,pos_question)
+        #print(question,pos_question)
         ans_args,short_ans_args = self.mcq_class.answers_generator_args,self.mcq_class.short_answers_generator_args
         temp_answers_generator_args = copy.deepcopy(ans_args)
         temp_short_answers_generator_args = copy.deepcopy(short_ans_args)
@@ -144,17 +144,19 @@ class Distractors:
             else:
                 sim_ents = self.get_sim_ents(answer_entity,n_output=20,thrs=[0.3,0.9])
                 distractors = filter_distractors(answer_entity.text, [ent for ent in list(sim_ents.keys())])
-                distractors = self.check_distractors(distractors, answer)
+                self.check_distractors(distractors, answer_entity.text)
                 if len(distractors) < self.n_outputs:
                     distractors += self.find_distractors_s2v(answer_entity.text+'|'+answer_entity.label_,10)
                     distractors = filter_distractors(answer_entity.text,distractors)
-            distractors = self.check_distractors(distractors, answer)        
+                   
+            distractors = self.check_distractors(distractors, answer_entity.text)
             if len(distractors) < self.n_outputs:
                 # if the answer contains entity with number 3 minutes, we can split the number and find distractors based on the number, and than add the second part 
                 distractors = self.distractors_by_number(question,answer_entity.text,doc,distractors)
-            distractors = self.check_distractors(distractors, answer)
+            distractors = self.check_distractors(distractors, answer_entity.text)
             if len(distractors) >= self.n_outputs:
                 distractors = distractors[:self.n_outputs]
+            distractors = self.check_distractors(distractors, answer_entity.text)
             return [re.compile(re.escape(answer_entity.text),re.IGNORECASE).sub(d,answer) for d in distractors]
          
             #return [answer.replace(answer_entity.text,d) for d in distractors]
@@ -212,9 +214,9 @@ class Distractors:
                         distractors += [" ".join(answer_entity_parts)]
         return distractors 
        
-    def distractors_by_autoregressive_model(self,q, a, doc):
+    def distractors_by_autoregressive_model(self, q, a,title, doc):
         
-        distractors = generate_distractors(q, a)
+        distractors = generate_distractors(q, a,title)
         distractors = self.check_distractors(distractors, a)
         if distractors:
                 return distractors
@@ -269,9 +271,6 @@ class Distractors:
             if cur_dist_strip!='' and cur_dist_strip !=answer.strip().lower() and \
                 cur_dist_strip not in [g.lower() for g in good_distractors]:
                 good_distractors.append(dist)
-                
-        if len(good_distractors)==0:
-            return False
         else:
             return good_distractors
     
