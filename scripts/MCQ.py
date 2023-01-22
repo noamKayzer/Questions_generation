@@ -112,7 +112,7 @@ class flanT5MCQ:
         chunk_above_min_words_thrs = [len(x.split())>self.min_words_in_section for x in sections_chunks]
         filter_sections_chunks, filter_sections_n =self.filter_section(sections_chunks,sections_n,chunk_above_min_words_thrs)
 
-        for section_i,cur in tqdm(zip(filter_sections_n,filter_sections_chunks)):
+        for section_i,cur in zip(filter_sections_n,filter_sections_chunks):
             cur = self.solve_abrv_func(cur,target_form='long')
             input_string = "generate question: " + cur
             try:
@@ -122,7 +122,7 @@ class flanT5MCQ:
                 
                 qs,qs_ppl = self.get_output_from_prompt(self.model.to('cpu'),input_string,self.generator_args)
             qs = self.clean_questions(qs)
-            print(f'Total text shape is {self.tokenizer.encode(cur, return_tensors="pt",truncation=False).shape}')
+            #print(f'Total text shape is {self.tokenizer.encode(cur, return_tensors="pt",truncation=False).shape}')
             if verbose:
                 for cur_qs in qs:
                     print(f'Qs:{cur_qs}')
@@ -131,7 +131,7 @@ class flanT5MCQ:
             #qs_filtered = self.filter_questions(qs, similarity_matrix,similarity_thrs=0.7,n_thrs=7)
             for i,cur_qs in enumerate(qs):
                 cur_qs = self.solve_abrv_func(cur_qs,target_form='all')
-                print(f'Qs:{cur_qs}')
+                #print(f'Qs:{cur_qs}')
                 if COMPUTE_ANSWERS:
                     ans_output, short_ans_output = self.generate_answers( cur_qs, cur, answers_model,verbose)
                     

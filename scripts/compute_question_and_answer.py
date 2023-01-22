@@ -150,10 +150,13 @@ def compute_question_and_answer(summary_sections,original_sections,title=False,s
     mcq_model_cpu = mcq.model.cpu()
     del mcq.model
     mcq.model = mcq_model_cpu
+    mcq_QAmodel_cpu = mcq.QA.model.cpu()
+    del mcq.QA.model
+    mcq.QA.model = mcq_QAmodel_cpu
     print(f'Avaliable memory after moving flanT5 to cpu:{get_memory_free_MiB(0)}')
     from Distractors import Distractors
     find_dist = Distractors(mcq,original_sections)
-    print(f'Avaliable memory after loading GPTneo:{get_memory_free_MiB(0)}')
+    print(f'Avaliable memory after loading Galactica:{get_memory_free_MiB(0)}')
     dist_out = find_dist.generate_distractors(output,title)
     if save_name:
         with open(f'{dir_path}{save_name}_questions_with_distractors.txt', 'w') as f:

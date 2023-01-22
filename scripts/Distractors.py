@@ -12,7 +12,13 @@ import pandas as pd
 import numpy as np
 import copy
 from sense2vec import Sense2Vec
-from distractors_with_GPTneo import generate_distractors
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM,AutoTokenizer, OPTForCausalLM
+
+from typing import List, Tuple
+import itertools
+from sklearn.metrics.pairwise import cosine_similarity
+from operator import itemgetter
 
 common_answers_prefix = {'according to', 'as far as','as for','as regards','as to',
                         'based on','concerning','in answer to','in connection with',
@@ -23,7 +29,7 @@ common_answers_prefix = {'according to', 'as far as','as for','as regards','as t
                         'relating to','with reference to','with regard to','with regards to','with respect to'}
 be_words_antonyms_list = {'am not': 'am', 'is not': 'is', 'are not': 'are', 'was not': 'was', 'were not': 'were', "haven't been": 'have been', "hasn't been": 'has been', "hadn't been": 'had been', 'will not be': 'will be', 'would not be': 'would be', 'should not be': 'should be', 'could not be': 'could be', 'must not be': 'must be', 'might not be': 'might be', "don't": 'do', 'does not': 'does', 'did not': 'did', 'has not': 'has', 'have not': 'have', 'had not': 'had', 'can not': 'can', 'could not': 'could', 'shall not': 'shall', 'should not': 'should', 'will not': 'will', 'would not': 'would', 'may not': 'may', 'might not': 'might', 'must not': 'must', 'ought not': 'ought', 'need not': 'need', 'dare not': 'dare', 'used not': 'used', "needn't": 'need', "daren't": 'dare', "mustn't": 'must', "shouldn't": 'should', "wouldn't": 'would', "couldn't": 'could', "wasn't": 'was', "weren't": 'were', "isn't": 'is', "aren't": 'are', "didn't": 'did', "doesn't": 'does', "hasn't": 'has', "haven't": 'have', "hadn't": 'had', "can't": 'can', "we're not": "we're", "they're not": "they're", "you're not": "you're", "i'm not": "i'm", "he's not": "he's", "she's not": "she's",
  "it's not": "it's", 'we are not': "we're", 'they are not': "they're", 'you are not': "you're", 'i am not': "i'm", 'he is not': "he's", 'she is not': "she's", 'it is not': "it's",
- 'not':'',"doesn't":"does","don't":"do","dont":"do","doesn't":"does","didn't":"did",}
+ 'not':'',"doesn't":"does","n't":"n","don't":"do","dont":"do","doesn't":"does","didn't":"did",}
 
 class Distractors:
     def __init__(self,mcq_class,original_text,doc=None,nlp=None,sentence_model=None):
@@ -36,7 +42,7 @@ class Distractors:
                 
         '''
         
-        
+        device = "cuda" if torch.cuda.is_available() else "cpu"
         self.mcq_class = mcq_class
         if not sentence_model:
                 from sentence_transformers import SentenceTransformer
@@ -58,6 +64,8 @@ class Distractors:
             "s2v",
             lambda : Sense2Vec().from_disk("/home/ubuntu/Questions_generation/s2v_reddit_2019_lg") # large 
         )
+        
+        self.ByAutoregressiveModel = distractors_by_autoregressive_model(self.smodel,device=device)
              
     def generate_distractors(self,questions_sections,title=False):
         for section in questions_sections:
@@ -101,10 +109,12 @@ class Distractors:
             elif 'ANSWER' in detail:
                 answer_type = detail.replace('ANSWER:','').strip().lower()
                 
-
         if neg_token.lower() in be_words_antonyms_list.keys():
             pos_form = be_words_antonyms_list[neg_token.lower()]
             #print(neg_token,pos_form)
+        else:
+            print(f"Negative Question Error:\n token {neg_token} have no antonym (e.g. don't->do)\n in the question:{question} ")
+            return False
         pos_question = question.replace(neg_token,pos_form)
         #print(question,pos_question)
         ans_args,short_ans_args = self.mcq_class.answers_generator_args,self.mcq_class.short_answers_generator_args
@@ -216,7 +226,8 @@ class Distractors:
        
     def distractors_by_autoregressive_model(self, q, a,title, doc):
         
-        distractors = generate_distractors(q, a,title)
+        distractors = self.ByAutoregressiveModel.generate_distractors(self.mcq_class.solve_abrv_func(q.replace('?'," ?"),target_form='all'), 
+                                           self.mcq_class.solve_abrv_func(a,target_form='all'),title)
         distractors = self.check_distractors(distractors, a)
         if distractors:
                 return distractors
@@ -317,7 +328,7 @@ class Distractors:
         for prefix in common_answers_prefix:
             answer = re.sub(f"^{prefix} ", "", answer, flags=re.IGNORECASE)
         tokens = word_tokenize(answer)
-        punct_or_stopwords = set([*stopwords.words('english'), *string.punctuation, *question.replace('?','').split()])
+        punct_or_stopwords = set([*stopwords.words('english'), *string.punctuation, *[qe.lower() for qe in question.replace('?','').split()]])
         return " ".join([token for token in tokens if token.lower() not in punct_or_stopwords]).strip().lower()
 
     def only_ents(self,question,answer):
@@ -498,3 +509,173 @@ def model_loader(kind, name, load):
   if name not in pre_loaded:
     pre_loaded[name] = load()
   return pre_loaded[name]
+
+
+class distractors_by_autoregressive_model:
+    def __init__(self,smodel,device) -> None:
+        self.MODEL_EMBEDDING = smodel
+
+        self.DEVICE = device
+        #from sentence_transformers import SentenceTransformer
+        #MODEL_EMBEDDING = SentenceTransformer('all-mpnet-base-v2', device=DEVICE)
+
+        self.USE_ANSWER = False
+        #!pip install -U pip setuptools wheel
+        #!pip install -U spacy[cuda100] # [cuda113]
+        #!python -m spacy download en_core_web_trf
+        '''
+        checkpoint = "EleutherAI/gpt-neo-1.3B" #"gpt2" EleutherAI/gpt-neo-1.3B EleutherAI/gpt-neo-2.7B
+        MODEL = AutoModelForCausalLM.from_pretrained(checkpoint).to(DEVICE)
+        TOKENIZER = AutoTokenizer.from_pretrained(checkpoint)'''
+        self.tokenizer = AutoTokenizer.from_pretrained("facebook/galactica-6.7b") #facebook/galactica-1.3b
+        self.model = OPTForCausalLM.from_pretrained("facebook/galactica-6.7b", device_map="auto")
+        torch.manual_seed(0)
+
+    def get_answer_and_distractor_embeddings(self,answer,candidate_distractors):
+        answer_embedding = self.MODEL_EMBEDDING.encode([answer])
+        distractor_embeddings = self.MODEL_EMBEDDING.encode(candidate_distractors)
+        return answer_embedding, distractor_embeddings
+
+    def remove_prefix(self,text, prefix):
+        return text[len(prefix):].strip()
+
+
+    def only_alphanumeric_punctuation(self,text):
+        match = re.search("^[\w\s\d\.,%=+:\(\)-]+$", text)
+        return bool(match)
+
+    def filter_outputs(self,outputs, prefix, answer):
+        outputs_filtered = []
+        #answer_len = len(answer.split())
+
+        for output in outputs:
+            output = self.remove_prefix(output, prefix)
+            if not self.only_alphanumeric_punctuation(output):
+                
+                continue
+            output.replace("e.g.","eg").replace("i.e.","ie").replace("i. e.","ie").replace("e. g.","eg")
+            if "\nAuthors" in output: # for Galactica model
+                output = output[:output.find('\nAuthors')]
+            #print(output)
+            '''
+            if "." not in output:
+                continue
+            output_split = output.split(".")  # consider take all sentences until the last dot. maybe depend on the answers length.
+
+            sentence_len = [len(out.split()) for out in output_split]
+            max_sentence_taken_idx = np.argmin(np.abs(np.cumsum(sentence_len)-answer_len))        
+            print(output)
+            print()
+            print(max_sentence_taken_idx)
+            output_cut = ". ".join(output_split[:max_sentence_taken_idx+1])+"."
+            '''
+            output_cut = output
+
+            if len(self.tokenizer.encode(output_cut)) > 2:
+                outputs_filtered.append(output_cut.strip().replace("\n"," "))
+
+        return outputs_filtered
+
+    def generate_distractors(self, question, answer,title=False):
+        if self.USE_ANSWER:
+            if len(answer.split()) <= 3:
+                num_words_to_add = (1,2)
+            elif len(answer.split()) <= 5:
+                num_words_to_add = (1,3)
+            elif len(answer.split()) <= 7:
+                num_words_to_add = (2,4)
+            elif len(answer.split()) <= 10:
+                num_words_to_add = (1,3,5)
+            else: 
+                num_words_to_add = (2,4,6)
+            num_return_sequences = 10
+        else:
+
+            punct_or_stopwords_or_in_question = set([*stopwords.words('english'), *string.punctuation, *[qe.lower() for qe in question.replace('?','').split()]])
+
+            num_words_to_add=[1]
+            for word in answer.split()[1:]:
+                if word.lower() in punct_or_stopwords_or_in_question:
+                    num_words_to_add[0]+=1
+                else:
+                    break
+                
+            print(num_words_to_add)
+            num_return_sequences = 20
+        candidate_distractors = []
+        if title:
+            prefix = "Title: "+title+". "+question + " "
+        else:
+            prefix = question + " "
+            
+        for num in num_words_to_add:
+            
+            prompt =  prefix +"\n" + " ".join(answer.split()[:num])
+            print(prompt)
+
+            input_ids = self.tokenizer.encode(prompt, return_tensors='pt').to(self.DEVICE)
+            
+            output_ids = self.model.generate(
+                input_ids, 
+                do_sample = True, 
+                min_length = len(self.tokenizer.encode(prompt)) + 5,
+                max_length = len(self.tokenizer.encode(prompt)) + 25,
+                top_p = 0.92, # 0.8 
+                top_k = 30,   #30
+                repetition_penalty  = 10.0,
+                temperature = 2.0,
+                num_return_sequences = num_return_sequences,
+                early_stopping= True
+            ).cpu()
+            outputs = [self.tokenizer.decode(output, skip_special_tokens=True) for output in output_ids]
+            candidate_distractors += self.filter_outputs(outputs, prefix,answer)
+        if len(candidate_distractors)==0:
+            return False
+        answer_embedding, distractor_embeddings = self.get_answer_and_distractor_embeddings(answer, candidate_distractors)
+        distractors = self.mmr(answer_embedding, distractor_embeddings, candidate_distractors, reverse=True, top_n=5, diversity=0.8)
+        return distractors
+
+
+
+    def mmr(self,
+        doc_embedding: np.ndarray,
+        word_embeddings: np.ndarray,
+        words: List[str],
+        top_n: int = 5,
+        diversity: float = 0.8,
+        reverse: bool = False
+    ) -> List[Tuple[str, float]]:
+
+        keywords_idx = [np.argmin(cosine_similarity(word_embeddings, doc_embedding))]
+        doc_embedding = word_embeddings[keywords_idx[0]].reshape(1, -1)
+        # word_embeddings = [emb for idx,emb in enumerate(word_embeddings) if idx not in keywords_idx]
+        word_similarity = cosine_similarity(word_embeddings)
+        word_doc_similarity = cosine_similarity(word_embeddings, doc_embedding)
+        
+
+        candidates_idx = [i for i in range(len(words)) if i != keywords_idx[0]]
+        # print(words[keywords_idx[0]])
+
+        for _ in range(min(top_n - 1, len(words) - 2)):
+            # Extract similarities within candidates and
+            # between candidates and selected keywords/phrases
+            candidate_similarities = word_doc_similarity[candidates_idx, :]
+            target_similarities = np.max(
+                word_similarity[candidates_idx][:, keywords_idx], axis=1
+            )
+
+            # Calculate MMR
+            mmr = (1 - diversity) * candidate_similarities - diversity * target_similarities.reshape(-1, 1)
+            mmr_idx = candidates_idx[np.argmax(mmr)]
+
+            # Update keywords & candidates
+            keywords_idx.append(mmr_idx)
+            candidates_idx.remove(mmr_idx)
+
+        # Extract and sort keywords in descending similarity
+        keywords = [
+            (words[idx], round(float(word_doc_similarity.reshape(1, -1)[0][idx]), 4))
+            for idx in keywords_idx
+        ]
+        keywords = sorted(keywords, key=itemgetter(1), reverse=True)
+        return [kw[0] for kw in keywords]

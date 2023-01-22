@@ -7,6 +7,9 @@ import spacy
 import numpy as np
 spacy.prefer_gpu()
 nlp = spacy.load("en_core_web_trf")
+
+
+USE_ANSWER = False
 #!pip install -U pip setuptools wheel
 #!pip install -U spacy[cuda100] # [cuda113]
 #!python -m spacy download en_core_web_trf
@@ -37,12 +40,13 @@ def filter_outputs(outputs, prefix, answer):
 
     for output in outputs:
         output = remove_prefix(output, prefix)
-        '''if not only_alphanumeric_punctuation(output):
+        if not only_alphanumeric_punctuation(output):
             
-            continue'''
+            continue
         output.replace("e.g.","eg").replace("i.e.","ie").replace("i. e.","ie").replace("e. g.","eg")
         if "\nAuthors" in output: # for Galactica model
             output = output[:output.find('\nAuthors')]
+        #print(output)
         '''
         if "." not in output:
             continue
@@ -63,16 +67,29 @@ def filter_outputs(outputs, prefix, answer):
     return outputs_filtered
 
 def generate_distractors( question, answer,title=False):
-    if len(answer.split()) <= 3:
-        num_words_to_add = (1,2)
-    elif len(answer.split()) <= 5:
-        num_words_to_add = (1,3)
-    elif len(answer.split()) <= 7:
-        num_words_to_add = (2,4)
-    elif len(answer.split()) <= 10:
-        num_words_to_add = (1,3,5)
-    else: 
-        num_words_to_add = (2,4,6)
+    if USE_ANSWER:
+        if len(answer.split()) <= 3:
+            num_words_to_add = (1,2)
+        elif len(answer.split()) <= 5:
+            num_words_to_add = (1,3)
+        elif len(answer.split()) <= 7:
+            num_words_to_add = (2,4)
+        elif len(answer.split()) <= 10:
+            num_words_to_add = (1,3,5)
+        else: 
+            num_words_to_add = (2,4,6)
+        num_return_sequences = 10
+    else:
+        q_lower_list = [word.lower() for word in question.split()]
+        num_words_to_add=[1]
+        for word in answer.split()[1:]:
+            if word.lower() in q_lower_list:
+                num_words_to_add[0]+=1
+            else:
+                break
+            
+        print(num_words_to_add)
+        num_return_sequences = 20
     candidate_distractors = []
     if title:
         prefix = "Title: "+title+". "+question + " "
@@ -81,7 +98,9 @@ def generate_distractors( question, answer,title=False):
         
     for num in num_words_to_add:
         
-        prompt =  prefix + " ".join(answer.split()[:num])
+        prompt =  prefix +"\n" + " ".join(answer.split()[:num])
+        print(prompt)
+
         input_ids = TOKENIZER.encode(prompt, return_tensors='pt').to(DEVICE)
         torch.manual_seed(0)
         output_ids = MODEL.generate(
@@ -89,11 +108,11 @@ def generate_distractors( question, answer,title=False):
             do_sample = True, 
             min_length = len(TOKENIZER.encode(prompt)) + 5,
             max_length = len(TOKENIZER.encode(prompt)) + 25,
-            top_p = 0.90, # 0.8 
+            top_p = 0.92, # 0.8 
             top_k = 30,   #30
             repetition_penalty  = 10.0,
             temperature = 2.0,
-            num_return_sequences = 10,
+            num_return_sequences = num_return_sequences,
             early_stopping= True
         ).cpu()
         outputs = [TOKENIZER.decode(output, skip_special_tokens=True) for output in output_ids]
