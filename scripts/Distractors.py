@@ -516,19 +516,13 @@ class distractors_by_autoregressive_model:
         self.MODEL_EMBEDDING = smodel
 
         self.DEVICE = device
-        #from sentence_transformers import SentenceTransformer
-        #MODEL_EMBEDDING = SentenceTransformer('all-mpnet-base-v2', device=DEVICE)
-
         self.USE_ANSWER = False
-        #!pip install -U pip setuptools wheel
-        #!pip install -U spacy[cuda100] # [cuda113]
-        #!python -m spacy download en_core_web_trf
         '''
         checkpoint = "EleutherAI/gpt-neo-1.3B" #"gpt2" EleutherAI/gpt-neo-1.3B EleutherAI/gpt-neo-2.7B
         MODEL = AutoModelForCausalLM.from_pretrained(checkpoint).to(DEVICE)
         TOKENIZER = AutoTokenizer.from_pretrained(checkpoint)'''
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/galactica-6.7b") #facebook/galactica-1.3b
-        self.model = OPTForCausalLM.from_pretrained("facebook/galactica-6.7b", device_map="auto")
+        self.tokenizer = AutoTokenizer.from_pretrained("facebook/galactica-1.3b") #facebook/galactica-6.7b
+        self.model = OPTForCausalLM.from_pretrained("facebook/galactica-1.3b", device_map="auto")
         torch.manual_seed(0)
 
     def get_answer_and_distractor_embeddings(self,answer,candidate_distractors):
@@ -621,12 +615,13 @@ class distractors_by_autoregressive_model:
                 min_length = len(self.tokenizer.encode(prompt)) + 5,
                 max_length = len(self.tokenizer.encode(prompt)) + 25,
                 top_p = 0.92, # 0.8 
-                top_k = 30,   #30
+                top_k = 30,   #30 - top k argument raise error on cpu - "topk_cpu" not implemented for 'Half'
                 repetition_penalty  = 10.0,
                 temperature = 2.0,
                 num_return_sequences = num_return_sequences,
                 early_stopping= True
-            ).cpu()
+            )
+            output_ids = output_ids.cpu()
             outputs = [self.tokenizer.decode(output, skip_special_tokens=True) for output in output_ids]
             candidate_distractors += self.filter_outputs(outputs, prefix,answer)
         if len(candidate_distractors)==0:

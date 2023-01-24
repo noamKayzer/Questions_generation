@@ -82,7 +82,7 @@ def compute_question_and_answer(summary_sections,original_sections,title=False,s
     # When the model hasn't succeeded to generate any questions, may results from too short or no text as input,
     if len(questions_df) == 0:
         return [{'question':[],'answer':[],'score':[]}]*len(summary_sections)
-
+    
     if save_name:
         questions_df.to_pickle(dir_path+'GQ.pickle')
         print(f"Stage 1:{dir_path+'GQ.pickle'} has been saved")
@@ -144,7 +144,20 @@ def compute_question_and_answer(summary_sections,original_sections,title=False,s
                     section_output['context'].append(question['text'])
         output.append(section_output)
     import pickle
-    with open(r"out_example2.pickle", "wb") as output_file:
+    with open(r"out_example.pickle", "wb") as output_file:
+        pickle.dump(output, output_file)
+    
+    from MCQ_np import generate_mcq
+    np_based_questions = generate_mcq(" ".join(original_sections), num_questions=20)
+    
+    for question in np_based_questions:
+        question['details'] = 'TYPE: np-based'
+        cur_context_part = question['context_missing'].replace("___???___",question['answer'])
+        question['context']=''
+        for org in original_sections:
+            if question['context']=='' and cur_context_part in org:
+                question['context'] = org
+    with open(r"out_example_np_based.pickle", "wb") as output_file:
         pickle.dump(output, output_file)
     print(f'Avaliable memory:{get_memory_free_MiB(0)}')
     mcq_model_cpu = mcq.model.cpu()
@@ -158,6 +171,8 @@ def compute_question_and_answer(summary_sections,original_sections,title=False,s
     find_dist = Distractors(mcq,original_sections)
     print(f'Avaliable memory after loading Galactica:{get_memory_free_MiB(0)}')
     dist_out = find_dist.generate_distractors(output,title)
+
+    dist_out = find_dist.generate_distractors(np_based_questions,title)
     if save_name:
         with open(f'{dir_path}{save_name}_questions_with_distractors.txt', 'w') as f:
             text_output=''
