@@ -1,0 +1,14 @@
+Q:What do we find evidence of?
+A:The storage and recall of factual associations in autoregressive transformer language models are localized, directly-editable computations.
+Q:What method do we use to modify feedforward weights to update specific factual associations?
+A:Rank-one Model Editing (ROME) for Factual Association Recall in Transformer Language Models (ROME)
+Q:What do we analyze?
+A:Inference of factual associations in transformer language models: evidence from causal intervention.
+--------------------------------------------------
+Q:What does this paper investigate?
+A:Factual knowledge associations emerge in GPT-like transformer models. We investigate how such associations are stored within GPT models.
+Q:What method do we introduce to test the finding in model weights?
+A:In this paper, we introduce the Rank-one Model Editing (ROME) method for obtaining factual knowledge from large language model weights.
+Q:What does our analysis reveal?
+A:MLPs at different middle layers determine the weights of transformer models.
+--------------------------------------------------
